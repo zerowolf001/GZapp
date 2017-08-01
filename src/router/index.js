@@ -6,6 +6,7 @@ Vue.use(Router);
 const login = r => require.ensure([], () => r(require('../page/login')), 'login')
 const home = r => require.ensure([], () => r(require('../page/home')), 'home')
 const setServer = r => require.ensure([], () =>r(require('../page/setServer')), 'setServer')
+const bed = r => require.ensure([], () => r(require('../page/bed')), 'bed')
 
 export default new Router({
   routes: [
@@ -23,6 +24,11 @@ export default new Router({
       path: '/setServer',
       name: 'setServer',
       component: setServer
+    },
+    {
+      path: '/bed',
+      name:'bed',
+      component: bed
     }
   ]
 })

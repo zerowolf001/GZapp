@@ -1,4 +1,4 @@
-let baseUrl = 'http://localhost:6334';
+let baseUrl = 'http://localhost:6334/';
 
 export default async(url = '', data = {}, type = 'GET', method = 'fetch') => {
   type = type.toUpperCase();
