@@ -21,3 +21,4 @@ https://stackoverflow.com/questions/44900282/warningtornado-access405-error-stop
 Cors Access-Control-Allow-Headers wildcard being ignored?<br/>
 Support for wildcards in the Access-Control-Allow-Headers header was added to the living standard only in May 2016<br/>
 https://www.w3.org/TR/2014/REC-cors-20140116/#access-control-allow-headers-response-header<br/>
+Access-Control-Allow-Headers 不支持通配符"*"，必须指定域。<br/>
