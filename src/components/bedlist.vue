@@ -3,37 +3,37 @@
     <ul v-load-more="loaderMore" v-if="bedListArr.length" type="1">
       <router-link :to="{path: 'bed', query:{id: item.id}}" v-for="item in bedListArr" tag='li' :key="item.id" class="bed_li">
         <section class="bed_img">
-          <img v-if="item.Gender == 1" src="../assets/icon/woman.png" />
+          <img v-if="item.gender == 1" src="../assets/icon/woman.png" />
           <img v-else src="../assets/icon/man.png" />
         </section>
         <div class="bed_right">
           <header>
-            <h4 class="bed_title ellipsis" :class="'lv_'+ item.lv">{{item.userName}}</h4>
+            <h4 class="bed_title ellipsis" :class="'lv_'+ item.lv">{{item.username}}</h4>
             <ul class="bed_detail_ul">
-              <li v-if="item.detailDD == 1">跌</li>
-              <li v-if="item.detailYC == 1">疮</li>
-              <li v-if="item.detailWC == 1">卧</li>
-              <li v-if="item.detailGM == 1">敏</li>
-              <li v-if="item.detailGL == 1">隔</li>
-              <li v-if="item.detailDT == 1">脱</li>
-              <li v-if="item.detailBW == 1">危</li>
-              <li v-if="item.detailBZ == 1">重</li>
+              <li v-if="item.detaildd == 1">跌</li>
+              <li v-if="item.detailyc == 1">疮</li>
+              <li v-if="item.detailwc == 1">卧</li>
+              <li v-if="item.detailgm == 1">敏</li>
+              <li v-if="item.detailgl == 1">隔</li>
+              <li v-if="item.detaildt == 1">脱</li>
+              <li v-if="item.detailbw == 1">危</li>
+              <li v-if="item.detailbz == 1">重</li>
             </ul>
           </header>
           <h5 class="rating_num">
             <section class="rating_num_left">
-              <span class="rating_feeNo">住院号:{{item.feeNo}}</span>
+              <span class="rating_feeNo">住院号:{{item.feeno}}</span>
               <span class="rating_age">{{item.age}}岁</span>
-              <span class="rating_inDate">{{item.inDate}}入院</span>
+              <span class="rating_inDate">{{item.indate}}入院</span>
             </section>
           </h5>
           <h5 class="fee_distance">
             <p class="fee">
               <span>{{item.tel}}</span>
               <span class="segmentation">/</span>
-              主治医生:{{item.Dr}}
+              主治医生:{{item.dr}}
             </p>
-            <p class="distance">{{item.bedNumber}}号床</p>
+            <p class="distance">{{item.bednumber}}号床</p>
           </h5>
         </div>
       </router-link>

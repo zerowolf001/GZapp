@@ -349,7 +349,7 @@ svg:not(:root) {
   line-height: .7rem;
   font-weight: 700;
 }
-.bed_right header .lv_0:before {
+.bed_right header .lv_0:before,.user-info header .lv_0:before {
   font-size: .5rem;
   line-height: .65rem;
   color: #fff;
@@ -362,7 +362,7 @@ svg:not(:root) {
   text-align: center;
   white-space: nowrap;
 }
-.bed_right header .lv_1:before {
+.bed_right header .lv_1:before,.user-info header .lv_1:before {
   font-size: .5rem;
   line-height: .65rem;
   color: #fff;
@@ -375,7 +375,7 @@ svg:not(:root) {
   text-align: center;
   white-space: nowrap;
 }
-.bed_right header .lv_2:before {
+.bed_right header .lv_2:before,.user-info header .lv_2:before {
   font-size: .5rem;
   line-height: .65rem;
   color: #fff;
@@ -388,7 +388,7 @@ svg:not(:root) {
   text-align: center;
   white-space: nowrap;
 }
-.bed_right header .lv_3:before {
+.bed_right header .lv_3:before,.user-info header .lv_3:before {
   font-size: .5rem;
   line-height: .65rem;
   color: #333;
