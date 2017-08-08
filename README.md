@@ -23,3 +23,8 @@ Support for wildcards in the Access-Control-Allow-Headers header was added to th
 https://www.w3.org/TR/2014/REC-cors-20140116/#access-control-allow-headers-response-header<br/>
 https://stackoverflow.com/questions/13146892/cors-access-control-allow-headers-wildcard-being-ignored <br/>
 W3C2016标准CORS Access-Control-Allow-Headers 不支持通配符"*"，必须指定域。<br/>
+
+#### 2017年08月07日
+参考 https://github.com/euvl/vue-js-toggle-button/blob/master/src/Button.vue<br/>
+    http://element.eleme.io/#/zh-CN/component/switch<br/>
+编写 switch 组件<br/>

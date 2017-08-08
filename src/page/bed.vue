@@ -28,22 +28,18 @@
       <transition name="router-fade">
         <section v-if="categoryType === 1">
           <dl class="bedBest_container">
-              <dd  class="bedBest_list">
+              <dd class="bedBest_list">
                 <dl>
                   <dd>性别：<em v-if="item.gender == 1">女</em>
                     <em v-else>男</em>
                   </dd>
                   <dd>年龄：<em>{{item.age}}岁</em></dd>
-                  <dd>电话： <em>{{item.tel}}</em></dd>
-                  <dd>住址：
-                    <em>{{item.address}}</em></dd>
-                  <dd>主治医生：
-                    <em>{{item.dr}}</em></dd>
-                  <dd>责任护士：</dd>
-                  <dd>住院日期：
-                    <em>{{item.indate}}</em>
-                  </dd>
-                  <dd>缴费方式：</dd>
+                  <dd>电话：<em>{{item.tel}}</em></dd>
+                  <dd>住址：<em>{{item.address}}</em></dd>
+                  <dd>主治医生：<em>{{item.dr}}</em></dd>
+                  <dd>责任护士：<em>{{item.nurse}}</em></dd>
+                  <dd>住院日期：<em>{{item.indate}}</em></dd>
+                  <dd>缴费方式：<em>{{item.pay}}</em></dd>
                 </dl>
               </dd>
               <dd class="bedBest_list">
@@ -59,9 +55,14 @@
       </transition>
       <transition name="router-fade">
         <section v-if="categoryType === 2">
-          <section class="bedTag_container">
-            222
-          </section>
+          <dl class="bedTag_container">
+            <dd class="bed_Switch">
+              <dl>
+                <dd>是否压疮 <em><toggle-button :labels="true"/></em></dd>
+                <dd>导管是否脱落 <em><toggle-button :labels="true" /></em></dd>
+              </dl>
+            </dd>
+          </dl>
         </section>
       </transition>
       <transition name="router-fade">
@@ -78,6 +79,7 @@
 <script>
   import {bedDetails} from '../service/getData'
   import headTop from '../components/head'
+  import ToggleButton from '../components/switch.vue'
 
   export default {
     data(){
@@ -85,6 +87,7 @@
         categoryType: 1,
         bedid: null,
         bedDetailData: null,
+        toggled: false,
       }
     },
     created(){
@@ -95,6 +98,7 @@
     },
     components:{
       headTop,
+      ToggleButton
     },
     computed: {
 
@@ -163,7 +167,7 @@
     -ms-flex-align: center;
     align-items: center;
     margin: 0;
-    width: 3.5rem;
+    width: 4.5rem;
     color: #333;
     padding-top: .01rem;
     font-size: .65rem;
@@ -236,53 +240,40 @@
   .tab_title span:last-child {
     border-right:none;
   }
-  dl.bedBest_container {
+  dl.bedBest_container,dl.bedTag_container {
     margin-bottom:.1rem;
   }
-  dl.bedBest_container .bedBest_list {
+  dl.bedBest_container .bedBest_list,dl.bedTag_container .bed_Switch {
     margin-bottom:1rem;
     background-color: #fff;
   }
-  dl.bedBest_container .bedBest_list dl {
+  dl.bedBest_container .bedBest_list dl,.bedTag_container .bed_Switch dl {
     border-top:1px solid #eee;
   }
-  dl.bedBest_container .bedBest_list dd {
+  dl.bedBest_container .bedBest_list dd,.bedTag_container .bed_Switch dd {
     position:relative;
     border-bottom:1px solid #eee;
     font-size:.6rem;
-    padding:.4rem 1.5rem;
+    padding:.4rem 1rem .4rem .5rem;
   }
-  dl.bedBest_container .bedBest_list dd em {
+  dl.bedBest_container .bedBest_list dd em,.bedTag_container .bed_Switch dd em {
     float: right;
     font-size: .55rem;
     color: #999;
     font-style: normal;
     font-weight: 400;
   }
-  dl.bedBest_container .bedBest_list dd:after {
-    position: absolute;
-    right: .5rem;
-    top: 50%;
-    display: inline-block;
-    content: "";
-    width: .3rem;
-    height: .3rem;
-    border: solid #999;
-    border-width: 1px 1px 0 0;
-    -webkit-transform: translate(0, -50%) rotate(45deg);
-    transform: translate(0, -50%) rotate(45deg);
-  }
-  .router-fade-enter-active, .router-fade-leave-active {
-    transition: opacity .3s;
-  }
-  .router-fade-enter, .router-fade-leave-active {
-    opacity: 0;
-  }
-  .router-slid-enter-active, .router-slid-leave-active {
-    transition: all .4s;
-  }
-  .router-slid-enter, .router-slid-leave-active {
-    transform: translate3d(2rem, 0, 0);
-    opacity: 0;
-  }
+  /*dl.bedBest_container .bedBest_list dd:after {*/
+    /*position: absolute;*/
+    /*right: .5rem;*/
+    /*top: 50%;*/
+    /*display: inline-block;*/
+    /*content: "";*/
+    /*width: .3rem;*/
+    /*height: .3rem;*/
+    /*border: solid #999;*/
+    /*border-width: 1px 1px 0 0;*/
+    /*-webkit-transform: translate(0, -50%) rotate(45deg);*/
+    /*transform: translate(0, -50%) rotate(45deg);*/
+  /*}*/
 </style>
