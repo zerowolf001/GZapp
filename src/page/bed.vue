@@ -8,14 +8,14 @@
           <img v-else src="../assets/icon/man.png" >
           <div class="user-info">
             <header>
-              <h4 class="bed_title ellipsis lv_0">{{item.username}}</h4>
+              <h4 class="bed_title ellipsis" :class="'lv_'+ item.lv">{{item.username}}</h4>
               <ul>
                 <li>住院号:{{item.feeno}}</li>
               </ul>
             </header>
             <h5 class="bed_distance">
               <p class="bed_num">{{item.bednumber}}号床</p>
-              <p>因心脑血管疾病入院</p>
+              <p>{{item.distance}}</p> <!--简介-->
             </h5>
           </div>
         </div>
@@ -23,7 +23,7 @@
       <section class="tab_title">
         <span :class="{choosed: categoryType === 1}" @click="categoryType = 1">基本信息</span>
         <span :class="{choosed: categoryType === 2}" @click="categoryType = 2">特殊标记</span>
-        <span :class="{choosed: categoryType === 3}" @click="categoryType = 3">门诊记录</span>
+        <span :class="{choosed: categoryType === 3}" @click="categoryType = 3">诊断内容</span>
       </section>
       <transition name="router-fade">
         <section v-if="categoryType === 1">
@@ -39,15 +39,23 @@
                   <dd>主治医生：<em>{{item.dr}}</em></dd>
                   <dd>责任护士：<em>{{item.nurse}}</em></dd>
                   <dd>住院日期：<em>{{item.indate}}</em></dd>
+                  <dd>住院天数： <em></em></dd>
                   <dd>缴费方式：<em>{{item.pay}}</em></dd>
                 </dl>
               </dd>
               <dd class="bedBest_list">
                 <dl>
-                  <dd>是否手术：</dd>
+                  <dd>是否手术：<em>是</em></dd>
                   <dd>手术日期：</dd>
                   <dd>手术状态：</dd>
                   <dd>手术内容</dd>
+                </dl>
+              </dd>
+              <dd class="bedBest_list">
+                <dl>
+                  <dd>护理级别：</dd>
+                  <dd>费用：</dd>
+                  <dd>明日预出：</dd>
                 </dl>
               </dd>
           </dl>
@@ -58,8 +66,26 @@
           <dl class="bedTag_container">
             <dd class="bed_Switch">
               <dl>
-                <dd>是否压疮 <em><toggle-button :labels="true"/></em></dd>
-                <dd>导管是否脱落 <em><toggle-button :labels="true" /></em></dd>
+                <dd>病重 <em><toggle-button :labels="true" :value="item.detailbz" /></em></dd>
+                <dd>病危 <em><toggle-button :labels="true" :value="item.detailbw" /></em></dd>
+                <dd>绝对卧床休息/床上活动 <em><toggle-button :labels="true" :value="item.detailwc" /></em></dd>
+              </dl>
+            </dd>
+            <dd class="bed_Switch">
+              <dl>
+                <dd>DVT高风险 <em><toggle-button :labels="true" :value="item.detaildvt" /></em></dd>
+                <dd>特殊用药/抗凝治疗 <em><toggle-button :labels="true" /></em></dd>
+                <dd>特殊饮食 <em><toggle-button :labels="true" :value="item.detailtys" /></em></dd>
+                <dd>禁食 <em><toggle-button :labels="true" :value="item.detailjs" /></em></dd>
+              </dl>
+            </dd>
+            <dd class="bed_Switch">
+              <dl>
+                <dd>预防压疮 <em><toggle-button :labels="true" :value="item.detailyc"/></em></dd>
+                <dd>防导管滑脱 <em><toggle-button :labels="true" :value="item.detaildt"/></em></dd>
+                <dd>小心坠床/小心跌倒 <em><toggle-button :labels="true" :value="item.detaildd"/></em></dd>
+                <dd>过敏 <em><toggle-button :labels="true" :value="item.detailgm"/></em></dd>
+                <dd>隔离 <em><toggle-button :labels="true" :value="item.detailgl"/></em></dd>
               </dl>
             </dd>
           </dl>
@@ -68,7 +94,7 @@
       <transition name="router-fade">
         <section v-if="categoryType === 3">
           <section class="bedClinic_container">
-            333
+            {{item.bedcontainer}}
           </section>
         </section>
       </transition>
@@ -239,6 +265,16 @@
   }
   .tab_title span:last-child {
     border-right:none;
+  }
+  .bedClinic_container {
+    margin:1rem 0;
+    padding:.5rem;
+    background-color:#fff;
+    line-height:25px;
+    font-size:14px;
+    min-height:18rem;
+    border-top:1px solid #eee;
+    border-bottom:1px solid #eee;
   }
   dl.bedBest_container,dl.bedTag_container {
     margin-bottom:.1rem;
