@@ -19,22 +19,16 @@
           <div class="swiper-slide types_container">
             <a class="home_link">
               <figure>
-                <img src="../assets/icon/icon_1.png">
-                <figcaption>病床管理</figcaption>
-              </figure>
-            </a>
-            <a class="home_link">
-              <figure>
                 <img src="../assets/icon/icon_9.png">
-                <figcaption>病患管理</figcaption>
+                <figcaption>医嘱清单</figcaption>
               </figure>
             </a>
-            <a class="home_link">
+            <router-link :to="{path: '/duty'}" class="home_link">
               <figure>
                 <img src="../assets/icon/icon_3.png">
                 <figcaption>排班管理</figcaption>
               </figure>
-            </a>
+            </router-link>
             <a class="home_link">
               <figure>
                 <img src="../assets/icon/icon_4.png">
@@ -56,21 +50,7 @@
             <a class="home_link">
               <figure>
                 <img src="../assets/icon/icon_8.png">
-                <figcaption>入院登记</figcaption>
-              </figure>
-            </a>
-            <a class="home_link">
-              <figure>
-                <img src="../assets/icon/icon_7.png">
-                <figcaption>出院登记</figcaption>
-              </figure>
-            </a>
-          </div>
-          <div class="swiper-slide types_container">
-            <a class="home_link">
-              <figure>
-                <img src="../assets/icon/icon_2.png">
-                <figcaption>病历管理</figcaption>
+                <figcaption>出入院信息</figcaption>
               </figure>
             </a>
             <a class="home_link">
@@ -85,15 +65,9 @@
                 <figcaption>设备管理</figcaption>
               </figure>
             </a>
-            <a class="home_link">
-              <figure>
-                <img src="../assets/icon/icon_10.png">
-                <figcaption>智能输液</figcaption>
-              </figure>
-            </a>
           </div>
         </div>
-        <div class="swiper-pagination"></div>
+        <!--<div class="swiper-pagination"></div>-->
       </div>
     </nav>
     <div class="bed_list_container">

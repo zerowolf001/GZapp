@@ -72,11 +72,11 @@
         } else {
           this.userInfo = await accountLogin(this.userAccount, this.passWord)
         }
-
+        this.$router.push({path:'/home'});
 //        else {
 //          this.$router.push({path:'/home'});
 //        }
-        if (!this.userInfo) {
+        /*if (!this.userInfo) {
           this.showAlert = true;
           this.alertText = '用户名或密码错误';
           setTimeout(() => {
@@ -84,7 +84,7 @@
           }, 2000);
         } else {
           this.$router.push({path:'/home'});
-        }
+        }*/
       }
     }
   }
