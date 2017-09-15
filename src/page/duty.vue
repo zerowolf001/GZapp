@@ -29,10 +29,112 @@
         </li>
       </ul>
     </div>
+    <div class="agenda">
+      <header class="agenda_header">
+        <h3>值班医生</h3>
+      </header>
+      <div class="agenda_container">
+        <ul>
+          <li>
+            <section class="doc_img">
+              <img src="../assets/icon/icon1.jpg" alt="">
+            </section>
+            <div class="doc_right">
+              <header>
+                <h4 class="doc_name tit_head">刘俊</h4>
+              </header>
+              <section class="departments">
+                <span>科室：外科</span>
+                <a href="tel:10086">电话：15777778870</a>
+              </section>
+            </div>
+          </li>
+          <li>
+            <section class="doc_img">
+              <img src="../assets/icon/icon1.jpg" alt="">
+            </section>
+            <div class="doc_right">
+              <header>
+                <h4 class="doc_name tit_f_head">刘俊一</h4>
+              </header>
+              <section class="departments">
+                <span>科室：外科</span>
+                <a href="tel:10086">电话：15777778870</a>
+              </section>
+            </div>
+          </li>
+          <li>
+            <section class="doc_img">
+              <img src="../assets/icon/icon1.jpg" alt="">
+            </section>
+            <div class="doc_right">
+              <header>
+                <h4 class="doc_name tit_none">刘俊二</h4>
+              </header>
+              <section class="departments">
+                <span>科室：外科</span>
+                <a href="tel:10086">电话：15777778870</a>
+              </section>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <header class="agenda_header">
+        <h3>值班护士</h3>
+      </header>
+      <div class="agenda_container">
+        <ul>
+          <li>
+            <section class="doc_img">
+              <img src="../assets/icon/icon2.jpg" alt="">
+            </section>
+            <div class="doc_right">
+              <header>
+                <h4 class="doc_name tit_nurse_head">杨颖</h4>
+              </header>
+              <section class="departments">
+                <span>科室：外科</span>
+                <a href="tel:10086">电话：15777778870</a>
+              </section>
+            </div>
+          </li>
+          <li>
+            <section class="doc_img">
+              <img src="../assets/icon/icon2.jpg" alt="">
+            </section>
+            <div class="doc_right">
+              <header>
+                <h4 class="doc_name tit_nurse">王俊凯</h4>
+              </header>
+              <section class="departments">
+                <span>科室：外科</span>
+                <a href="tel:10086">电话：15777778870</a>
+              </section>
+            </div>
+          </li>
+          <li>
+            <section class="doc_img">
+              <img src="../assets/icon/icon2.jpg" alt="">
+            </section>
+            <div class="doc_right">
+              <header>
+                <h4 class="doc_name tit_nurse">王源</h4>
+              </header>
+              <section class="departments">
+                <span>科室：外科</span>
+                <a href="tel:10086">电话：15777778870</a>
+              </section>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <foot-guide></foot-guide>
   </div>
 </template>
 <script>
   import headTop from '../components/head'
+  import footGuide from '../components/footGuide'
 
   export default {
     data(){
@@ -49,6 +151,7 @@
     },
     components:{
       headTop,
+      footGuide,
     },
     methods:{
       formatDate (year, month, day) {
@@ -137,10 +240,10 @@
     color: #e0434e;
   }
 
-  .date_container {
-    /*background-image: linear-gradient(180deg,#f65b55,#e0434e);*/
-    /*padding: .333333rem;*/
-  }
+  /*.date_container {
+    background-image: linear-gradient(180deg,#f65b55,#e0434e);
+    padding: .333333rem;
+  }*/
   .calendar {
     background: linear-gradient(#f65b55,#E01F34);
     /*background: linear-gradient(#36db84 , #0eb27b);*/
@@ -148,6 +251,11 @@
     overflow: hidden;
     /*margin-top: 1.95rem;*/
     border-bottom:1px solid #eee;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+    top:0;
+    opacity: .95;
   }
   .calendar dl {
     width:100%;
@@ -246,9 +354,6 @@
     padding:10px 0;
     color: #000;
   }
-  .calendar ul.days li span {
-
-  }
   .calendar ul.days li span.active {
     display: inline-block;
     width:1.2rem;
@@ -259,6 +364,154 @@
   }
   .calendar ul.days li span.other-month {
     color: #999;
+  }
+  .agenda {
+    margin-top: 6rem;
+  }
+  .agenda header.agenda_header {
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    background-color:#fff;
+  }
+  .agenda header H3 {
+    color: #333;
+    font-size: 0.6rem;
+    padding-left: .4rem;
+    line-height: 1.6rem;
+    font-weight: 600;
+  }
+  .agenda_container {
+    background-color: #fff;
+    margin-bottom: 1rem;
+  }
+  .agenda_container ul li {
+    display: flex;
+    border-bottom: 0.025rem solid #f1f1f1;
+    padding: 0.5rem;
+  }
+  .agenda_container .doc_img {
+    width: 2.7rem;
+    height: 3.33rem;
+    border-radius: .15rem;
+    background-color: #eee;
+    font-size: 1rem;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+  }
+  .agenda_container ul li .doc_img img {
+    width: 100%;
+    height: 100%;
+    opacity: .7;
+  }
+  .agenda_container .doc_right {
+    padding-left: .7rem;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -webkit-box-flex: 1;
+    -ms-flex: auto;
+    flex: auto;
+  }
+  .agenda_container .doc_right header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+  .doc_right header .tit_head:before {
+    font-size: .55rem;
+    line-height: .65rem;
+    color: #fff;
+    font-weight: normal;
+    background-color: #54a4d3;
+    padding: .05rem .15rem;
+    margin-right: .2rem;
+    content: '主任';
+    text-align: center;
+    white-space: nowrap;
+  }
+  .doc_right header .tit_f_head:before {
+    font-size: .55rem;
+    line-height: .65rem;
+    color: #fff;
+    font-weight: normal;
+    background-color: #54a4d3;
+    padding: .05rem .15rem;
+    margin-right: .2rem;
+    content: '副主任';
+    text-align: center;
+    white-space: nowrap;
+  }
+  .doc_right header .tit_none:before {
+    font-size: .55rem;
+    line-height: .65rem;
+    color: #fff;
+    font-weight: normal;
+    background-color: #54a4d3;
+    padding: .05rem .15rem;
+    margin-right: .2rem;
+    content: '医生';
+    text-align: center;
+    white-space: nowrap;
+  }
+  .doc_right header .tit_nurse_head:before {
+    font-size: .55rem;
+    line-height: .65rem;
+    color: #fff;
+    font-weight: normal;
+    background-color: #fa6854;
+    padding: .05rem .15rem;
+    margin-right: .2rem;
+    content: '护士长';
+    text-align: center;
+    white-space: nowrap;
+  }
+  .doc_right header .tit_nurse:before {
+    font-size: .55rem;
+    line-height: .65rem;
+    color: #fff;
+    font-weight: normal;
+    background-color: #fa6854;
+    padding: .05rem .15rem;
+    margin-right: .2rem;
+    content: '护士';
+    text-align: center;
+    white-space: nowrap;
+  }
+  .doc_right header .doc_name {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin: 0;
+    width: 5rem;
+    color: #333;
+    padding-top: .01rem;
+    font-size: .65rem;
+    line-height: .7rem;
+    font-weight: 700;
+  }
+  .departments span,.departments a {
+    height: 0.8rem;
+    margin-top: 0.3rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    font-size: .55rem;
   }
 </style>
 

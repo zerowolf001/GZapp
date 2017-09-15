@@ -1,21 +1,21 @@
 <template>
   <div>
-    <div class="bedPage"  v-for="item in bedDetailData">
+    <div class="bedPage">
       <head-top head-title="患者详情" go-back='true'></head-top>
       <section class="bed_name">
         <div class="profileImage">
-          <img v-if="item.gender == 1" src="../assets/icon/woman.png" >
+          <img v-if="bedDetailData.Gender == 0" src="../assets/icon/woman.png" >
           <img v-else src="../assets/icon/man.png" >
           <div class="user-info">
             <header>
-              <h4 class="bed_title ellipsis" :class="'lv_'+ item.lv">{{item.username}}</h4>
+              <h4 class="bed_title ellipsis" :class="'lv_'+ bedDetailData.NursingLevel">{{bedDetailData.Name}}</h4>
               <ul>
-                <li>住院号:{{item.feeno}}</li>
+                <li>住院号:{{bedDetailData.FeeNo}}</li>
               </ul>
             </header>
             <h5 class="bed_distance">
-              <p class="bed_num">{{item.bednumber}}号床</p>
-              <p>{{item.distance}}</p> <!--简介-->
+              <p class="bed_num">{{bedDetailData.BedNum}}号床</p>
+              <p>{{bedDetailData.distance}}</p> <!--简介-->
             </h5>
           </div>
         </div>
@@ -30,32 +30,41 @@
           <dl class="bedBest_container">
               <dd class="bedBest_list">
                 <dl>
-                  <dd>性别：<em v-if="item.gender == 1">女</em>
+                  <dd>性别：<em v-if="bedDetailData.gender == 1">女</em>
                     <em v-else>男</em>
                   </dd>
-                  <dd>年龄：<em>{{item.age}}岁</em></dd>
-                  <dd>电话：<em>{{item.tel}}</em></dd>
-                  <dd>住址：<em>{{item.address}}</em></dd>
-                  <dd>主治医生：<em>{{item.dr}}</em></dd>
-                  <dd>责任护士：<em>{{item.nurse}}</em></dd>
-                  <dd>住院日期：<em>{{item.indate}}</em></dd>
-                  <dd>住院天数： <em></em></dd>
-                  <dd>缴费方式：<em>{{item.pay}}</em></dd>
+                  <dd>年龄：<em>{{bedDetailData.age}}岁</em></dd>
+                  <dd>电话：<em>{{bedDetailData.ContactNo}}</em></dd>
+                  <dd>住址：<em>{{bedDetailData.Address}}</em></dd>
+                  <dd>主治医生：<em>{{bedDetailData.Doctor}}</em></dd>
+                  <dd>责任护士：<em>{{bedDetailData.ResNurse}}</em></dd>
+                  <dd>住院日期：<em>{{bedDetailData.ChkInAt}}</em></dd>
+                  <dd>住院天数： <em>{{bedDetailData.DOH}}</em></dd>
+                  <dd>缴费方式：<em>{{bedDetailData.Insurance}}</em></dd>
                 </dl>
               </dd>
               <dd class="bedBest_list">
                 <dl>
-                  <dd>是否手术：<em>是</em></dd>
+                  <dd>已完成手术：</dd>
                   <dd>手术日期：</dd>
                   <dd>手术状态：</dd>
                   <dd>手术内容</dd>
                 </dl>
               </dd>
+            <dd class="bedBest_list">
+              <dl>
+                <dd>危急值：<em>{{bedDetailData.Critically}}</em></dd>
+                <dd>导管意外评估：<em>{{bedDetailData.CatheterOff}}</em></dd>
+                <dd>跌倒坠床评估：<em>{{bedDetailData.FallAssess}}</em></dd>
+                <dd>患者自理能力：<em>{{bedDetailData.SelfCare}}</em></dd>
+                <dd>分娩情况：<em v-if="bedDetailData.Delivery == 0"></em><em v-else-if="bedDetailData.Delivery == 1">男婴</em><em v-else-if="bedDetailData.Delivery == 2">女婴</em><em v-else-if="bedDetailData.Delivery == 3">双胞胎</em><em v-else>三胞胎及以上</em></dd>
+                <dd>护理级别：<em v-if="bedDetailData.NursingLevel == 1">一级护理</em><em v-else-if="bedDetailData.NursingLevel == 2">二级护理</em><em v-else-if="bedDetailData.NursingLevel == 3">三级护理</em><em v-else="bedDetailData.NursingLevel == 4">特级护理</em></dd>
+              </dl>
+            </dd>
               <dd class="bedBest_list">
                 <dl>
-                  <dd>护理级别：</dd>
-                  <dd>费用：</dd>
-                  <dd>明日预出：</dd>
+                  <dd>费用：<em>{{bedDetailData.Fee}}</em></dd>
+                  <dd>明日预出：<em v-if="bedDetailData.dt == 1">是</em><em v-else>否</em></dd>
                 </dl>
               </dd>
           </dl>
@@ -66,26 +75,26 @@
           <dl class="bedTag_container">
             <dd class="bed_Switch">
               <dl>
-                <dd>病重 <em><toggle-button :labels="true" :value="item.detailbz" /></em></dd>
-                <dd>病危 <em><toggle-button :labels="true" :value="item.detailbw" /></em></dd>
-                <dd>绝对卧床休息/床上活动 <em><toggle-button :labels="true" :value="item.detailwc" /></em></dd>
+                <dd>病重 <em><toggle-button :labels="true" :value="bedDetailData.detailbz" /></em></dd>
+                <dd>病危 <em><toggle-button :labels="true" :value="bedDetailData.detailbw" /></em></dd>
+                <dd>绝对卧床休息/床上活动 <em><toggle-button :labels="true" :value="bedDetailData.detailwc" /></em></dd>
               </dl>
             </dd>
             <dd class="bed_Switch">
               <dl>
-                <dd>DVT高风险 <em><toggle-button :labels="true" :value="item.detaildvt" /></em></dd>
+                <dd>DVT高风险 <em><toggle-button :labels="true" :value="bedDetailData.detaildvt" /></em></dd>
                 <dd>特殊用药/抗凝治疗 <em><toggle-button :labels="true" /></em></dd>
-                <dd>特殊饮食 <em><toggle-button :labels="true" :value="item.detailtys" /></em></dd>
-                <dd>禁食 <em><toggle-button :labels="true" :value="item.detailjs" /></em></dd>
+                <dd>特殊饮食 <em><toggle-button :labels="true" :value="bedDetailData.detailtys" /></em></dd>
+                <dd>禁食 <em><toggle-button :labels="true" :value="bedDetailData.detailjs" /></em></dd>
               </dl>
             </dd>
             <dd class="bed_Switch">
               <dl>
-                <dd>预防压疮 <em><toggle-button :labels="true" :value="item.detailyc"/></em></dd>
-                <dd>防导管滑脱 <em><toggle-button :labels="true" :value="item.detaildt"/></em></dd>
-                <dd>小心坠床/小心跌倒 <em><toggle-button :labels="true" :value="item.detaildd"/></em></dd>
-                <dd>过敏 <em><toggle-button :labels="true" :value="item.detailgm"/></em></dd>
-                <dd>隔离 <em><toggle-button :labels="true" :value="item.detailgl"/></em></dd>
+                <dd>预防压疮 <em><toggle-button :labels="true" :value="bedDetailData.detailyc"/></em></dd>
+                <dd>防导管滑脱 <em><toggle-button :labels="true" :value="bedDetailData.detaildt"/></em></dd>
+                <dd>小心坠床/小心跌倒 <em><toggle-button :labels="true" :value="bedDetailData.detaildd"/></em></dd>
+                <dd>过敏 <em><toggle-button :labels="true" :value="bedDetailData.detailgm"/></em></dd>
+                <dd>隔离 <em><toggle-button :labels="true" :value="bedDetailData.detailgl"/></em></dd>
               </dl>
             </dd>
           </dl>
@@ -94,7 +103,7 @@
       <transition name="router-fade">
         <section v-if="categoryType === 3">
           <section class="bedClinic_container">
-            {{item.bedcontainer}}
+            {{bedDetailData.bedcontainer}}
           </section>
         </section>
       </transition>
@@ -132,9 +141,8 @@
     methods: {
       //初始化时获取基本数据
       async initData() {
-        this.bedDetailData = await bedDetails(this.bedid);
+        this.bedDetailData = await bedDetails(this.bedid)
       },
-
     },
   }
 </script>

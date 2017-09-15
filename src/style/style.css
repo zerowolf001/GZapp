@@ -353,7 +353,7 @@ polyline{
   line-height: .7rem;
   font-weight: 700;
 }
-.bed_right header .lv_0:before,.user-info header .lv_0:before {
+.bed_right header .lv_4:before,.user-info header .lv_4:before {
   font-size: .5rem;
   line-height: .65rem;
   color: #fff;

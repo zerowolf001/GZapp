@@ -23,42 +23,42 @@
                 <figcaption>医嘱清单</figcaption>
               </figure>
             </a>
-            <router-link :to="{path: '/duty'}" class="home_link">
+            <router-link to="/duty" class="home_link">
               <figure>
                 <img src="../assets/icon/icon_3.png">
                 <figcaption>排班管理</figcaption>
               </figure>
             </router-link>
-            <a class="home_link">
+            <router-link to="/stat" class="home_link">
               <figure>
                 <img src="../assets/icon/icon_4.png">
                 <figcaption>统计报表</figcaption>
               </figure>
-            </a>
-            <router-link to="/duty"  class="home_link">
+            </router-link>
+            <router-link to="/examine"  class="home_link">
               <figure>
                 <img src="../assets/icon/icon_5.png">
                 <figcaption>检查安排</figcaption>
               </figure>
             </router-link>
-            <a class="home_link">
+            <router-link to="/ops" class="home_link">
               <figure>
                 <img src="../assets/icon/icon_6.png">
                 <figcaption>手术安排</figcaption>
               </figure>
-            </a>
+            </router-link>
             <a class="home_link">
               <figure>
                 <img src="../assets/icon/icon_8.png">
                 <figcaption>出入院信息</figcaption>
               </figure>
             </a>
-            <a class="home_link">
+            <router-link to="/news"  class="home_link">
               <figure>
                 <img src="../assets/icon/icon_12.png">
                 <figcaption>信息公告</figcaption>
               </figure>
-            </a>
+            </router-link>
             <a class="home_link">
               <figure>
                 <img src="../assets/icon/icon_11.png">

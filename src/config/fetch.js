@@ -1,6 +1,6 @@
-let baseUrl = 'http://192.168.1.141/';
+let baseUrl = 'http://220.176.28.52:8888/';
 
-export default async(url = '', data = {}, type = 'GET', method = 'fetch') => {
+export default async(url = '', data = {}, type = 'POST', method = 'fetch') => {
   type = type.toUpperCase();
   url = baseUrl + url;
 

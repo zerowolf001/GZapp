@@ -1,39 +1,39 @@
 <template>
   <div class="bedlist_container">
     <ul v-load-more="loaderMore" v-if="bedListArr.length" type="1">
-      <router-link :to="{path: 'bed', query:{id: item.id}}" v-for="item in bedListArr" tag='li' :key="item.id" class="bed_li">
+      <router-link :to="{path: 'bed', query:{id: item.FeeNo}}" v-for="item in bedListArr" tag='li' :key="item.id" class="bed_li">
         <section class="bed_img">
-          <img v-if="item.gender == 1" src="../assets/icon/woman.png" />
+          <img v-if="item.Gender == 1" src="../assets/icon/woman.png" />
           <img v-else src="../assets/icon/man.png" />
         </section>
         <div class="bed_right">
           <header>
-            <h4 class="bed_title ellipsis" :class="'lv_'+ item.lv">{{item.username}}</h4>
+            <h4 class="bed_title ellipsis" :class="'lv_'+ item.NursingLevel">{{item.Name}}</h4>
             <ul class="bed_detail_ul">
-              <li v-if="item.detaildd == 1">跌</li>
-              <li v-if="item.detailyc == 1">疮</li>
-              <li v-if="item.detailwc == 1">卧</li>
-              <li v-if="item.detailgm == 1">敏</li>
-              <li v-if="item.detailgl == 1">隔</li>
-              <li v-if="item.detaildt == 1">脱</li>
-              <li v-if="item.detailbw == 1">危</li>
-              <li v-if="item.detailbz == 1">重</li>
+              <li v-if="item.hrf == 1">跌</li>
+              <li v-if="item.sore == 1">疮</li>
+              <li v-if="item.bedRest == 1">卧</li>
+              <li v-if="item.allergy == 1">敏</li>
+              <li v-if="item.isolation == 1">隔</li>
+              <li v-if="item.catheterOff == 1">脱</li>
+              <li v-if="item.critically == 1">危</li>
+              <li v-if="item.critically == 2">重</li>
             </ul>
           </header>
           <h5 class="rating_num">
             <section class="rating_num_left">
-              <span class="rating_feeNo">住院号:{{item.feeno}}</span>
+              <span class="rating_feeNo">住院号:{{item.FeeNo}}</span>
               <span class="rating_age">{{item.age}}岁</span>
-              <span class="rating_inDate">{{item.indate}}入院</span>
+              <span class="rating_inDate">{{item.ChaInAt}}入院</span>
             </section>
           </h5>
           <h5 class="fee_distance">
             <p class="fee">
-              <span>{{item.tel}}</span>
+              <span>{{item.ContactNo}}</span>
               <span class="segmentation">/</span>
-              主治医生:{{item.dr}}
+              主治医生:{{item.Doctor}}
             </p>
-            <p class="distance">{{item.bednumber}}号床</p>
+            <p class="distance">{{item.BedNum}}号床</p>
           </h5>
         </div>
       </router-link>
