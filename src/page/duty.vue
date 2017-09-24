@@ -1,13 +1,13 @@
 <template>
   <div class="date_container">
-    <!--<head-top head-title="排班安排" go-back='true'></head-top>-->
+    <head-top head-title="排班安排" go-back='true'></head-top>
     <div class="calendar">
       <dl>
-        <dt class="arrow" @click="weekPre(currentYear,currentMonth)">❮</dt>
+        <dt class="arrow" @click="weekPre(currentYear,currentMonth)">上一周</dt>
         <dt class="year-month" @click="pickYear(currentYear,currentMonth)">
           <span>{{ currentYear }}年{{ currentMonth }}月</span>
         </dt>
-        <dt class="arrow" @click="weekNext(currentYear,currentMonth)">❯</dt>
+        <dt class="arrow" @click="weekNext(currentYear,currentMonth)">下一周</dt>
       </dl>
       <ul class="weekdays">
         <li>一</li>
@@ -220,7 +220,9 @@
         d.setDate(35);
         this.initData(this.formatDate(d.getFullYear(), d.getMonth() + 1, 1))
       },
-
+      pickYear: function() {
+        this.initData();
+      },
       // 当前选择日期
       pick (date) {
         alert(this.formatDate(date.getFullYear(), date.getMonth() + 1, date.getDate()))
@@ -230,26 +232,18 @@
   }
 </script>
 <style>
-  .date_container #head_top {
-    background:#f9f9f9;
-  }
-  .date_container polyline {
-    stroke:rgb(224, 67, 78);
-  }
-  .date_container .title_head .title_text {
-    color: #e0434e;
-  }
-
   /*.date_container {
     background-image: linear-gradient(180deg,#f65b55,#e0434e);
     padding: .333333rem;
   }*/
   .calendar {
-    background: linear-gradient(#f65b55,#E01F34);
+    margin-top:1.9rem;
+    /*background: linear-gradient(#f65b55,#E01F34);*/
     /*background: linear-gradient(#36db84 , #0eb27b);*/
     /*border-radius: .106667rem;*/
     overflow: hidden;
     /*margin-top: 1.95rem;*/
+    background-color:#47a7f0;
     border-bottom:1px solid #eee;
     position: fixed;
     width: 100%;
@@ -282,7 +276,8 @@
     /*letter-spacing: 3px;*/
   }
   .calendar dl dt.arrow {
-    padding: 5px 10px;
+    padding: 5px;
+    font-size:.65rem;
     -webkit-flex-shrink: 0;
     flex-shrink: 0;
     display: -webkit-box;
@@ -366,7 +361,7 @@
     color: #999;
   }
   .agenda {
-    margin-top: 6rem;
+    margin-top: 7.5rem;
   }
   .agenda header.agenda_header {
     border-top: 1px solid #eee;

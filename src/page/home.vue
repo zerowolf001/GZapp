@@ -19,49 +19,49 @@
           <div class="swiper-slide types_container">
             <a class="home_link">
               <figure>
-                <img src="../assets/icon/icon_9.png">
+                <img src="../assets/icon/icon_1.png">
                 <figcaption>医嘱清单</figcaption>
               </figure>
             </a>
             <router-link to="/duty" class="home_link">
               <figure>
-                <img src="../assets/icon/icon_3.png">
+                <img src="../assets/icon/icon_2.png">
                 <figcaption>排班管理</figcaption>
+              </figure>
+            </router-link>
+            <router-link to="/examine" class="home_link">
+              <figure>
+                <img src="../assets/icon/icon_3.png">
+                <figcaption>检查安排</figcaption>
+              </figure>
+            </router-link>
+            <router-link to="/ops"  class="home_link">
+              <figure>
+                <img src="../assets/icon/icon_4.png">
+                <figcaption>手术安排</figcaption>
               </figure>
             </router-link>
             <router-link to="/stat" class="home_link">
               <figure>
-                <img src="../assets/icon/icon_4.png">
+                <img src="../assets/icon/icon_5.png">
                 <figcaption>统计报表</figcaption>
               </figure>
             </router-link>
-            <router-link to="/examine"  class="home_link">
-              <figure>
-                <img src="../assets/icon/icon_5.png">
-                <figcaption>检查安排</figcaption>
-              </figure>
-            </router-link>
-            <router-link to="/ops" class="home_link">
+            <router-link to="/news"  class="home_link">
               <figure>
                 <img src="../assets/icon/icon_6.png">
-                <figcaption>手术安排</figcaption>
+                <figcaption>信息公告</figcaption>
+              </figure>
+            </router-link>
+            <router-link to="/"  class="home_link">
+              <figure>
+                <img src="../assets/icon/icon_7.png">
+                <figcaption>出入院信息</figcaption>
               </figure>
             </router-link>
             <a class="home_link">
               <figure>
                 <img src="../assets/icon/icon_8.png">
-                <figcaption>出入院信息</figcaption>
-              </figure>
-            </a>
-            <router-link to="/news"  class="home_link">
-              <figure>
-                <img src="../assets/icon/icon_12.png">
-                <figcaption>信息公告</figcaption>
-              </figure>
-            </router-link>
-            <a class="home_link">
-              <figure>
-                <img src="../assets/icon/icon_11.png">
                 <figcaption>设备管理</figcaption>
               </figure>
             </a>
@@ -70,11 +70,23 @@
         <!--<div class="swiper-pagination"></div>-->
       </div>
     </nav>
-    <div class="bed_list_container">
+    <div class="home_ad">
+      <img src="../assets/icon/ad_1.jpg" alt="">
+    </div>
+    <div class="m-news-item">
       <header class="bed_header">
-        <h3>病床列表</h3>
+        <h3>科室公告</h3>
+        <router-link to="/news"  class="more">更多 >></router-link>
       </header>
-      <bed-list></bed-list>
+      <ul>
+        <!--<router-link :to="{path: 'bed', query:{id: item.xh}}"  tag="li" v-for="item in newsData" :key="item.xh">
+        </router-link>-->
+        <router-link :to="{path: 'newspage', query:{id: item.xh}}"  tag="li" v-for="item in newsData" :key="item.xh">
+          <h4>{{ item.title }}</h4>
+          <p>{{item.synopsis}}</p>
+          <span>{{item.publish}} {{item.time}}</span>
+        </router-link>
+      </ul>
     </div>
     <foot-guide></foot-guide>
   </div>
@@ -84,8 +96,9 @@
   import '../style/swiper.min.css'
   import headTop from '../components/head'
   import footGuide from '../components/footGuide'
-  import bedList from '../components/bedlist'
   import '../config/swiper.min.js'
+  import {news} from '../service/getData'
+  import {loadMore} from '../config/load'
 
   /* Cannot assign to read only property 'exports' of object '#<Object>
    * ES6不支持导入ES5代码(import不能module.exports)，删除wiper的module.exports解决
@@ -95,6 +108,9 @@
   export default {
     data() {
       return {
+        offset: 0,
+        newsData:[],
+        preventRepeatReuqest:false,
       }
     },
     mounted(){
@@ -104,20 +120,63 @@
         paginationClickable: true,
         //spaceBetween: 30,
       });
+      this.initData();
     },
     components:{
       headTop,
-      bedList,
       footGuide
     },
-    computed: {
-
-    },
+    props:['StationID'],
+    mixins:[loadMore],
     methods:{
-      //点击图标刷新页面
+      async initData() {
+        //获取数据
+        let res = await news(this.StationID);
+        this.newsData = [...res];
+        if (res.length < 20) {
+          this.touchend = true;
+        }
+      },
+      //到达底部加载更多数据
+      async loaderMore() {
+        if (this.touchend) {
+          return
+        }
+        //防止重复请求
+        if (this.preventRepeatReuqest) {
+          return
+        }
+        this.preventRepeatReuqest = true;
+
+        //数据定位加20位
+        this.offset += 20;
+        let res = await news(this.StationID);
+        this.hideLoading();
+        this.newsData = [...this.newsData, ...res];
+        //当获取数据小于20，说明没有更多数据，不需要再次请求数据
+        if (res.length < 20) {
+          this.touchend = true;
+          return
+        }
+        this.preventRepeatReuqest = false;
+      },
+      //监听父级传来的数据发生变化时，触发此函数重新根据属性值获取数据
+      async listenPropChange(){
+        this.showLoading = true;
+        let res = await news(this.StationID);
+        this.hideLoading();
+        //本地数据是引用类型，返回一个新数组
+        this.newsData = [...res];
+      },
+      hideLoading(){
+        this.showLoading = false;
+      },
+
+      /*//点击图标刷新页面
       reload(){
         window.location.reload();
-      }
+      },*/
+
     },
     watch: {
 
@@ -145,7 +204,7 @@
     margin-top: 2.1rem;
     background-color: #fff;
     border-bottom: .025rem solid #e4e4e4;
-    height: 7.5rem;
+    height: 6.8rem;
   }
   .home_nav .swiper-container {
     overflow: hidden;
@@ -182,4 +241,5 @@
   .home_nav .swiper-container .swiper-pagination {
     bottom: .15rem;
   }
+
 </style>

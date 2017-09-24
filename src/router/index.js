@@ -9,7 +9,8 @@ const setServer = r => require.ensure([], () =>r(require('../page/setServer')), 
 const bed = r => require.ensure([], () => r(require('../page/bed')), 'bed')
 const duty = r => require.ensure([], () => r(require('../page/duty')), 'duty')
 const stat = r => require.ensure([], () => r(require('../page/statistical')), 'stat')
-const news = r => require.ensure([], () => r(require('../page/news')), 'news')
+const news = r => require.ensure([], () => r(require('../page/news')), 'news');
+const newspage = r => require.ensure([], () => r(require('../page/newspage')), 'newspage');
 const examine = r => require.ensure([], () => r(require('../page/examine')), 'examine')
 const ops = r => require.ensure([], () => r(require('../page/ops')), 'ops')
 const profile = r => require.ensure([], () => r(require('../page/profile')), 'profile')
@@ -52,6 +53,11 @@ export default new Router({
       path:'/news',
       name:'news',
       component: news,
+    },
+    {
+      path:'/newspage',
+      name:'newspage',
+      component: newspage,
     },
     {
       path:'/examine',

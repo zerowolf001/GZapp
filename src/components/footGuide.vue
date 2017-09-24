@@ -1,18 +1,18 @@
 <template>
   <section id="foot_guide">
-    <section @click = "goTo({path: '/home'})" class="guide_item">
+    <section @click = "goTo({path: '/home'})" :class="$route.path.indexOf('home') !== -1? 'guideActive' : 'guide_item'">
       <i class="icon icon_home" ></i>
-      <span>病房</span>
+      <span>首页</span>
     </section>
-    <section @click = "goTo({path: '/examine'})" class="guide_item">
+    <section @click = "goTo({path: '/examine'})" :class="$route.path.indexOf('examine') !== -1? 'guideActive' : 'guide_item'">
       <i class="icon icon_examine"></i>
-      <span>检查</span>
+      <span>病床</span>
     </section>
-    <section @click = "goTo({path: '/im'})" class="guide_item">
+    <section @click = "goTo({path: '/im'})" :class="$route.path.indexOf('im') !== -1? 'guideActive' : 'guide_item'">
       <i class="icon icon_msg"></i>
       <span>需求</span>
     </section>
-    <section @click = "goTo({path: '/profile'})" class="guide_item">
+    <section @click = "goTo({path: '/profile'})" :class="$route.path.indexOf('profile') !== -1? 'guideActive' : 'guide_item'">
       <i class="icon icon_user"></i>
       <span>个人</span>
     </section>

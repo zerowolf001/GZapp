@@ -23,29 +23,40 @@ export const accountLogin =(username,password) => fetch('xihealthcare/login_pdaL
 /**
  * 获取信息公告
 */
-export const news = () => fetch('xihealthcare/information/getInformation?StationID=0397', {
-})
+export const news = (StationID) => {
+  let data = {
+    limit: '20',
+  };
+  return fetch('xihealthcare/notice/getNotice?StationID=0397',data);
+};
+
+/**
+ * 获取信息详情
+ */
+export const newspage = (xh) => fetch('xihealthcare/notice/getNotice?StationID=0397',{
+
+});
 
 /**
  * 获取检查安排
  */
 export const ops = () => fetch('xihealthcare/checkPlan/checks?StationID=0397', {
-})
+});
 
 /**
  * 获取需求信息
  * */
 export const im = () => fetch('xihealthcare/demandInfo/demand?StationID=0397', {
-})
+});
 
 /**
  * 处理需求信息
  * */
 export const im_list = (xh) => fetch('xihealthcare/demandInfo/demandStatusPDA?StationID=0397&xh=' + xh,{
-},'POST')
+},'POST');
 
 /**
  * 获取检查安排
  * */
 export const examineData = () => fetch('xihealthcare/operationPlan/operations?StationID=0397', {
-})
+});
