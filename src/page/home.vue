@@ -17,12 +17,12 @@
       <div class="swiper-container">
         <div class="swiper-wrapper">
           <div class="swiper-slide types_container">
-            <a class="home_link">
+            <router-link class="home_link" to="/docadv">
               <figure>
                 <img src="../assets/icon/icon_1.png">
                 <figcaption>医嘱清单</figcaption>
               </figure>
-            </a>
+            </router-link>
             <router-link to="/duty" class="home_link">
               <figure>
                 <img src="../assets/icon/icon_2.png">

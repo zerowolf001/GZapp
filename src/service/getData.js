@@ -60,3 +60,8 @@ export const im_list = (xh) => fetch('xihealthcare/demandInfo/demandStatusPDA?St
  * */
 export const examineData = () => fetch('xihealthcare/operationPlan/operations?StationID=0397', {
 });
+
+/**
+* 医嘱
+*/
+export const docadvData = () => fetch('',{});

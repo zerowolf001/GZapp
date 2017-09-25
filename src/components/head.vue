@@ -2,8 +2,9 @@
   <header id="head_top">
     <slot name='scanCode'></slot>
     <section class="head_goback" v-if="goBack" @click="$router.go(-1)">
-      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" version="1.1">
-        <polyline points="12,18 4,9 12,0"/>
+      <svg viewBox="0 0 20 32" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" version="1.1">
+        <path fill="#fff" d="M16.552 5.633L14.508 3.59 2.243 15.853 14.508 28.41l2.044-2.043-10.22-10.513z"></path>
+        <path fill="#fff" d="M16.552 5.633L14.508 3.59 2.243 15.853 14.508 28.41l2.044-2.043-10.22-10.513z"></path>
       </svg>
       <span>返回</span>
     </section>

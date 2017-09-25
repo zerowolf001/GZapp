@@ -3,19 +3,20 @@ import Router from 'vue-router'
 
 Vue.use(Router);
 
-const login = r => require.ensure([], () => r(require('../page/login')), 'login')
-const home = r => require.ensure([], () => r(require('../page/home')), 'home')
-const setServer = r => require.ensure([], () =>r(require('../page/setServer')), 'setServer')
-const bed = r => require.ensure([], () => r(require('../page/bed')), 'bed')
-const duty = r => require.ensure([], () => r(require('../page/duty')), 'duty')
-const stat = r => require.ensure([], () => r(require('../page/statistical')), 'stat')
+const login = r => require.ensure([], () => r(require('../page/login')), 'login');
+const home = r => require.ensure([], () => r(require('../page/home')), 'home');
+const setServer = r => require.ensure([], () =>r(require('../page/setServer')), 'setServer');
+const bed = r => require.ensure([], () => r(require('../page/bed')), 'bed');
+const duty = r => require.ensure([], () => r(require('../page/duty')), 'duty');
+const stat = r => require.ensure([], () => r(require('../page/statistical')), 'stat');
 const news = r => require.ensure([], () => r(require('../page/news')), 'news');
 const newspage = r => require.ensure([], () => r(require('../page/newspage')), 'newspage');
 const examine = r => require.ensure([], () => r(require('../page/examine')), 'examine')
-const ops = r => require.ensure([], () => r(require('../page/ops')), 'ops')
-const profile = r => require.ensure([], () => r(require('../page/profile')), 'profile')
-const im = r => require.ensure([], () => r(require('../page/im')), 'im')
-const im_list = r => require.ensure([], () => r(require('../page/im_list')), 'im_list')
+const ops = r => require.ensure([], () => r(require('../page/ops')), 'ops');
+const profile = r => require.ensure([], () => r(require('../page/profile')), 'profile');
+const im = r => require.ensure([], () => r(require('../page/im')), 'im');
+const im_list = r => require.ensure([], () => r(require('../page/im_list')), 'im_list');
+const docadv = r => require.ensure([], () => r(require('../page/docadvice')), 'docadv');
 
 export default new Router({
   routes: [
@@ -83,6 +84,11 @@ export default new Router({
       path:'/im_list',
       name:'im_list',
       component: im_list,
+    },
+    {
+        path:'/docadv',
+        name:'docadv',
+        component: docadv,
     }
   ]
 })
