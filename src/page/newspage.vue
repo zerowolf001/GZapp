@@ -2,7 +2,7 @@
   <div id="newspage">
     <head-top head-title="信息公告" go-back='true'></head-top>
     <section class="newsDetail">
-      <h3>刘文杰同志就任我院党委书记</h3>
+      <h3>刘文杰同志就任我院党委书记刘文杰同志就任我院党委书记刘文杰同志就任我院党委书记</h3>
       <span>2017-09-22 17:40:43</span>
       <div>
         <p align="center">此处为图片</p>
@@ -23,21 +23,33 @@
       headTop,
       footGuide,
     },
-
   }
 </script>
 <style>
   .newsDetail {
     margin-top:2rem;
     background-color:#fff;
+    min-height: 26.35rem;
   }
   .newsDetail h3 {
-    padding:.5rem 0;
+    padding:.2rem 0 0;
     font-size:.7rem;
     color:#333;
     font-weight: 500;
-    height:2.4rem;
-    line-height:1.2rem;
+    line-height:1rem;
+  }
+  .newsDetail h3,.newsDetail span {
     text-align: center;
+  }
+  .newsDetail span {
+    display: block;color:#ccc;
+  }
+  .newsDetail div {
+    padding:0 .5rem;
+    font-size:.6rem;
+  }
+  .newsDetail div p {
+    color:#999;
+    line-height:1rem;
   }
 </style>
