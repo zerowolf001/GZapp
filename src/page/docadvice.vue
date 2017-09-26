@@ -2,8 +2,8 @@
     <div class="doc_search">
         <head-top head-title="医嘱搜索" go-back='true'></head-top>
         <section id="search">
-            <form class="searchForm">
             <dl class="doc_container">
+                <form class="searchForm">
                 <dd class="bedBest_list">
                     <dl>
                         <dd><span>姓名/床号</span><em><input type="text" v-model="nameOrNum" placeholder="请输入患者姓名/床号"></em></dd>
@@ -21,9 +21,9 @@
                         <dd><span><input type="date" v-model="startTime"></span>至 <span><input type="date" v-model="endTime"></span></dd>
                     </dl>
                 </dd>
+                </form>
                 <dd class="btn" @click="searchButton">筛选</dd>
             </dl>
-            </form>
         </section>
         <foot-guide></foot-guide>
     </div>
