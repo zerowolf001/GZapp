@@ -241,5 +241,4 @@
   .home_nav .swiper-container .swiper-pagination {
     bottom: .15rem;
   }
-
 </style>

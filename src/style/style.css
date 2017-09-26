@@ -20,7 +20,7 @@ body {
   background-color: #f9f9f9;
   font-size: .5rem;
 }
-a:hover {
+a:hover,article:hover,i:hover, input:hover {
   outline: none;
 }
 .width-full {

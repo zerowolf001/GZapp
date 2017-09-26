@@ -64,4 +64,8 @@ export const examineData = () => fetch('xihealthcare/operationPlan/operations?St
 /**
 * 医嘱
 */
-export const docadvData = () => fetch('',{});
+export const docadvData = () => fetch('xihealthcare/doctorAdvice/getAdvice?StationID=0397',{});
+/**
+ * 排班
+ * */
+export const dutyList = (date,stationID) => fetch('xihealthcare/scheduling/getNurseSchedule',{});

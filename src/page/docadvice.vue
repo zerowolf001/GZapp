@@ -1,31 +1,144 @@
 <template>
     <div class="doc_search">
         <head-top head-title="医嘱搜索" go-back='true'></head-top>
-        <form action=""></form>
         <section id="search">
+            <form class="searchForm">
             <dl class="doc_container">
                 <dd class="bedBest_list">
                     <dl>
-                        <dd>姓名/床号：<em><input type="text" class="nameAndBed_input"></em></dd>
+                        <dd><span>姓名/床号</span><em><input type="text" v-model="nameOrNum" placeholder="请输入患者姓名/床号"></em></dd>
+                        <dd><span>病例号</span><em><input type="text" v-model="chartNo" placeholder="请输入病历号"></em></dd>
+                        <dd><span>医嘱类型</span><em>不限</em><i></i></dd>
                     </dl>
-
                 </dd>
+                <dd class="bedBest_list" style="margin-bottom:.2rem;">
+                    <dl>
+                        <dd>医嘱时间</dd>
+                    </dl>
+                </dd>
+                <dd class="bedBest_date">
+                    <dl>
+                        <dd><span><input type="date" v-model="startTime"></span>至 <span><input type="date" v-model="endTime"></span></dd>
+                    </dl>
+                </dd>
+                <dd class="btn" @click="searchButton">筛选</dd>
             </dl>
+            </form>
         </section>
+        <foot-guide></foot-guide>
     </div>
 </template>
 
 <script>
     import headTop from '../components/head'
+    import footGuide from '../components/footGuide'
+    import {docadvData} from '../service/getData'
 
     export default {
         data() {
             return{
-
+                nameOrNum:null,
+                chartNo:null,
+                startTime:null,
+                endTime:null,
+                docadvData:null, //获取到的数据
             }
         },
         components:{
-            headTop,
+            headTop,footGuide,
+        },
+        mother:{
+            async searchButton(){
+                //提交搜索
+                this.docadvData = await docadvData(this.nameOrNum, this.chartNo, this.startTime,this.endTime,);
+            }
         }
     }
 </script>
+<style>
+    #search {
+        margin-top:2.1rem;
+    }
+    dl.doc_container .bedBest_list {
+        margin-bottom:1rem;
+        background-color: #fff;
+    }
+    dl.doc_container .bedBest_date {
+        background-color: #fff;
+    }
+    dl.doc_container .bedBest_list dl {
+        border-top:1px solid #eee;
+        background-color: #fff;
+    }
+    dl.doc_container .bedBest_date dl {
+        position:relative;
+        font-size:.68rem;
+        padding:.4rem 1rem .4rem .5rem;
+        text-align: center;
+    }
+    dl.doc_container .bedBest_date dd {
+       color:#333;
+    }
+    dl.doc_container .bedBest_list dd {
+        position:relative;
+        border-bottom:1px solid #eee;
+        font-size:.6rem;
+        padding:.4rem 1rem .4rem .5rem;
+    }
+    dl.doc_container .bedBest_list dd span {
+        display: inline-block;
+        width: 4.5rem;
+    }
+    dl.doc_container .bedBest_list dd em {
+        display: inline-block;
+        font-size: .6rem;
+        color: #333;
+        font-style: normal;
+        font-weight: 400;
+        margin-left:1.2rem;
+    }
+    dl.doc_container .bedBest_list dd i {
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        display: inline-block;
+        content: "";
+        width: .5rem;
+        height: .5rem;
+        border: solid #eee;
+        border-width: 3px 3px 0 0;
+        -webkit-transform: translate(0, -50%) rotate(45deg);
+        transform: translate(0, -50%) rotate(45deg);
+    }
+    .bedBest_list input {
+        border:none;
+        width: 100%;
+        height: 1.2rem;
+        font-size: .65rem;
+    }
+    input[type='date']{
+        border:none;
+        color:#47a8f0;
+        padding-left:1rem;
+        font-size: .65rem;
+    }
+    dd.btn{
+        margin:.8rem auto 0 -5rem;
+        width:10rem;
+        height: 1.8rem;
+        background-color:#47a8f0;
+        color:#fff;
+        font-size: .7rem;
+        line-height:1.2rem;
+        left:50%;
+        text-align: center;
+        letter-spacing:.25rem;
+        display: block;
+    }
+    input:-ms-input-placeholder{
+        color: #cdcdcd;
+    }
+    input::-webkit-input-placeholder{
+        color: #cdcdcd;
+    }
+</style>

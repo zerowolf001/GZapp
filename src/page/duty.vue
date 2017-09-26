@@ -135,6 +135,7 @@
 <script>
   import headTop from '../components/head'
   import footGuide from '../components/footGuide'
+  import {dutyList} from '../service/getData'
 
   export default {
     data(){
@@ -144,6 +145,7 @@
         currentDay: 1,    // 日期
         currentWeek: 1,    // 星期
         days: [],
+        stationID:'0397',
       }
     },
     created () {
@@ -225,7 +227,7 @@
       },
       // 当前选择日期
       pick (date) {
-        alert(this.formatDate(date.getFullYear(), date.getMonth() + 1, date.getDate()))
+          this.formatDate(date.getFullYear(), date.getMonth() + 1, date.getDate())
       },
 
     }
