@@ -41,7 +41,7 @@
                 chartNo:null,
                 startTime:null,
                 endTime:null,
-                docadvData:null, //获取到的数据
+                docadvList:null, //获取到的数据
             }
         },
         components:{
@@ -50,7 +50,7 @@
         mother:{
             async searchButton(){
                 //提交搜索
-                this.docadvData = await docadvData(this.nameOrNum, this.chartNo, this.startTime,this.endTime,);
+                this.docadvList = await docadvData(this.nameOrNum, this.chartNo, this.startTime,this.endTime,);
             }
         }
     }
