@@ -105,8 +105,8 @@ svg:not(:root) {
 }
 .btn-primary {
   color: #fff;
-  background-color: #4fc08d;
-  border-bottom: .08rem solid #3aa373;
+  background-color: #47a7f0;
+  border-bottom: .08rem solid #058af1;
   text-align: center;
 }
 .btn-off {
@@ -280,6 +280,23 @@ polyline{
   margin-top: .66rem;
 }
 /*List*/
+.bed_list_container .bed_header {
+  border-bottom: 1px solid #eee;
+}
+.bed_list_container .bed_header .bed_icon {
+  fill: #999;
+  margin-left: 0.6rem;
+  vertical-align: middle;
+  width:0.6rem;
+  height:0.6rem;
+}
+.bed_list_container .bed_header H3 {
+  color: #333;
+  font-size:0.6rem;
+  padding-left: .4rem;
+  line-height:1.6rem;
+  font-weight: 600;
+}
 .bedlist_container{
   background-color: #fff;
   margin-bottom: 2rem;

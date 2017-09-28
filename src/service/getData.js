@@ -9,7 +9,7 @@ export const bedList = () => fetch('xihealthcare/bedInfo/stationPatients?Station
 /**
  * 获取病床详情
  */
-export const bedDetails = (bedid) => fetch('xihealthcare/bedInfo/detailPatient?FeeNo=' + bedid,{
+export const bedDetails = (bedid) => fetch('xihealthcare/bedList/getDetail?FeeNo=' + bedid,{
 });
 
 /**
@@ -40,7 +40,7 @@ export const newspage = (xh) => fetch('xihealthcare/notice/getNotice?StationID=0
 /**
  * 获取检查安排
  */
-export const ops = () => fetch('xihealthcare/checkPlan/checks?StationID=0397', {
+export const  examineData= () => fetch('xihealthcare/checkPlan/checks?StationID=0397', {
 });
 
 /**
@@ -58,13 +58,13 @@ export const im_list = (xh) => fetch('xihealthcare/demandInfo/demandStatusPDA?St
 /**
  * 获取检查安排
  * */
-export const examineData = () => fetch('xihealthcare/operationPlan/operations?StationID=0397', {
+export const  ops= () => fetch('xihealthcare/operationPlan/operations?StationID=0397', {
 });
 
 /**
 * 医嘱
 */
-export const docadvData = (nameOrNum,chartNo,startTime,endTime) => fetch('xihealthcare/doctorAdvice/getAdvice?StationID=0397',{nameOrNum,chartNo,startTime,endTime},'POST');
+export const docadvData = (StationID,nameOrNum,chartNo,startTime,endTime) => fetch('xihealthcare/doctorAdvice/getAdvice?StationID='+StationID+'&nameOrNum='+nameOrNum+'&chartNo='+chartNo+'&startTime='+startTime+'&endTime='+endTime,{});
 /**
  * 排班
  * */

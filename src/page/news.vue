@@ -6,10 +6,10 @@
         <img src="http://www.gzsrmyy.com/skin/images/dj_banner.jpg" alt="">
       </div>
       <ul>
-        <router-link :to="{path: 'ops', query:{StationID:'0397', sid:item.xh}}" v-for="item in EXData" tag="li" :key="item.sid">
+        <li v-for="item in EXData">
           <h4>[{{item.type}}]{{item.title}}</h4>
           <p>{{item.title}}</p>
-        </router-link>
+        </li>
         <!--<li>
           <h4>[公告]赣州市人民医院2017年8月招聘考试拟录用人员公示</h4>
           <p>我院2017年8月招聘编外人员拟录用名单公示如下...</p>
@@ -70,6 +70,9 @@
   }
 </script>
 <style>
+  .m-news-item {
+    margin-top: 1.95rem;
+  }
   .banner img {
     display: block;
     width: 100%;

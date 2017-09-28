@@ -2,8 +2,8 @@
     <div class="doc_search">
         <head-top head-title="医嘱搜索" go-back='true'></head-top>
         <section id="search">
+            <form class="searchForm">
             <dl class="doc_container">
-                <form class="searchForm">
                 <dd class="bedBest_list">
                     <dl>
                         <dd><span>姓名/床号</span><em><input type="text" v-model="nameOrNum" placeholder="请输入患者姓名/床号"></em></dd>
@@ -21,9 +21,9 @@
                         <dd><span><input type="date" v-model="startTime"></span>至 <span><input type="date" v-model="endTime"></span></dd>
                     </dl>
                 </dd>
-                </form>
                 <dd class="btn" @click="searchButton">筛选</dd>
             </dl>
+            </form>
         </section>
         <foot-guide></foot-guide>
     </div>
@@ -32,25 +32,30 @@
 <script>
     import headTop from '../components/head'
     import footGuide from '../components/footGuide'
-    import {docadvData} from '../service/getData'
 
     export default {
         data() {
             return{
-                nameOrNum:null,
-                chartNo:null,
-                startTime:null,
-                endTime:null,
-                docadvList:null, //获取到的数据
+                StationID:'0397',
+                nameOrNum:'',
+                chartNo:'',
+                startTime:'',
+                endTime:'',
             }
         },
         components:{
             headTop,footGuide,
         },
-        mother:{
+        methods:{
             async searchButton(){
-                //提交搜索
-                this.docadvList = await docadvData(this.nameOrNum, this.chartNo, this.startTime,this.endTime,);
+//                this.docAdvList = await docadvData(this.StationID,this.nameOrNum,this.startTime,this.endTime);
+                this.$router.push({path:'/advList', query:{
+                    StationID:this.StationID,
+                    nameOrNum:this.nameOrNum,
+                    chartNo:this.chartNo,
+                    startTime:this.startTime,
+                    endTime:this.endTime,
+                }});
             }
         }
     }

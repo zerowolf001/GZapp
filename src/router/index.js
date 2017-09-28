@@ -6,6 +6,7 @@ Vue.use(Router);
 const login = r => require.ensure([], () => r(require('../page/login')), 'login');
 const home = r => require.ensure([], () => r(require('../page/home')), 'home');
 const setServer = r => require.ensure([], () =>r(require('../page/setServer')), 'setServer');
+const bedlist = r => require.ensure([], () => r(require('../page/bedlist')), 'bedlist');
 const bed = r => require.ensure([], () => r(require('../page/bed')), 'bed');
 const duty = r => require.ensure([], () => r(require('../page/duty')), 'duty');
 const stat = r => require.ensure([], () => r(require('../page/statistical')), 'stat');
@@ -17,78 +18,97 @@ const profile = r => require.ensure([], () => r(require('../page/profile')), 'pr
 const im = r => require.ensure([], () => r(require('../page/im')), 'im');
 const im_list = r => require.ensure([], () => r(require('../page/im_list')), 'im_list');
 const docadv = r => require.ensure([], () => r(require('../page/docadvice')), 'docadv');
+const advList = r => require.ensure([], () => r(require('../page/docAdvList.vue')), 'advList');
+const io = r => require.ensure([], () => r(require('../page/InAndOut.vue')), 'io');
+
 
 export default new Router({
   routes: [
-    {
-      path: '/',
-      name: 'login',
-      component: login
-    },
-    {
-      path: '/home',
-      name: 'home',
-      component: home
-    },
-    {
-      path: '/setServer',
-      name: 'setServer',
-      component: setServer
-    },
-    {
-      path: '/bed',
-      name:'bed',
-      component: bed
-    },
-    {
-      path:'/duty',
-      name:'duty',
-      component: duty,
-    },
-    {
-      path:'/stat',
-      name:'stat',
-      component: stat,
-    },
-    {
-      path:'/news',
-      name:'news',
-      component: news,
-    },
-    {
-      path:'/newspage',
-      name:'newspage',
-      component: newspage,
-    },
-    {
-      path:'/examine',
-      name:'examine',
-      component: examine,
-    },
-    {
-      path:'/ops',
-      name:'ops',
-      component: ops,
-    },
-    {
-      path:'/profile',
-      name:'profile',
-      component: profile,
-    },
-    {
-      path:'/im',
-      name:'im',
-      component: im,
-    },
-    {
-      path:'/im_list',
-      name:'im_list',
-      component: im_list,
-    },
-    {
-        path:'/docadv',
-        name:'docadv',
-        component: docadv,
-    }
+      {
+        path: '/',
+        name: 'login',
+        component: login
+      },
+      {
+        path: '/home',
+        name: 'home',
+        component: home
+      },
+      {
+        path: '/setServer',
+        name: 'setServer',
+        component: setServer
+      },
+      {
+        path: '/bed',
+        name:'bed',
+        component: bed
+      },
+      {
+        path:'/duty',
+        name:'duty',
+        component: duty,
+      },
+      {
+        path:'/stat',
+        name:'stat',
+        component: stat,
+      },
+      {
+        path:'/news',
+        name:'news',
+        component: news,
+      },
+      {
+        path:'/newspage',
+        name:'newspage',
+        component: newspage,
+      },
+      {
+        path:'/examine',
+        name:'examine',
+        component: examine,
+      },
+      {
+        path:'/ops',
+        name:'ops',
+        component: ops,
+      },
+      {
+        path:'/profile',
+        name:'profile',
+        component: profile,
+      },
+      {
+        path:'/im',
+        name:'im',
+        component: im,
+      },
+      {
+        path:'/im_list',
+        name:'im_list',
+        component: im_list,
+      },
+      {
+          path:'/docadv',
+          name:'docadv',
+          component: docadv,
+      },
+      {
+        path:'/advList',
+        name:'advList',
+        component: advList,
+
+      },
+      {
+          path:'/io',
+          name:'io',
+          component: io,
+      },
+      {
+          path:'/bedlist',
+          name:'bedlist',
+          component: bedlist,
+      },
   ]
 })

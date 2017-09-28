@@ -20,16 +20,38 @@
       </div>
       <div class="index_msge">
         <a href="javascript:;">
-          <p class="msg_num">0</p>
-          <p>需求</p>
+          <p class="msg_db">30项</p>
+          <p>今日医嘱</p>
         </a>
         <a href="javascript:;">
-          <p class="msg_db">5</p>
-          <p>待办</p>
+          <p class="msg_db">5项</p>
+          <p>今日需求</p>
+        </a>
+        <a href="javascript:;">
+          <p class="msg_db">3.8分</p>
+          <p>满意度评分</p>
         </a>
       </div>
     </section>
     <ul class="profile_list">
+      <li>
+        <aside>
+          <img src="../assets/icon/me_01.png" alt="">
+        </aside>
+        <p>待办医嘱</p>
+      </li>
+      <li>
+        <aside>
+          <img src="../assets/icon/me_02.png" alt="">
+        </aside>
+        <p>待处理需求</p>
+      </li>
+      <li>
+        <aside>
+          <img src="../assets/icon/me_03.png" alt="">
+        </aside>
+        <p>我的排班</p>
+      </li>
       <li>
         <aside>
           <svg fill="#16bf66" viewBox="0 0 40 40" id="service" width="100%" height="100%">
@@ -40,6 +62,21 @@
         </aside>
         <p>我的满意度评分</p>
       </li>
+    </ul>
+    <ul class="profile_list">
+      <li>
+        <aside>
+          <img src="../assets/icon/me_05.png" alt="">
+        </aside>
+        <p>常见问题</p>
+      </li>
+      <li>
+        <aside>
+          <img src="../assets/icon/me_06.png" alt="">
+        </aside>
+        <p>设置</p>
+      </li>
+
     </ul>
     <foot-guide></foot-guide>
   </div>
@@ -66,7 +103,8 @@
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    background: linear-gradient(to right, #36db84 , #0eb27b);
+    /*background: linear-gradient(to right, #36db84 , #0eb27b);*/
+    background-color: #47a7f0;
     padding: 1rem 1.2rem;
     color: #fff;
     -webkit-box-align: center;
@@ -121,40 +159,39 @@
     border-bottom: 1px solid #eee;
     background-color: #fff;
   }
-  .index_msg a:not(:last-child) {
+  .index_msge a:not(:last-child) {
     border-right: 1px solid #eee;
   }
-  .index_msg a {
+  .index_msge a {
     display: table-cell;
-    width: 50%;
+    width: 25%;
     vertical-align: middle;
     text-align: center;
     padding:.35rem 0;
   }
-  .index_msg a>p.msg_num {
+  .index_msge a>p.msg_num {
     padding-top: .4rem;
-    font-size: 1.2rem;
+    font-size: 1rem;
     line-height: 1.5rem;
     font-weight: 500;
     color:#ff5f3e;
   }
-  .index_msg a>p.msg_db {
+  .index_msge a>p.msg_db {
     padding-top: .4rem;
-    font-size: 1.2rem;
-    line-height: 1.5rem;
+    font-size: .85rem;
+    line-height: 1rem;
     font-weight: 500;
-    color:#6ac20b
+    color:#fb6a64;
   }
-  .index_msg a>p {
-    font-size: .4rem;
-    line-height: .5rem;
+  .index_msge a>p {
+    font-size: .65rem;
+    line-height: 1rem;
     font-weight: 500;
-    color: #666;
+    color: #999;
   }
   .profile_list {
     margin-top: .3rem;
     border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
     font-size: .6rem;
     line-height: .65rem;
     background: #fff;
@@ -180,7 +217,13 @@
     width: .8rem;
     height: .8rem;
   }
+  .profile_list aside>img {
+    width: 1rem;
+    height: 1rem;
+  }
   .profile_list li p {
+    color:#666;
+    font-size: .65rem;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -191,5 +234,8 @@
     justify-content: space-between;
     width: 100%;
     padding: .65rem .3rem .65rem 0;
+  }
+  .profile_list li {
+    border-bottom:1px solid #eee;
   }
 </style>

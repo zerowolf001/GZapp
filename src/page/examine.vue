@@ -3,17 +3,17 @@
     <head-top head-title="检查安排" go-back='true'></head-top>
     <div class="examine">
       <ul class="list_wrapper">
-        <router-link :to="{path: 'ops', query:{StationID:'0397', sid:item.xh}}" v-for="item in EXData" tag="li" :key="item.sid">
+        <li v-for="item in EXData">
           <header>
             <div class="state"><em class="bedNo">{{item.bedName}}</em></div>
             <h3 class="title">{{item.name}}</h3>
           </header>
-          <p class="content">{{item.anesthesia}}</p>
+          <p class="content">{{item.checkName}}</p>
           <div class="footer">
             <div class="info"><em>日期</em><span>{{item.date}}</span></div>
-            <div class="info"><em>更新</em><span>{{item.updateTime}}</span></div>
+            <div class="info"><em>更新</em><span>{{item.status}}</span></div>
           </div>
-        </router-link>
+        </li>
         <!--<li>
           <header>
             <div class="state"><em class="bedNo">14</em></div>

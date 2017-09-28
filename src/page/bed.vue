@@ -268,8 +268,8 @@
     font-size: .6rem;
   }
   .tab_title span.choosed {
-    border-bottom:1px solid #3aa373;
-    color: #3aa373;
+    border-bottom:1px solid #47a8f0;
+    color: #47a8f0;
   }
   .tab_title span:last-child {
     border-right:none;

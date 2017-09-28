@@ -3,8 +3,7 @@
     <ul v-load-more="loaderMore" v-if="bedListArr.length" type="1">
       <router-link :to="{path: 'bed', query:{id: item.FeeNo}}" v-for="item in bedListArr" tag='li' :key="item.id" class="bed_li">
         <section class="bed_img">
-          <img v-if="item.Gender == 1" src="../assets/icon/woman.png" />
-          <img v-else src="../assets/icon/man.png" />
+          <img src="../assets/icon/woman.png" />
         </section>
         <div class="bed_right">
           <header>
@@ -73,18 +72,13 @@
       </li>
       -->
     </ul>
-    <ul v-else>
-      <li v-for="item in 10" :key="item">
-        数据请求失败
-      </li>
-    </ul>
     <p v-if="touchend" class="empty_data">没有更多了</p>
   </div>
 </template>
 
 <script>
   import {bedList} from '../service/getData'
-  import {loadMore} from './load'
+  import {loadMore} from '../config/load'
 
   export default {
     data() {
@@ -151,10 +145,17 @@
       },
     },
     watch:{
-      //监听父级传来的StationID，当值发生变化的时候重新获取数据，作用于排序和筛选
-      StationID:function (value) {
-        this.listenPropChange();
-      }
+        //监听父级传来的StationID，当值发生变化的时候重新获取数据，作用于排序和筛选
+        async listenPropChange(){
+            this.showLoading = true;
+            let res = await bedList(this.StationID);
+            this.hideLoading();
+            //本地数据是引用类型，返回一个新数组
+            this.bedListArr = [...res];
+        },
+        hideLoading(){
+            this.showLoading = false;
+        },
     }
   }
 </script>
@@ -199,13 +200,13 @@
     color: #333;
   }
   .bed_right .fee_distance .distance {
-    background-color: #3aa373;
+    background-color: #47a7f0;
     color: #fff;
     padding: 0 .2rem;
     font-size:.5rem;
-    -webkit-transform: scale(.8);
-    transform: scale(.8);
-    border: 1px solid #42a873;
+    /*-webkit-transform: scale(.8);*/
+    /*transform: scale(.8);*/
+    border: 1px solid #31a1f7;
     border-radius: .15rem;
   }
   .bed_right .fee_distance .fee {

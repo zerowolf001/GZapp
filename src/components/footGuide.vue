@@ -4,7 +4,7 @@
       <i class="icon icon_home" ></i>
       <span>首页</span>
     </section>
-    <section @click = "goTo({path: '/examine'})" :class="$route.path.indexOf('examine') !== -1? 'guideActive' : 'guide_item'">
+    <section @click = "goTo({path: '/bedlist'})" :class="$route.path.indexOf('bedlist') !== -1? 'guideActive' : 'guide_item'">
       <i class="icon icon_examine"></i>
       <span>病床</span>
     </section>

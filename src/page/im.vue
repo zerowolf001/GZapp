@@ -3,7 +3,7 @@
     <head-top head-title="需求通知" go-back='true'></head-top>
     <div class="message">
       <ul>
-        <router-link>
+        <router-link :to="{path: 'im_list', query:{id: item.xh}}" v-for="item in IMlistArr" tag='li' :key="item.id">
           <div class="avatar">
             <span>{{item.Name}}床</span>
           </div>
@@ -65,7 +65,7 @@
       </ul>
     </div>
     <audio id="bgMusic">
-      <source src="http://220.176.28.52:8888/app/images/5012.wav">
+      <source src="http://223.84.197.222:8888/app/images/5012.wav">
     </audio>
     <foot-guide></foot-guide>
   </div>
@@ -79,31 +79,29 @@
   export default {
     data() {
       return {
-//        IMlistArr:[], //需求列表数据
+        IMlistArr:[], //需求列表数据
       }
     },
     mounted(){
-//      this.initData();
-//      setInterval(()=>{
-//        this.initData();
-//        console.log('刷新！');
-//      },5000);
+      this.initData();
+      setInterval(()=>{
+        this.initData();
+        //console.log('刷新！');
+      },5000);
     },
     components:{
       headTop,
       footGuide,
     },
     methods:{
-      /*async initData() {
+      async initData() {
         //获取数据
         let res = await im(this.StationID);
         this.IMlistArr = [...res];
-        console.log(res.length);
         for (let i = 0;i < res.length; i++) {
           $('li').attr('id',i);
           let tag = '#' + i;
           if (!$(tag).length) {
-            console.log($(tag).length);
             let audio = document.getElementById('bgMusic');
             audio.play();
           }
@@ -111,7 +109,7 @@
       },
       reload(){
         window.location.reload();
-      },*/
+      },
     }
   }
 </script>
@@ -153,7 +151,7 @@
     vertical-align: middle;
     box-shadow: 0 0 1px #fff;
     border-radius: 50%;
-    background-color: #0f9d58;
+    background-color: #47a7f0;
     color:#fff;
   }
   .message ul li>.om .om_name {
