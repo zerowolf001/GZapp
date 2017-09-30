@@ -15,7 +15,7 @@
             <label for="login_field">
               账号
             </label>
-            <input class="form-control input-block" type="text" id="login_field"  v-model.lazy="userAccount" tabindex="1">
+            <input class="form-control input-block" type="text" id="login_field"  v-model.lazy="dnName" tabindex="1">
             <label for="password">
               密码
               <!--<a href="" class="label-link">忘记密码？</a>-->
@@ -40,52 +40,52 @@
 
 <script>
   import alertTip from '../components/alertTip'
+  import {mapState, mapMutations} from 'vuex'
   import {accountLogin} from '../service/getData'
+
 
   export default {
     data() {
       return {
-        userInfo:null,//获取到的用户信息
-        userAccount: null, //用户名
-        passWord: null, //密码
-        showAlert: false, //显示提示组件
-        alertText: null, //提示的内容
+          userInfo:null,//获取到的用户信息
+          dnName: null, //用户名
+          passWord: null, //密码
+          showAlert: false, //显示提示组件
+          alertText: null, //提示的内容
       }
     },
     components: {
       alertTip
     },
     methods:{
-      async mobileLogin() {
-        if (!this.userAccount) {
-          this.showAlert = true;
-          this.alertText = '请输入账号';
-          setTimeout(() => {
-            this.showAlert = false;
-          }, 2000);
-        }else if (!this.passWord) {
-          this.showAlert = true;
-          this.alertText = '请输入密码';
-          setTimeout(() => {
-            this.showAlert = false;
-          }, 2000);
-        } else {
-          //this.userInfo = await accountLogin(this.userAccount, this.passWord)
-          this.$router.push({path:'/home'});
+        async mobileLogin() {
+            if (!this.dnName) {
+                this.showAlert = true;
+                this.alertText = '请输入账号';
+                setTimeout(() => {
+                    this.showAlert = false;
+                }, 2000);
+            }else if (!this.passWord) {
+                this.showAlert = true;
+                this.alertText = '请输入密码';
+                setTimeout(() => {
+                    this.showAlert = false;
+                }, 2000);
+            }
+            else {
+                this.userInfo = await accountLogin(this.dnName, this.passWord);
+                if (!this.userInfo.Name) {
+                    this.showAlert = true;
+                    this.alertText = '用户名或密码错误';
+                    setTimeout(() => {
+                        this.showAlert = false;
+                    }, 2000);
+                } else {
+                    this.$router.push({path:'/home'});
+                }
+            }
+
         }
-//        else {
-//          this.$router.push({path:'/home'});
-//        }
-        /*if (!this.userInfo) {
-          this.showAlert = true;
-          this.alertText = '用户名或密码错误';
-          setTimeout(() => {
-            this.showAlert = false;
-          }, 2000);
-        } else {
-          this.$router.push({path:'/home'});
-        }*/
-      }
     }
   }
 </script>

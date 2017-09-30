@@ -73,11 +73,20 @@
     <div class="home_ad">
       <img src="../assets/icon/ad_1.jpg" alt="">
     </div>
-    <div class="bed_list_container">
+    <div class="m-news-item">
       <header class="bed_header">
-        <h3>病床列表</h3>
+        <h3>科室公告</h3>
+        <router-link to="/news"  class="more">更多 >></router-link>
       </header>
-      <bed-list></bed-list>
+      <ul>
+        <!--<router-link :to="{path: 'bed', query:{id: item.xh}}"  tag="li" v-for="item in newsData" :key="item.xh">
+        </router-link>-->
+        <router-link :to="{path: 'newspage', query:{id: item.xh}}"  tag="li" v-for="item in newsData" :key="item.xh">
+          <h4>{{ item.title }}</h4>
+          <p>{{item.synopsis}}</p>
+          <span>{{item.publish}} {{item.time}}</span>
+        </router-link>
+      </ul>
     </div>
     <foot-guide></foot-guide>
   </div>
@@ -88,7 +97,7 @@
   import headTop from '../components/head'
   import footGuide from '../components/footGuide'
   import '../config/swiper.min.js'
-  import bedList from '../components/bedlist'
+  import {news} from '../service/getData'
   import {loadMore} from '../config/load'
 
   /* Cannot assign to read only property 'exports' of object '#<Object>
@@ -99,17 +108,74 @@
   export default {
     data() {
       return {
+          offset: 0,
+          newsData:[],
+          preventRepeatReuqest:false,
+          StationID:'0397',
       }
     },
     mounted(){
+      //初始化Swiper
+      new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        //spaceBetween: 30,
+      });
+      this.initData();
     },
     components:{
-        headTop,
-        footGuide,
-        bedList,
+      headTop,
+      footGuide
     },
+    mixins:[loadMore],
     methods:{
+      async initData() {
+        //获取数据
+        let res = await news(this.StationID);
+        this.newsData = [...res];
+        if (res.length < 20) {
+          this.touchend = true;
+        }
+      },
+      //到达底部加载更多数据
+      async loaderMore() {
+        if (this.touchend) {
+          return
+        }
+        //防止重复请求
+        if (this.preventRepeatReuqest) {
+          return
+        }
+        this.preventRepeatReuqest = true;
 
+        //数据定位加20位
+        this.offset += 20;
+        let res = await news(this.StationID);
+        this.hideLoading();
+        this.newsData = [...this.newsData, ...res];
+        //当获取数据小于20，说明没有更多数据，不需要再次请求数据
+        if (res.length < 20) {
+          this.touchend = true;
+          return
+        }
+        this.preventRepeatReuqest = false;
+      },
+      //监听父级传来的数据发生变化时，触发此函数重新根据属性值获取数据
+      async listenPropChange(){
+        this.showLoading = true;
+        let res = await news(this.StationID);
+        this.hideLoading();
+        //本地数据是引用类型，返回一个新数组
+        this.newsData = [...res];
+      },
+      hideLoading(){
+        this.showLoading = false;
+      },
+
+      /*//点击图标刷新页面
+      reload(){
+        window.location.reload();
+      },*/
 
     },
     watch: {
@@ -173,5 +239,8 @@
   }
   .home_nav .swiper-container .swiper-pagination {
     bottom: .15rem;
+  }
+  .m-news-item {
+    margin-top:.4rem;
   }
 </style>

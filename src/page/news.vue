@@ -1,7 +1,7 @@
 <template>
   <div id="news">
     <head-top head-title="信息公告" go-back='true'></head-top>
-    <div class="m-news-item">
+    <div class="m-news-item mt-195">
       <div class="banner">
         <img src="http://www.gzsrmyy.com/skin/images/dj_banner.jpg" alt="">
       </div>
@@ -70,7 +70,7 @@
   }
 </script>
 <style>
-  .m-news-item {
+  .mt-195 {
     margin-top: 1.95rem;
   }
   .banner img {

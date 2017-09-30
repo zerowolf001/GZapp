@@ -82,7 +82,7 @@
       <header class="agenda_header">
         <h3>值班护士</h3>
       </header>
-      <div class="agenda_container">
+      <div class="agenda_container mb-22">
         <ul>
           <li>
             <section class="doc_img">
@@ -136,16 +136,17 @@
   import headTop from '../components/head'
   import footGuide from '../components/footGuide'
   import {dutyList} from '../service/getData'
+  import alertTip from '../components/alertTip'
 
   export default {
     data(){
       return {
-        currentYear: 1970,   // 年份
-        currentMonth: 1,  // 月份
-        currentDay: 1,    // 日期
-        currentWeek: 1,    // 星期
-        days: [],
-        stationID:'0397',
+          currentYear: 1970,   // 年份
+          currentMonth: 1,  // 月份
+          currentDay: 1,    // 日期
+          currentWeek: 1,    // 星期
+          days: [],
+          stationID:'0397',
       }
     },
     created () {
@@ -200,7 +201,7 @@
       weekPre () {
         const d = this.days[0]; // 如果当期日期是7号或者小于7号
         d.setDate(d.getDate() - 7);
-        this.initData(d)
+        this.initData(d);
       },
 
       //  下个星期
@@ -238,20 +239,20 @@
     background-image: linear-gradient(180deg,#f65b55,#e0434e);
     padding: .333333rem;
   }*/
+
   .calendar {
-    margin-top:1.9rem;
+    margin-top:2.2rem;
     /*background: linear-gradient(#f65b55,#E01F34);*/
     /*background: linear-gradient(#36db84 , #0eb27b);*/
     /*border-radius: .106667rem;*/
     overflow: hidden;
     /*margin-top: 1.95rem;*/
-    background-color:#47a7f0;
+    background-color:#fff;
     border-bottom:1px solid #eee;
     position: fixed;
     width: 100%;
     z-index: 100;
     top:0;
-    opacity: .95;
   }
   .calendar dl {
     width:100%;
@@ -272,7 +273,7 @@
     position: relative;
   }
   .calendar dl dt {
-    color: white;
+    color: #6f6f6f;
     font-size: 20px;
     text-transform: uppercase;
     /*letter-spacing: 3px;*/
@@ -308,7 +309,7 @@
   .calendar dl dt.year-month span {
     display: block;
     margin:0 auto;
-    color:#f7f7f7;
+    color:#e64e4e;
   }
   .calendar ul.weekdays {
     margin: 0;
@@ -318,11 +319,11 @@
     font-size: .6rem;
   }
   .calendar ul.weekdays li {
-    padding: 12px 0;
+    padding: .4rem 0; /*12px*/
     display: inline-block;
     width: 13.6%;
     text-align: center;
-    color:white;
+    color:#6f6f6f;
   }
   .calendar ul.days {
     padding: 0;
@@ -349,7 +350,8 @@
     line-height:1.2rem;
     text-align: center;
     padding:10px 0;
-    color: #000;
+    color: #6f6f6f;
+    font-size: .6rem;
   }
   .calendar ul.days li span.active {
     display: inline-block;
@@ -363,10 +365,9 @@
     color: #999;
   }
   .agenda {
-    margin-top: 7.5rem;
+    margin-top: 7.8rem;
   }
   .agenda header.agenda_header {
-    border-top: 1px solid #eee;
     border-bottom: 1px solid #eee;
     background-color:#fff;
   }
@@ -379,11 +380,11 @@
   }
   .agenda_container {
     background-color: #fff;
-    margin-bottom: 2rem;
+    margin-bottom: .7rem;
   }
   .agenda_container ul li {
     display: flex;
-    border-bottom: 0.025rem solid #f1f1f1;
+    border-bottom: 3px solid #f6f6f6;
     padding: 0.5rem;
   }
   .agenda_container .doc_img {
@@ -423,64 +424,69 @@
     align-items: center;
   }
   .doc_right header .tit_head:before {
-    font-size: .55rem;
+    font-size: .65rem;
     line-height: .65rem;
     color: #fff;
     font-weight: normal;
-    background-color: #54a4d3;
-    padding: .05rem .15rem;
+    background-color: #47a7f0;
+    padding: .17rem .25rem;
     margin-right: .2rem;
     content: '主任';
     text-align: center;
     white-space: nowrap;
+    border-radius: .2rem;
   }
   .doc_right header .tit_f_head:before {
-    font-size: .55rem;
+    font-size: .65rem;
     line-height: .65rem;
     color: #fff;
     font-weight: normal;
-    background-color: #54a4d3;
-    padding: .05rem .15rem;
+    background-color: #47a7f0;
+    padding: .17rem .25rem;
     margin-right: .2rem;
     content: '副主任';
     text-align: center;
     white-space: nowrap;
+    border-radius: .2rem;
   }
   .doc_right header .tit_none:before {
-    font-size: .55rem;
+    font-size: .65rem;
     line-height: .65rem;
     color: #fff;
     font-weight: normal;
-    background-color: #54a4d3;
-    padding: .05rem .15rem;
+    background-color: #47a7f0;
+    padding: .17rem .25rem;
     margin-right: .2rem;
     content: '医生';
     text-align: center;
     white-space: nowrap;
+    border-radius: .2rem;
   }
   .doc_right header .tit_nurse_head:before {
-    font-size: .55rem;
+    font-size: .65rem;
     line-height: .65rem;
     color: #fff;
     font-weight: normal;
     background-color: #fa6854;
-    padding: .05rem .15rem;
+    padding: .17rem .25rem;
     margin-right: .2rem;
     content: '护士长';
     text-align: center;
     white-space: nowrap;
+    border-radius: .2rem;
   }
   .doc_right header .tit_nurse:before {
-    font-size: .55rem;
+    font-size: .65rem;
     line-height: .65rem;
     color: #fff;
     font-weight: normal;
     background-color: #fa6854;
-    padding: .05rem .15rem;
+    padding: .17rem .25rem;
     margin-right: .2rem;
     content: '护士';
     text-align: center;
     white-space: nowrap;
+    border-radius: .2rem;
   }
   .doc_right header .doc_name {
     display: -webkit-box;
@@ -496,7 +502,7 @@
     color: #333;
     padding-top: .01rem;
     font-size: .65rem;
-    line-height: .7rem;
+    line-height: .65rem;
     font-weight: 700;
   }
   .departments span,.departments a {
@@ -509,6 +515,9 @@
     -ms-flex-pack: justify;
     justify-content: space-between;
     font-size: .55rem;
+  }
+  .mb-22 {
+    margin-bottom:2.2rem;
   }
 </style>
 

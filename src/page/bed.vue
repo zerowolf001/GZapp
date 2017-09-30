@@ -139,7 +139,6 @@
 
     },
     methods: {
-      //初始化时获取基本数据
       async initData() {
         this.bedDetailData = await bedDetails(this.bedid)
       },
