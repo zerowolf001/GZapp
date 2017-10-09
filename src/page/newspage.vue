@@ -1,12 +1,12 @@
 <template>
-  <div id="newspage">
-    <head-top head-title="信息公告" go-back='true'></head-top>
-    <div class="newsDetail">
-      <h3>{{NoticeDetail.title}}</h3>
-      <span>{{NoticeDetail.time}}</span>
-      <div v-html="NoticeDetail.detail">
-      </div>
-    </div>
+  <div>
+      <head-top head-title="信息公告" go-back='true'></head-top>
+      <section class="newsDetail" v-if="NoticeDetail">
+        <h3>{{NoticeDetail.title}}</h3>
+        <span>{{NoticeDetail.time}}</span>
+        <div v-html="NoticeDetail.detail">
+        </div>
+      </section>
   </div>
 </template>
 <script>
