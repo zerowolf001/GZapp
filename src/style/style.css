@@ -321,7 +321,7 @@ polyline{
   height:100%;
   opacity:.4;
 }
-.bed_right {
+.bed_li .bed_right {
   padding-left:.4rem;
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
@@ -331,7 +331,7 @@ polyline{
   -ms-flex: auto;
   flex: auto;
 }
-.bed_right header {
+.bed_li .bed_right header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -342,7 +342,7 @@ polyline{
   -ms-flex-align: center;
   align-items: center;
 }
-.bed_right header .bed_title {
+.bed_li .bed_right header .bed_title {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -359,7 +359,7 @@ polyline{
   line-height: .7rem;
   font-weight: 700;
 }
-.bed_right header .lv_4:before,.user-info header .lv_4:before {
+.bed_li .bed_right header .lv_4:before,.user-info header .lv_4:before {
   font-size: .5rem;
   line-height: .65rem;
   color: #fff;
@@ -372,7 +372,7 @@ polyline{
   text-align: center;
   white-space: nowrap;
 }
-.bed_right header .lv_1:before,.user-info header .lv_1:before {
+.bed_li .bed_right header .lv_1:before,.user-info header .lv_1:before {
   font-size: .5rem;
   line-height: .65rem;
   color: #fff;
@@ -385,7 +385,7 @@ polyline{
   text-align: center;
   white-space: nowrap;
 }
-.bed_right header .lv_2:before,.user-info header .lv_2:before {
+.bed_li .bed_right header .lv_2:before,.user-info header .lv_2:before {
   font-size: .5rem;
   line-height: .65rem;
   color: #fff;
@@ -398,7 +398,7 @@ polyline{
   text-align: center;
   white-space: nowrap;
 }
-.bed_right header .lv_3:before,.user-info header .lv_3:before {
+.bed_li .bed_right header .lv_3:before,.user-info header .lv_3:before {
   font-size: .5rem;
   line-height: .65rem;
   color: #333;
@@ -411,12 +411,12 @@ polyline{
   text-align: center;
   white-space: nowrap;
 }
-.bed_detail_ul {
+.bed_li .bed_detail_ul {
   display: flex;
   transform: scale(.8);
   margin-right: -0.3rem;
 }
-.bed_detail_ul li {
+.bed_li .bed_detail_ul li {
   font-size: .5rem;
   color: #777;
   border: 0.025rem solid #e9e9e9;

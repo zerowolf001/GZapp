@@ -18,9 +18,11 @@ const profile = r => require.ensure([], () => r(require('../page/profile')), 'pr
 const im = r => require.ensure([], () => r(require('../page/im')), 'im');
 const im_list = r => require.ensure([], () => r(require('../page/im_list')), 'im_list');
 const docadv = r => require.ensure([], () => r(require('../page/docadvice')), 'docadv');
-const advList = r => require.ensure([], () => r(require('../page/docAdvList.vue')), 'advList');
-const io = r => require.ensure([], () => r(require('../page/InAndOut.vue')), 'io');
-
+const advList = r => require.ensure([], () => r(require('../page/docAdvList')), 'advList');
+const io = r => require.ensure([], () => r(require('../page/InAndOut')), 'io');
+const bedSearch = r => require.ensure([], () => r(require('../page/bedSearch')), 'bedSearch');
+const bedAdv = r => require.ensure([], () => r(require('../page/bedadv')), 'bedAdv');
+const medication = r => require.ensure([], () => r(require('../page/medication')), 'medication');
 
 export default new Router({
   routes: [
@@ -109,6 +111,21 @@ export default new Router({
           path:'/bedlist',
           name:'bedlist',
           component: bedlist,
+      },
+      {
+          path:'/bedSearch',
+          name:'bedSearch',
+          component: bedSearch,
+      },
+      {
+          path:'/bedAdv',
+          name:'bedAdv',
+          component: bedAdv,
+      },
+      {
+          path:'/medication',
+          name:'medication',
+          component: medication,
       },
   ]
 })

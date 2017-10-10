@@ -3,222 +3,67 @@
         <head-top head-title="出入院信息" go-back='true'></head-top>
         <div class="io">
             <section class="tab_title">
-                <span :class="{choosed: categoryType === 1}" @click="categoryType = 1">今日入院</span>
-                <span :class="{choosed: categoryType === 2}" @click="categoryType = 2">今日出院</span>
-                <span :class="{choosed: categoryType === 3}" @click="categoryType = 3">明日出院</span>
+                <span :class="{choosed: categoryType === 1}" @click="categoryType = 1">全部</span>
+                <span :class="{choosed: categoryType === 2}" @click="categoryType = 2">今日入院</span>
+                <span :class="{choosed: categoryType === 3}" @click="categoryType = 3">今日出院</span>
+                <span :class="{choosed: categoryType === 4}" @click="categoryType = 4">明日出院</span>
             </section>
             <transition name="router-fade">
                 <section v-if="categoryType === 1">
-                    <dl>
-                        <dd class="io_num">
-                            <div class="profileImage">
-                                <img src="../assets/icon/woman.png"/>
-                                <p class="bed_num">5号床</p>
-
-                            </div>
-                            <div class="user-info">
-                                <header>
-                                    <h4 class="bed_title ellipsis lv_1">刘美娜</h4>
-                                    <p class="sex">女/25岁</p>
-                                </header>
-                                <h5 class="bed_distance">
-                                    <p class="fee"><span>15879706968</span> <span class="segmentation">/</span>主治医生:李金芬</p>
-                                </h5>
-                                <ul class="detail_ul">
-                                    <li>跌</li>
-                                    <li>过敏</li>
-                                    <li>压疮</li>
-                                    <li>病危</li>
-                                </ul>
-                                <h5 class="fee_distance">
-                                    <p class="fee">住院天数：5天</p>
-                                </h5>
-                            </div>
-                        </dd>
-                        <dd class="io_num">
-                            <div class="profileImage">
-                                <img src="../assets/icon/woman.png"/>
-                                <p class="bed_num">5号床</p>
-
-                            </div>
-                            <div class="user-info">
-                                <header>
-                                    <h4 class="bed_title ellipsis lv_1">代丽蓉</h4>
-                                    <p class="sex">女/25岁</p>
-                                </header>
-                                <h5 class="bed_distance">
-                                    <p class="fee"><span>15879706968</span> <span class="segmentation">/</span>主治医生:李金芬</p>
-                                </h5>
-                                <ul class="detail_ul">
-                                    <li>跌</li>
-                                    <li>过敏</li>
-                                    <li>压疮</li>
-                                    <li>病危</li>
-                                </ul>
-                                <h5 class="fee_distance">
-                                    <p class="fee">住院天数：5天</p>
-                                </h5>
-                            </div>
-                        </dd>
-                        <dd class="io_num">
-                            <div class="profileImage">
-                                <img src="../assets/icon/woman.png"/>
-                                <p class="bed_num">5号床</p>
-
-                            </div>
-                            <div class="user-info">
-                                <header>
-                                    <h4 class="bed_title ellipsis lv_1">张莉</h4>
-                                    <p class="sex">女/25岁</p>
-                                </header>
-                                <h5 class="bed_distance">
-                                    <p class="fee"><span>15879706968</span> <span class="segmentation">/</span>主治医生:李金芬</p>
-                                </h5>
-                                <ul class="detail_ul">
-                                    <li>跌</li>
-                                    <li>过敏</li>
-                                    <li>压疮</li>
-                                    <li>病危</li>
-                                </ul>
-                                <h5 class="fee_distance">
-                                    <p class="fee">住院天数：5天</p>
-                                </h5>
-                            </div>
-                        </dd>
-                        <dd class="io_num">
-                            <div class="profileImage">
-                                <img src="../assets/icon/woman.png"/>
-                                <p class="bed_num">5号床</p>
-
-                            </div>
-                            <div class="user-info">
-                                <header>
-                                    <h4 class="bed_title ellipsis lv_1">彭芳</h4>
-                                    <p class="sex">女/25岁</p>
-                                </header>
-                                <h5 class="bed_distance">
-                                    <p class="fee"><span>15879706968</span> <span class="segmentation">/</span>主治医生:李金芬</p>
-                                </h5>
-                                <ul class="detail_ul">
-                                    <li>跌</li>
-                                    <li>过敏</li>
-                                    <li>压疮</li>
-                                    <li>病危</li>
-                                </ul>
-                                <h5 class="fee_distance">
-                                    <p class="fee">住院天数：5天</p>
-                                </h5>
-                            </div>
-                        </dd>
-                    </dl>
+                    <ul>
+                        <li class="bed_list">
+                            <table width="100%" border="0" cellspacing="5" cellpadding="0">
+                                <tr>
+                                    <td rowspan="3" align="center" valign="middle" width="20%">
+                                        <div class="bed_img">
+                                            <img src="../assets/icon/woman.png" >
+                                        </div>
+                                    </td>
+                                    <td width="60%">
+                                        <header>
+                                            <h4 class="bed_title ellipsis lv_1">李四</h4>
+                                            <p>女/16岁</p>
+                                        </header>
+                                    </td>
+                                    <td rowspan="4" class="cr f6">全部</td>
+                                </tr>
+                                <tr>
+                                    <td>13878899988 /主治医生：老王</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <ul class="bed_detail_ul">
+                                            <li>跌</li>
+                                            <li>疮</li>
+                                            <li>卧</li>
+                                            <li>敏</li>
+                                            <li>隔</li>
+                                            <li>脱</li>
+                                            <li>危</li>
+                                            <li>重</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center" class="cr f5">C001号床</td>
+                                    <td>住院天数：</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="bt">入院时间：2017年10月10日17:22:24</td>
+                                    <td class="bt"><a>查看详情</a></td>
+                                </tr>
+                            </table>
+                        </li>
+                    </ul>
                 </section>
                 <section v-if="categoryType === 2">
-                    <dl>
-                        <dd class="io_num">
-                            <div class="profileImage">
-                                <img src="../assets/icon/woman.png"/>
-                                <p class="bed_num">5号床</p>
 
-                            </div>
-                            <div class="user-info">
-                                <header>
-                                    <h4 class="bed_title ellipsis lv_1">代丽蓉</h4>
-                                    <p class="sex">女/25岁</p>
-                                </header>
-                                <h5 class="bed_distance">
-                                    <p class="fee"><span>15879706968</span> <span class="segmentation">/</span>主治医生:李金芬</p>
-                                </h5>
-                                <ul class="detail_ul">
-                                    <li>跌</li>
-                                    <li>过敏</li>
-                                    <li>压疮</li>
-                                    <li>病危</li>
-                                </ul>
-                                <h5 class="fee_distance">
-                                    <p class="fee">住院天数：5天</p>
-                                </h5>
-                            </div>
-                        </dd>
-                        <dd class="io_num">
-                            <div class="profileImage">
-                                <img src="../assets/icon/woman.png"/>
-                                <p class="bed_num">5号床</p>
-
-                            </div>
-                            <div class="user-info">
-                                <header>
-                                    <h4 class="bed_title ellipsis lv_1">李金芬</h4>
-                                    <p class="sex">女/25岁</p>
-                                </header>
-                                <h5 class="bed_distance">
-                                    <p class="fee"><span>15879706968</span> <span class="segmentation">/</span>主治医生:李金芬</p>
-                                </h5>
-                                <ul class="detail_ul">
-                                    <li>跌</li>
-                                    <li>过敏</li>
-                                    <li>压疮</li>
-                                    <li>病危</li>
-                                </ul>
-                                <h5 class="fee_distance">
-                                    <p class="fee">住院天数：5天</p>
-                                </h5>
-                            </div>
-                        </dd>
-                        <dd class="io_num">
-                            <div class="profileImage">
-                                <img src="../assets/icon/woman.png"/>
-                                <p class="bed_num">5号床</p>
-
-                            </div>
-                            <div class="user-info">
-                                <header>
-                                    <h4 class="bed_title ellipsis lv_1">彭芳</h4>
-                                    <p class="sex">女/25岁</p>
-                                </header>
-                                <h5 class="bed_distance">
-                                    <p class="fee"><span>15879706968</span> <span class="segmentation">/</span>主治医生:李金芬</p>
-                                </h5>
-                                <ul class="detail_ul">
-                                    <li>跌</li>
-                                    <li>过敏</li>
-                                    <li>压疮</li>
-                                    <li>病危</li>
-                                </ul>
-                                <h5 class="fee_distance">
-                                    <p class="fee">住院天数：5天</p>
-                                </h5>
-                            </div>
-                        </dd>
-                    </dl>
                 </section>
                 <section v-if="categoryType === 3">
-                    <dl>
-                        <dd class="io_num">
-                            <div class="profileImage">
-                                <img src="../assets/icon/woman.png"/>
-                                <p class="bed_num">5号床</p>
 
-                            </div>
-                            <div class="user-info">
-                                <header>
-                                    <h4 class="bed_title ellipsis lv_1">代丽蓉</h4>
-                                    <p class="sex">女/25岁</p>
-                                </header>
-                                <h5 class="bed_distance">
-                                    <p class="fee"><span>15879706968</span> <span class="segmentation">/</span>主治医生:李金芬</p>
-                                </h5>
-                                <ul class="detail_ul">
-                                    <li>跌</li>
-                                    <li>过敏</li>
-                                    <li>压疮</li>
-                                    <li>病危</li>
-                                </ul>
-                                <h5 class="fee_distance">
-                                    <p class="fee">住院天数：5天</p>
-                                </h5>
-                            </div>
-                        </dd>
-                    </dl>
+                </section>
+                <section v-if="categoryType === 4">
+
                 </section>
             </transition>
         </div>
@@ -226,6 +71,7 @@
 </template>
 <script>
     import headTop from '../components/head'
+    import footGuide from '../components/footGuide'
 
     export default {
         data(){
@@ -235,7 +81,7 @@
             }
         },
         components:{
-            headTop,
+            headTop
         },
         computed: {
 
@@ -247,7 +93,7 @@
 </script>
 <style>
     .io {
-        margin-top:2rem;
+        margin-top:2.2rem;
     }
     .tab_title {
         display: -webkit-box;
@@ -259,115 +105,202 @@
         -ms-flex-align: center;
         align-items: center;
         background-color: #fff;
-        height: 2rem;
-        box-shadow: 0 1px 3px 0 rgba(0,37,55,.05);
-        margin-bottom: .5rem;
+        height: 1.5rem;
+        margin: .5rem 0;
     }
     .tab_title span {
-        height: 2rem;
+        height: 1.5rem;
         width: 33.333%;
         text-align: center;
-        line-height: 2rem;
-        font-size: .6rem;
+        line-height: 1.5rem;
+        font-size: .5rem;
         color:#ccc;
     }
     .tab_title span.choosed {
         border-bottom:1px solid #47a8f0;
         color: #47a8f0;
     }
-    .tab_title span:last-child {
-        border-right:none;
+    .bed_list {
+        border-bottom: 1px solid #f1f1f1;
+        margin-bottom: 1rem;
+        background-color:#fff;
     }
-    .io_num {
-        display: block;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        box-align: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        padding:.5rem .5rem .3rem;
-        background:#fff;
-    }
-    .io_num .profileImage {
-        box-align: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        width: 3rem;
-    }
-    .io_num .profileImage img {
-        background:#eee;
-        display: inline-block;
-        width: 2.7rem;
-        height: 2.7rem;
-        border-radius: 50%;
-        vertical-align: middle;
-    }
-    .io_num .profileImage p.bed_num {
-        vertical-align: middle;
-        color:#333;
-        line-height: 1.5rem;
-        text-align: center;
-        width: 2.7rem;
-
-    }
-    .io_num .user-info {
-        padding-left: .4rem;
-        -webkit-box-flex: 1;
-        -webkit-flex-grow: 1;
-        -ms-flex-positive: 1;
-        flex-grow: 1;
-        -webkit-box-flex: 1;
-        -ms-flex: auto;
-        flex: auto;
-        position: relative;
-    }
-    .io_num .user-info header {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-    }
-    .io_num .user-info .bed_title {
-        width: 3.5rem;
-        color: #333;
-        padding-top: .01rem;
-        font-size: .65rem;
-        line-height: 1rem;
-        font-weight: 700;
-    }
-    .io_num .user-info p.sex {
-        margin: 0;
-        float: left;
+    .bed_img {
         width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        background-color: #ccc;
+        font-size:1rem;
+    }
+    .bed_img img {
+        width: 90%;
+        height:90%;
+    }
+    header {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+    header .bed_title {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+        margin: 0;
+        width: 4rem;
         color: #333;
         padding-top: .01rem;
-        font-size: .4rem;
-        line-height: 1rem;
+        font-size: .6rem;
+        line-height: .7rem;
     }
-    .io_num .user-info header ul {
-        display: flex;
-    }
-    .io_num .user-info h5 {
-        padding:.2rem 0;
-    }
-    .io_num .user-info h5 p {
-        color:#999;
-    }
-    .io_num .detail_ul {
-        display: flex;
-        padding:0;
-        margin:0;
-    }
-    .io_num .detail_ul li {
+    header .lv_1:before {
         font-size: .5rem;
+        line-height: .65rem;
+        color: #fff;
+        font-weight: normal;
+        background-color: #ff3fdb;
+        padding: 0 .1rem;
+        border-radius: .1rem;
+        margin-right: .2rem;
+        content: '\4E00\7EA7';
+        text-align: center;
+        white-space: nowrap;
+    }
+    header .lv_2:before {
+        font-size: .5rem;
+        line-height: .65rem;
+        color: #fff;
+        font-weight: normal;
+        background-color: #2d77ff;
+        padding: 0 .1rem;
+        border-radius: .1rem;
+        margin-right: .2rem;
+        content: '\4E8C\7EA7';
+        text-align: center;
+        white-space: nowrap;
+    }
+    header .lv_3:before {
+        font-size: .5rem;
+        line-height: .65rem;
+        color: #333;
+        font-weight: normal;
+        border:1px solid #eee;
+        padding: 0 .1rem;
+        border-radius: .1rem;
+        margin-right: .2rem;
+        content: '\4E09\7EA7';
+        text-align: center;
+        white-space: nowrap;
+    }
+    header .lv_4:before {
+        font-size: .5rem;
+        line-height: .65rem;
+        color: #fff;
+        font-weight: normal;
+        background-color:#000;
+        padding: 0 .1rem;
+        border-radius: .1rem;
+        margin-right: .2rem;
+        content: '\7279\7EA7';
+        text-align: center;
+        white-space: nowrap;
+    }
+    header .lv_5:before {
+        font-size: .5rem;
+        line-height: .65rem;
+        color: #fff;
+        font-weight: normal;
+        background-color:#666;
+        padding: 0 .1rem;
+        border-radius: .1rem;
+        margin-right: .2rem;
+        content: '\7279\75BE';
+        text-align: center;
+        white-space: nowrap;
+    }
+    header .lv_6:before {
+        font-size: .5rem;
+        line-height: .65rem;
+        color: #fff;
+        background-color: #FFBA31;
+        font-weight: normal;
+        padding: 0 .1rem;
+        border-radius: .1rem;
+        margin-right: .2rem;
+        content: '\91CD\75C7';
+        text-align: center;
+        white-space: nowrap;
+    }
+    header .lv_7:before {
+        font-size: .5rem;
+        line-height: .65rem;
+        color: #fff;
+        font-weight: normal;
+        background-color:orangered;
+        padding: 0 .1rem;
+        border-radius: .1rem;
+        margin-right: .2rem;
+        content: '\75C5\513F';
+        text-align: center;
+        white-space: nowrap;
+    }
+    header .lv_8:before {
+        font-size: .5rem;
+        line-height: .65rem;
+        color: #fff;
+        font-weight: normal;
+        background-color: orangered;
+        padding: 0 .1rem;
+        border-radius: .1rem;
+        margin-right: .2rem;
+        content: '\65B0\751F';
+        text-align: center;
+        white-space: nowrap;
+    }
+    .bed_detail_ul {
+        display: flex;
+    }
+    .bed_detail_ul li {
+        font-size: .45rem;
         color: #999;
-        background-color:#f1f1f1;
-        padding: 0 .2rem;
-        border-radius: .25rem;
-        margin-right: .15rem;
-        border:none;
-        margin-left: 0;
+        background-color: #f1f1f1;
+        padding:0 .15rem;
+        border-radius: .2rem;
+        margin-left: .08rem;
+    }
+    table tr td {
+        padding:.02rem 0;
+    }
+    td.cr {
+        color:#f0665a;
+    }
+    td.f6 {
+        font-size:.6rem;
+    }
+    td.f5 {
+        font-size: .55rem;
+    }
+    td.bt {
+        border-top:1px solid #f6f6f6;
+        padding:.2rem;
+    }
+    table tr td a {
+        background-color: #47a7f0;
+        color:#fff;
+        font-size:.4rem;
+        line-height: .7rem;
+        padding:.1rem .2rem;
+        margin-left:.35rem;
+        border-radius:.25rem;
     }
 </style>

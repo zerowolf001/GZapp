@@ -3,14 +3,23 @@ import fetch from '../config/fetch'
 /**
  * 获取首页病床列表
  */
-export const bedList = () => fetch('xihealthcare/bedInfo/stationPatients?StationID=0397',{
-});
+export const bedList = (StationID,nameOrNo) => fetch('xihealthcare/bedList/getPatient?StationID='+StationID+'&nameOrNo='+nameOrNo,{});
 
 /**
  * 获取病床详情
  */
 export const bedDetails = (bedid) => fetch('xihealthcare/bedList/getDetail?FeeNo=' + bedid,{
 });
+
+/**
+ * 获取病床医嘱
+ * */
+export const bedAdvDetail = (id) => fetch('xihealthcare/bedList/getAdviceDetail?feeNo='+id,{});
+
+/**
+ * 获取病床用药详情
+ * */
+export const medication = (id) => fetch('xihealthcare/bedList/getMedication?feeNo='+id,{});
 
 /**
  * 检测帐号是否存在
@@ -41,7 +50,7 @@ export const  examineData= () => fetch('xihealthcare/checkPlan/checks?StationID=
 /**
  * 获取需求信息
  * */
-export const im = () => fetch('xihealthcare/demandInfo/demand?StationID=0397', {});
+export const im = () => fetch('xihealthcare/demandInfo/demanded?StationID=0397', {});
 
 /**
  * 处理需求信息

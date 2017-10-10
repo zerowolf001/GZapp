@@ -1,142 +1,106 @@
 <template>
-    <div>
-        <head-top head-title="病床" go-back='true'></head-top>
-        <div class="bedlist">
-            <div class="search">
-                <form class="search_form">
-                    <input type="text" v-model="nameOrNo" placeholder="筛选姓名/床号" class="search-input">
-                </form>
-                <button @click="searchButton">确 定</button>
-            </div>
-            <ul>
-                <li v-for="item in bedListArr" :key="item.id" class="bed_list">
-                    <div class="bed_num">
-                        <span class="c_red">{{item.BedNum}}号床</span>
-                        <span>病历号：{{item.ChartNo}}</span>
-                    </div>
-                    <div class="bed_details">
-                        <section class="bed_img">
-                            <img v-if="item.Gender == 0" src="../assets/icon/woman.png" >
-                            <img v-else src="../assets/icon/man.png" >
-                        </section>
-                        <div class="bed_right">
-                            <header>
-                                <h4 class="bed_title ellipsis" :class="'lv_'+ item.NursingLevel">{{item.Name}}</h4>
-                                <p v-if="item.Gender==0">女/{{item.age}}岁</p>
-                                <p v-else>男/{{item.age}}岁</p>
-                            </header>
-                            <h5 class="rating_num">
-                                <section class="rating_num_left">
-                                    <span class="rating_feeNo">{{item.ContactNo}}</span>
-                                    <span class="rating_inDate">主治医生：{{item.Doctor}}</span>
-                                </section>
-                            </h5>
-                            <ul class="bed_detail_ul">
-                                <li v-if="item.hrf == 1">跌</li>
-                                <li v-if="item.sore == 1">疮</li>
-                                <li v-if="item.bedRest == 1">卧</li>
-                                <li v-if="item.allergy == 1">敏</li>
-                                <li v-if="item.isolation == 1">隔</li>
-                                <li v-if="item.catheterOff == 1">脱</li>
-                                <li v-if="item.critically == 1">危</li>
-                                <li v-if="item.critically == 2">重</li>
-                            </ul>
+    <div class="bedlist">
+        <head-top head-title="医嘱清单" go-back='true'></head-top>
+        <ul v-if="bedAdvDetail">
+            <li class="bed_list">
+                <div class="bed_details">
+                    <section class="bed_img">
+                        <img v-if="bedAdvDetail.Gender == 0" src="../assets/icon/woman.png" >
+                        <img v-else src="../assets/icon/man.png" >
+                    </section>
+                    <div class="bed_right">
+                        <header>
+                            <h4 class="bed_title ellipsis" :class="'lv_'+ bedAdvDetail.NursingLevel">{{bedAdvDetail.Name}}</h4>
+                            <p class="age">女/{{bedAdvDetail.age}}岁</p>
+                            <p>病历号：{{bedAdvDetail.ChartNo}}</p>
+                        </header>
+                        <h5 class="rating_num">
+                            <section class="rating_num_left">
+                                <span class="rating_feeNo">主治医生：{{bedAdvDetail.Doctor}}</span>
+                                <span class="rating_inDate">入院时间：{{bedAdvDetail.ChkInAt}}</span>
+                            </section>
+                        </h5>
+                        <div class="bed_detail_ul">
+                            诊断描述：{{bedAdvDetail.Diagnosis}}
                         </div>
                     </div>
-                    <div class="bed_btm">
-                        <span>入院时间：{{item.ChkInAt}}</span>
-                        <span class="a_r">
-                            <router-link :to="{path: 'bedAdv', query:{id: item.FeeNo}}">查看医嘱</router-link>
-                            <router-link :to="{path: 'medication', query:{id:item.FeeNo}}">用药详情</router-link>
-                        </span>
-                    </div>
-                </li>
-            </ul>
+                </div>
+                <div class="bed_num">
+                    <span class="c_red">{{bedAdvDetail.BedNum}}号床</span>
+                </div>
+            </li>
+        </ul>
+        <div class="s_derive" v-if="bedAdvDetail">
+            <table border="0" cellspacing="0" cellpadding="0">
+                <thead>
+                <tr>
+                    <td>医嘱类型</td>
+                    <td>医嘱内容</td>
+                    <td>开始时间</td>
+                    <td>医嘱状态</td>
+                </tr>
+                </thead>
+                <tr v-for="item in bedAdvDetail.da">
+                    <td colspan="4" class="s_derive_l">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td rowspan="2" class="cr6">{{item.type}}</td>
+                                <td class="cr6">{{item.name}}</td>
+                                <td rowspan="2" class="cr6">{{item.startTime}}</td>
+                                <td rowspan="2" class="cr6">{{item.status}}</td>
+                            </tr>
+                            <tr>
+                                <td class="fs4">总量：{{item.total}}{{item.priceunit}} 每次量：{{item.dose}}</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
         </div>
-        <foot-guide></foot-guide>
     </div>
 </template>
 <script>
     import headTop from '../components/head'
     import footGuide from '../components/footGuide'
-    import {bedList} from '../service/getData'
+    import {bedAdvDetail} from '../service/getData'
 
     export default {
-        data() {
+        data(){
             return {
-                StationID:'0397',
-                nameOrNo:'',
-                bedListArr:[],  //病床列表数据
+                id: null,
+                bedAdvDetail:null,
             }
+        },
+        created(){
+            this.id = this.$route.query.id;
         },
         mounted(){
             this.initData();
         },
         components:{
             headTop,
-            footGuide,
         },
-        methods:{
+        methods: {
             async initData() {
-                //获取数据
-                let res = await bedList(this.StationID,this.nameOrNo);
-                this.bedListArr = [...res];
-            },
-            async searchButton(){
-                this.$router.push({path:'/bedSearch', query:{
-                    StationID:this.StationID,
-                    nameOrNo:this.nameOrNo,}
-                });
+                this.bedAdvDetail = await bedAdvDetail(this.id)
             },
         },
-        watch:{
-        }
     }
 </script>
 <style>
     .bedlist {
-        margin-top:1.88rem;
+        margin-top: 1.95rem;
         margin-bottom:2.5rem;
-    }
-    .search {
-        display: block;
-        padding:.25rem 1rem;
-        background-color: #e8e8e8;
-        height: 1.5rem;
-    }
-    .search-input {
-        width: 85%;
-        margin: 0;
-        min-height: .75rem;
-        padding: .1rem .4rem;
-        font-size: .5rem;
-        text-align: center;
-        line-height: 20px;
-        color: #24292e;
-        vertical-align: middle;
-        background-color: #fff;
-        border: none;
-        border-radius: .35rem;
-        float: left;
-    }
-    .search button {
-        border:none;
-        background:transparent;
-        color:#47a7f0;
-        margin-left:.5rem;
-        font-size:.55rem;
     }
     .bed_list {
         border-bottom: 1px solid #f1f1f1;
-        margin-bottom: 1rem;
     }
-    .bed_list .bed_num,.bed_list .bed_btm {
+    .bed_list .bed_num {
         width: 100%;
         display: block;
         min-height: 1.35rem;
         line-height: 1.2rem;
         background-color: #fff;
-        border-bottom:.1rem solid #f3f3f3;
         padding:0 .5rem;
     }
     .bed_list .bed_num span,.bed_list .bed_btm span{
@@ -206,6 +170,7 @@
         padding-top: .01rem;
         font-size: .6rem;
         line-height: .7rem;
+        font-weight: 600;
     }
     .bed_list .bed_details .bed_right header .lv_1:before,.bed_list .bed_details .user-info header .lv_1:before {
         font-size: .5rem;
@@ -324,27 +289,8 @@
         text-align: center;
         white-space: nowrap;
     }
-    .bed_list .bed_details .bed_detail_ul,.bed_list .bed_details h5.rating_num {
-        display: flex;
-        margin:.15rem 0;
-    }
-    .bed_list .bed_details .bed_detail_ul li {
-        font-size: .45rem;
-        color: #999;
-        background-color: #f1f1f1;
-        padding:0 .15rem;
-        border-radius: .2rem;
-        margin-left: .08rem;
-    }
-    .bed_list .bed_btm {
-        border-top:.1rem solid #f3f3f3;
-        border-bottom:none;
-    }
     .bed_list .bed_btm span {
         text-align: left;
-    }
-    .bed_list .bed_btm span.a_r {
-        margin-top:.15rem;
     }
     .bed_list .bed_btm span.a_r a {
         float: right;
@@ -356,5 +302,68 @@
         padding:.1rem .3rem;
         margin-left:.35rem;
         border-radius:.25rem;
+    }
+    .bed_list .rating_num .rating_num_left {
+        margin:.15rem 0;
+        font-size:.4rem;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+    .bed_list .rating_num .rating_num_left span {
+        font-size:.5rem;
+    }
+    .s_derive {
+        margin-top:.35rem;
+    }
+    .s_derive p {
+        text-align: center;
+        font-size:.65rem;
+        color:#ff1721;
+        padding:1.2rem;
+    }
+    table{
+        width: 100%;
+    }
+    table thead td {
+        background-color:#fff;
+        color:#999;
+        font-size:.55rem;
+        width:25%;
+        text-align: center;
+        padding:.3rem 0;
+        border-bottom:3px solid #f9f9f9;
+    }
+    table tr td.s_derive_l {
+        background-color:#fff;
+        color:#999;
+        font-size:.6rem;
+        width:25%;
+        text-align: center;
+        border-bottom: 1px solid #eee;
+    }
+    table tr td.s_derive_l {
+        font-size:.5rem;
+    }
+    table tr td:first-child,table thead td:first-child {
+        width:20%;
+    }
+    table tr td:nth-of-type(2),table thead td:nth-of-type(2) {
+        width:42%;
+    }
+    table tr td:nth-of-type(3) {
+        width:22%;
+    }
+    .cr6 {
+        color:#666;
+    }
+    .fs4 {
+        font-size:.4rem;
     }
 </style>

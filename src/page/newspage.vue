@@ -4,8 +4,7 @@
       <section class="newsDetail" v-if="NoticeDetail">
         <h3>{{NoticeDetail.title}}</h3>
         <span>{{NoticeDetail.time}}</span>
-        <div v-html="NoticeDetail.detail">
-        </div>
+        <div v-html="NoticeDetail.detail"></div>
       </section>
   </div>
 </template>
@@ -31,7 +30,6 @@
             headTop,
         },
         computed: {
-
         },
         methods: {
             async initData() {

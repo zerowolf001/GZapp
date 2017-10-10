@@ -1,15 +1,10 @@
 <template>
     <div>
-        <head-top head-title="病床" go-back='true'></head-top>
-        <div class="bedlist">
-            <div class="search">
-                <form class="search_form">
-                    <input type="text" v-model="nameOrNo" placeholder="筛选姓名/床号" class="search-input">
-                </form>
-                <button @click="searchButton">确 定</button>
-            </div>
-            <ul>
-                <li v-for="item in bedListArr" :key="item.id" class="bed_list">
+        <head-top head-title="病床筛选" go-back='true'></head-top>
+        <div class="searchBed">
+            <div class="search"><span>{{nameOrNo}}</span>的筛选结果</div>
+            <ul  v-if="bedList.length!=''">
+                <li v-for="item in bedList">
                     <div class="bed_num">
                         <span class="c_red">{{item.BedNum}}号床</span>
                         <span>病历号：{{item.ChartNo}}</span>
@@ -46,14 +41,16 @@
                     <div class="bed_btm">
                         <span>入院时间：{{item.ChkInAt}}</span>
                         <span class="a_r">
-                            <router-link :to="{path: 'bedAdv', query:{id: item.FeeNo}}">查看医嘱</router-link>
-                            <router-link :to="{path: 'medication', query:{id:item.FeeNo}}">用药详情</router-link>
+                            <a>查看医嘱</a>
+                            <a>用药详情</a>
                         </span>
                     </div>
                 </li>
             </ul>
+            <div class="s_derive" v-else>
+                <p>无结果！请检查输入的姓名/床号或病历号是否准确!</p>
+            </div>
         </div>
-        <foot-guide></foot-guide>
     </div>
 </template>
 <script>
@@ -62,75 +59,52 @@
     import {bedList} from '../service/getData'
 
     export default {
-        data() {
+        data(){
             return {
-                StationID:'0397',
-                nameOrNo:'',
-                bedListArr:[],  //病床列表数据
+                bedList:[],
             }
+        },
+        created(){
+            this.StationID = this.$route.query.StationID;
+            this.nameOrNo = this.$route.query.nameOrNo;
         },
         mounted(){
             this.initData();
         },
         components:{
             headTop,
-            footGuide,
         },
-        methods:{
+        computed: {
+
+        },
+        methods: {
+            //初始化时获取基本数据
             async initData() {
-                //获取数据
-                let res = await bedList(this.StationID,this.nameOrNo);
-                this.bedListArr = [...res];
+                let res = await bedList(this.StationID,this.nameOrNo,);
+                this.bedList = [...res];
             },
-            async searchButton(){
-                this.$router.push({path:'/bedSearch', query:{
-                    StationID:this.StationID,
-                    nameOrNo:this.nameOrNo,}
-                });
-            },
-        },
-        watch:{
         }
     }
 </script>
 <style>
-    .bedlist {
-        margin-top:1.88rem;
+    .searchBed {
+        margin-top:1.95rem;
         margin-bottom:2.5rem;
     }
     .search {
         display: block;
         padding:.25rem 1rem;
         background-color: #e8e8e8;
-        height: 1.5rem;
-    }
-    .search-input {
-        width: 85%;
-        margin: 0;
-        min-height: .75rem;
-        padding: .1rem .4rem;
-        font-size: .5rem;
         text-align: center;
-        line-height: 20px;
-        color: #24292e;
-        vertical-align: middle;
-        background-color: #fff;
-        border: none;
-        border-radius: .35rem;
-        float: left;
     }
-    .search button {
-        border:none;
-        background:transparent;
-        color:#47a7f0;
-        margin-left:.5rem;
-        font-size:.55rem;
+    .search span {
+        color:red;
     }
     .bed_list {
         border-bottom: 1px solid #f1f1f1;
         margin-bottom: 1rem;
     }
-    .bed_list .bed_num,.bed_list .bed_btm {
+    .searchBed .bed_num,.searchBed .bed_btm {
         width: 100%;
         display: block;
         min-height: 1.35rem;
@@ -139,24 +113,24 @@
         border-bottom:.1rem solid #f3f3f3;
         padding:0 .5rem;
     }
-    .bed_list .bed_num span,.bed_list .bed_btm span{
+    .searchBed .bed_num span,.searchBed .bed_btm span{
         width:50%;
         font-size:.55rem;
         display: block;
         float: left;
         text-align: right;
     }
-    .bed_list .bed_num span.c_red {
+    .searchBed .bed_num span.c_red {
         color:#f0665a;
         font-size:.6rem;
         text-align: left;
     }
-    .bed_list .bed_details {
+    .searchBed .bed_details {
         display: flex;
         padding:.5rem;
         background-color:#fff;
     }
-    .bed_list .bed_details .bed_img {
+    .searchBed .bed_details .bed_img {
         width: 2.7rem;
         height: 2.7rem;
         border-radius: 50%;
@@ -166,11 +140,11 @@
         vertical-align: middle;
         text-align: center;
     }
-    .bed_list .bed_details .bed_img img {
+    .searchBed .bed_details .bed_img img {
         width: 90%;
         height:90%;
     }
-    .bed_list .bed_details .bed_right {
+    .searchBed .bed_details .bed_right {
         padding-left:.4rem;
         -webkit-box-flex: 1;
         -webkit-flex-grow: 1;
@@ -180,7 +154,7 @@
         -ms-flex: auto;
         flex: auto;
     }
-    .bed_list .bed_details .bed_right header {
+    .searchBed .bed_details .bed_right header {
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
@@ -191,7 +165,7 @@
         -ms-flex-align: center;
         align-items: center;
     }
-    .bed_list .bed_details .bed_right header .bed_title {
+    .searchBed .bed_details .bed_right header .bed_title {
         display: -webkit-box;
         display: -webkit-flex;
         display: -ms-flexbox;
@@ -201,13 +175,13 @@
         -ms-flex-align: center;
         align-items: center;
         margin: 0;
-        width: 4rem;
+        width: 5rem;
         color: #333;
         padding-top: .01rem;
         font-size: .6rem;
         line-height: .7rem;
     }
-    .bed_list .bed_details .bed_right header .lv_1:before,.bed_list .bed_details .user-info header .lv_1:before {
+    .searchBed .bed_details .bed_right header .lv_1:before,.searchBed .bed_details .user-info header .lv_1:before {
         font-size: .5rem;
         line-height: .65rem;
         color: #fff;
@@ -220,7 +194,7 @@
         text-align: center;
         white-space: nowrap;
     }
-    .bed_list .bed_details .bed_right header .lv_2:before,.bed_list .bed_details .user-info header .lv_2:before {
+    .searchBed .bed_details .bed_right header .lv_2:before,.searchBed .bed_details .user-info header .lv_2:before {
         font-size: .5rem;
         line-height: .65rem;
         color: #fff;
@@ -233,7 +207,7 @@
         text-align: center;
         white-space: nowrap;
     }
-    .bed_list .bed_details .bed_right header .lv_3:before,.bed_list .bed_details .user-info header .lv_3:before {
+    .searchBed .bed_details .bed_right header .lv_3:before,.searchBed .bed_details .user-info header .lv_3:before {
         font-size: .5rem;
         line-height: .65rem;
         color: #333;
@@ -246,20 +220,20 @@
         text-align: center;
         white-space: nowrap;
     }
-    .bed_list .bed_details .bed_right header .lv_4:before,.bed_list .bed_details .user-info header .lv_4:before {
+    .searchBed .bed_details .bed_right header .lv_4:before,.searchBed .bed_details .user-info header .lv_4:before {
         font-size: .5rem;
         line-height: .65rem;
-        color: #fff;
+        color: #333;
         font-weight: normal;
-        background-color:#000;
+        border:1px solid #eee;
         padding: 0 .1rem;
         border-radius: .1rem;
         margin-right: .2rem;
-        content: '\7279\7EA7';
+        content: ' ';
         text-align: center;
         white-space: nowrap;
     }
-    .bed_list .bed_details .bed_right header .lv_5:before,.bed_list .bed_details .user-info header .lv_5:before {
+    .searchBed .bed_details .bed_right header .lv_5:before,.searchBed .bed_details .user-info header .lv_5:before {
         font-size: .5rem;
         line-height: .65rem;
         color: #fff;
@@ -272,7 +246,7 @@
         text-align: center;
         white-space: nowrap;
     }
-    .bed_list .bed_details .bed_right header .lv_6:before,.bed_list .bed_details .user-info header .lv_6:before {
+    .searchBed .bed_details .bed_right header .lv_6:before,.searchBed .bed_details .user-info header .lv_6:before {
         font-size: .5rem;
         line-height: .65rem;
         color: #fff;
@@ -285,7 +259,7 @@
         text-align: center;
         white-space: nowrap;
     }
-    .bed_list .bed_details .bed_right header .lv_7:before,.bed_list .bed_details .user-info header .lv_7:before {
+    .searchBed .bed_details .bed_right header .lv_7:before,.searchBed .bed_details .user-info header .lv_7:before {
         font-size: .5rem;
         line-height: .65rem;
         color: #fff;
@@ -298,7 +272,7 @@
         text-align: center;
         white-space: nowrap;
     }
-    .bed_list .bed_details .bed_right header .lv_8:before,.bed_list .bed_details .user-info header .lv_8:before {
+    .searchBed .bed_details .bed_right header .lv_8:before,.searchBed .bed_details .user-info header .lv_8:before {
         font-size: .5rem;
         line-height: .65rem;
         color: #fff;
@@ -311,7 +285,7 @@
         text-align: center;
         white-space: nowrap;
     }
-    .bed_list .bed_details .bed_right header .lv_9:before,.bed_list .bed_details .user-info header .lv_9:before {
+    .searchBed .bed_details .bed_right header .lv_9:before,.searchBed .bed_details .user-info header .lv_9:before {
         font-size: .5rem;
         line-height: .65rem;
         color: #fff;
@@ -324,11 +298,11 @@
         text-align: center;
         white-space: nowrap;
     }
-    .bed_list .bed_details .bed_detail_ul,.bed_list .bed_details h5.rating_num {
+    .searchBed .bed_details .bed_detail_ul,.searchBed .bed_details h5.rating_num {
         display: flex;
         margin:.15rem 0;
     }
-    .bed_list .bed_details .bed_detail_ul li {
+    .searchBed .bed_details .bed_detail_ul li {
         font-size: .45rem;
         color: #999;
         background-color: #f1f1f1;
@@ -336,17 +310,17 @@
         border-radius: .2rem;
         margin-left: .08rem;
     }
-    .bed_list .bed_btm {
+    .searchBed .bed_btm {
         border-top:.1rem solid #f3f3f3;
         border-bottom:none;
     }
-    .bed_list .bed_btm span {
+    .searchBed .bed_btm span {
         text-align: left;
     }
-    .bed_list .bed_btm span.a_r {
+    .searchBed .bed_btm span.a_r {
         margin-top:.15rem;
     }
-    .bed_list .bed_btm span.a_r a {
+    .searchBed .bed_btm span.a_r a {
         float: right;
         display: inline-block;
         background-color: #47a7f0;
@@ -356,5 +330,14 @@
         padding:.1rem .3rem;
         margin-left:.35rem;
         border-radius:.25rem;
+    }
+    .s_derive {
+        margin-top:.35rem;
+    }
+    .s_derive p {
+        text-align: center;
+        font-size:.65rem;
+        color:#ff1721;
+        padding:1.2rem;
     }
 </style>
