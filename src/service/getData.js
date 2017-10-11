@@ -26,9 +26,7 @@ export const medication = (id) => fetch('xihealthcare/bedList/getMedication?feeN
  */
 export const accountLogin =(dnName,password) => fetch('xihealthcare/personal/pdaLogin',{dnName,password,},'POST');
 
-/**
- * 获取信息公告
-*/
+/** 获取信息公告*/
 export const news = (StationID) => {
   let data = {
     limit: '20',
@@ -36,37 +34,35 @@ export const news = (StationID) => {
   return fetch('xihealthcare/notice/getNotice?StationID='+StationID,data);
 };
 
-/**
- * 获取信息详情
- */
+/** 获取信息详情 */
 export const newspage = (id) => fetch('xihealthcare/notice/getNoticeDetail?xh='+id,{});
 
-/**
- * 获取检查安排
- */
-export const  examineData= () => fetch('xihealthcare/checkPlan/checks?StationID=0397', {
-});
+/** 获取检查安排 */
+export const  examineData = () => fetch('xihealthcare/checkPlan/checks?StationID=0397', {});
 
-/**
- * 获取需求信息
- * */
+/** 获取出入院 */
+export const InOut = (StationID) => fetch('xihealthcare/entryExitHospital/getEntryExit?StationID='+StationID,{});
+
+/** 获取出入院详情*/
+export const ioDetail = (id) => fetch('xihealthcare/entryExitHospital/getEntryExitDetail?xh='+id,{});
+
+/** 获取手术安排 */
+export const opsData = (StationID) => fetch('xihealthcare/operationList/getOperation?StationID='+StationID,{});
+
+/** 获取手术详情 */
+export const opsDetail = (id) => fetch('xihealthcare/operationList/getOperationDetail?xh='+id,{});
+
+
+/** 获取需求信息 */
 export const im = () => fetch('xihealthcare/demandInfo/demanded?StationID=0397', {});
 
-/**
- * 处理需求信息
- * */
+/** 处理需求信息 */
 export const im_list = (xh) => fetch('xihealthcare/demandInfo/demandStatusPDA?StationID=0397&xh=' + xh,{},'POST');
 
-/**
- * 获取检查安排
- * */
+/** 获取检查安排 */
 export const  ops= () => fetch('xihealthcare/operationPlan/operations?StationID=0397', {});
 
-/**
-* 医嘱
-*/
+/** 医嘱 */
 export const docadvData = (StationID,nameOrNum,chartNo,startTime,endTime) => fetch('xihealthcare/doctorAdvice/getAdvice?StationID='+StationID+'&nameOrNum='+nameOrNum+'&chartNo='+chartNo+'&startTime='+startTime+'&endTime='+endTime,{});
-/**
- * 排班
- * */
+/** 排班 */
 export const dutyList = (date,stationID) => fetch('xihealthcare/scheduling/getNurseSchedule',{});

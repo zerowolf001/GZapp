@@ -14,12 +14,14 @@ const news = r => require.ensure([], () => r(require('../page/news')), 'news');
 const newspage = r => require.ensure([], () => r(require('../page/newspage')), 'newspage');
 const examine = r => require.ensure([], () => r(require('../page/examine')), 'examine')
 const ops = r => require.ensure([], () => r(require('../page/ops')), 'ops');
+const opsdetail = r => require.ensure([], () => r(require('../page/opsdetail')), 'opsdetail');
 const profile = r => require.ensure([], () => r(require('../page/profile')), 'profile');
 const im = r => require.ensure([], () => r(require('../page/im')), 'im');
 const im_list = r => require.ensure([], () => r(require('../page/im_list')), 'im_list');
 const docadv = r => require.ensure([], () => r(require('../page/docadvice')), 'docadv');
 const advList = r => require.ensure([], () => r(require('../page/docAdvList')), 'advList');
 const io = r => require.ensure([], () => r(require('../page/InAndOut')), 'io');
+const iodetail = r => require.ensure([], () => r(require('../page/iodetail')), 'iodetail');
 const bedSearch = r => require.ensure([], () => r(require('../page/bedSearch')), 'bedSearch');
 const bedAdv = r => require.ensure([], () => r(require('../page/bedadv')), 'bedAdv');
 const medication = r => require.ensure([], () => r(require('../page/medication')), 'medication');
@@ -126,6 +128,16 @@ export default new Router({
           path:'/medication',
           name:'medication',
           component: medication,
+      },
+      {
+          path:'/iodetail',
+          name:'iodetail',
+          component: iodetail,
+      },
+      {
+          path:'/opsdetail',
+          name:'opsdetail',
+          component: opsdetail,
       },
   ]
 })

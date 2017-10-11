@@ -78,7 +78,6 @@
         },
         methods:{
             async initData() {
-                //获取数据
                 let res = await bedList(this.StationID,this.nameOrNo);
                 this.bedListArr = [...res];
             },
