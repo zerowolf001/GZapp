@@ -38,7 +38,7 @@ export const news = (StationID) => {
 export const newspage = (id) => fetch('xihealthcare/notice/getNoticeDetail?xh='+id,{});
 
 /** 获取检查安排 */
-export const  examineData = () => fetch('xihealthcare/checkPlan/checks?StationID=0397', {});
+export const  examineData = (StationID) => fetch('xihealthcare/inspect/getInspect?StationID='+StationID, {});
 
 /** 获取出入院 */
 export const InOut = (StationID) => fetch('xihealthcare/entryExitHospital/getEntryExit?StationID='+StationID,{});
@@ -59,10 +59,14 @@ export const im = () => fetch('xihealthcare/demandInfo/demanded?StationID=0397',
 /** 处理需求信息 */
 export const im_list = (xh) => fetch('xihealthcare/demandInfo/demandStatusPDA?StationID=0397&xh=' + xh,{},'POST');
 
-/** 获取检查安排 */
-export const  ops= () => fetch('xihealthcare/operationPlan/operations?StationID=0397', {});
-
 /** 医嘱 */
 export const docadvData = (StationID,nameOrNum,chartNo,startTime,endTime) => fetch('xihealthcare/doctorAdvice/getAdvice?StationID='+StationID+'&nameOrNum='+nameOrNum+'&chartNo='+chartNo+'&startTime='+startTime+'&endTime='+endTime,{});
+
 /** 排班 */
 export const dutyList = (date,stationID) => fetch('xihealthcare/scheduling/getNurseSchedule',{});
+
+/** 个人中心 */
+export const me = (dnName) => fetch('xihealthcare/personal/personalStatistic?dnName='+dnName,{});
+export const user = (dnName) => fetch('xihealthcare/personal/personalInfo?dnName='+dnName,{});
+
+export const faq = () => fetch('xihealthcare/problem/getProblemList',{});

@@ -74,13 +74,11 @@
       <img src="../assets/icon/ad_1.jpg" alt="">
     </div>
     <div class="m-news-item">
-      <header class="bed_header">
+      <div class="bed_header">
         <h3>科室公告</h3>
         <router-link to="/news"  class="more">更多 >></router-link>
-      </header>
+      </div>
       <ul>
-        <!--<router-link :to="{path: 'bed', query:{id: item.xh}}"  tag="li" v-for="item in newsData" :key="item.xh">
-        </router-link>-->
         <router-link :to="{path: 'newspage', query:{id: item.xh}}"  tag="li" v-for="item in newsData" :key="item.xh">
           <h4>{{ item.title }}</h4>
           <p>{{item.synopsis}}</p>

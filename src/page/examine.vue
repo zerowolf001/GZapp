@@ -3,53 +3,39 @@
     <head-top head-title="检查安排" go-back='true'></head-top>
     <div class="examine">
       <ul class="list_wrapper">
-        <li v-for="item in EXData">
-          <header>
-            <div class="state"><em class="bedNo">{{item.bedName}}</em></div>
-            <h3 class="title">{{item.name}}</h3>
-          </header>
-          <p class="content">{{item.checkName}}</p>
-          <div class="footer">
-            <div class="info"><em>日期</em><span>{{item.date}}</span></div>
-            <div class="info"><em>更新</em><span>{{item.status}}</span></div>
-          </div>
+        <li v-for="item in EXData" :key="">
+          <dl>
+            <dd>
+              <span class="bedNum">{{item.bedNum}}床</span>
+              <span class="exName">{{item.name}}</span>
+              <span class="exTime">手术时间：{{item.date}}</span>
+            </dd>
+            <dd>检查项目：{{item.checkName}}</dd>
+            <dd>检查地点：{{item.Position}}</dd>
+            <dd><span>检查时间：{{item.time}}</span><span class="fr">状态：<em>{{item.status}}</em></span></dd>
+          </dl>
         </li>
-        <!--<li>
-          <header>
-            <div class="state"><em class="bedNo">14</em></div>
-            <h3 class="title">李小花</h3>
-          </header>
-          <p class="content">
-            颈部血管彩色多普勒超声
-          </p>
-          <div class="footer">
-            <div class="info"><em>日期</em><span>2017年09月04日</span></div>
-            <div class="info"><em>时间</em><span>07:13</span></div>
-          </div>
-        </li>-->
       </ul>
     </div>
-    <foot-guide></foot-guide>
   </div>
 
 </template>
 <script>
   import headTop from '../components/head'
-  import footGuide from '../components/footGuide'
   import {examineData} from '../service/getData'
 
   export default {
     data() {
-      return {
-        EXData:null,
-      }
+        return {
+            StationID:'0397',
+            EXData:null,
+        }
     },
     mounted(){
       this.initData();
     },
     components:{
       headTop,
-      footGuide,
     },
     methods:{
       async initData() {
@@ -67,65 +53,47 @@
     background: #f5f5f5;
   }
   .examine {
-    margin-top:1.95rem;
+    margin-top:2.25rem;
     margin-bottom:2rem;
   }
   .list_wrapper li {
-    border-bottom: 1px solid #dfdfdf;
     background: #fff;
     margin-bottom: .5rem;
+    padding-bottom:.2rem;
   }
-  .list_wrapper li header {
-    display: flex;
-    margin: 0 .5rem;
-    height: 1.5rem;
-
+  .list_wrapper li dl {
+    padding:0 .5rem;
   }
-  .list_wrapper li header .state {
-    margin-right: 0;
-    line-height: 1.9rem;
+  .list_wrapper li dl dd:first-child {
+    height:1.6rem;
   }
-  .list_wrapper li header .state .bedNo {
-    background: #3fad6a;
-    font-size: .6rem;
-    color: #fff;
-    padding: 0 .3rem;
+  .list_wrapper li dl dd,.list_wrapper li dl dd:last-child span {
+    font-size:.55rem;
+    line-height:1.2rem;
+  }
+  .list_wrapper li dl dd span {
+    font-size:.6rem;
+    line-height:1.2rem;
+  }
+  .list_wrapper li dl dd span.bedNum{
+    background:#66cc99;
+    padding:0 .3rem;
+    line-height:1rem;
+    height:1rem;
+    color:#fff;
     display: inline-block;
-    line-height: 1rem;
-    border-radius: .5rem;
-    margin-right: .4rem;
   }
-  .list_wrapper li header .title {
-    font-size: .75rem;
-    line-height: 1.8rem;
+  .list_wrapper li dl dd span.exName {
+    margin-left:.4rem;
   }
-  .list_wrapper li .content {
-    font-size: .6rem;
-    color: #666;
-    line-height: 1rem;
-    max-height: 2rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    margin: .2rem .5rem .5rem;
+  .list_wrapper li dl dd span.exTime {
+    font-size:.55rem;
+    float: right;
   }
-  .list_wrapper li .footer {
-    display: flex;
-    align-items: center;
-    border-top: 1px solid #efefef;
-    padding: 0 .5rem;
-    height: 1.8rem;
-    font-size: .5rem;
+  .fr {
+    float: right;
   }
-  .list_wrapper li .footer .info em {
-    color: #999;
-  }
-  .list_wrapper li .footer .info span {
-    color: #e10000;
-    font-size: .55rem;
-    font-weight: 700;
-    margin: 0 .5rem 0 .2rem;
+  .fr em {
+    color:red;
   }
 </style>

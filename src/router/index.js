@@ -15,7 +15,7 @@ const newspage = r => require.ensure([], () => r(require('../page/newspage')), '
 const examine = r => require.ensure([], () => r(require('../page/examine')), 'examine')
 const ops = r => require.ensure([], () => r(require('../page/ops')), 'ops');
 const opsdetail = r => require.ensure([], () => r(require('../page/opsdetail')), 'opsdetail');
-const profile = r => require.ensure([], () => r(require('../page/profile')), 'profile');
+const profile = r => require.ensure([], () => r(require('../page/profile/profile')), 'profile');
 const im = r => require.ensure([], () => r(require('../page/im')), 'im');
 const im_list = r => require.ensure([], () => r(require('../page/im_list')), 'im_list');
 const docadv = r => require.ensure([], () => r(require('../page/docadvice')), 'docadv');
@@ -25,6 +25,9 @@ const iodetail = r => require.ensure([], () => r(require('../page/iodetail')), '
 const bedSearch = r => require.ensure([], () => r(require('../page/bedSearch')), 'bedSearch');
 const bedAdv = r => require.ensure([], () => r(require('../page/bedadv')), 'bedAdv');
 const medication = r => require.ensure([], () => r(require('../page/medication')), 'medication');
+const csr = r => require.ensure([], () => r(require('../page/profile/CSR')), 'csr');
+const faq = r => require.ensure([], () => r(require('../page/profile/faq')), 'faq');
+
 
 export default new Router({
   routes: [
@@ -79,9 +82,14 @@ export default new Router({
         component: ops,
       },
       {
-        path:'/profile',
-        name:'profile',
-        component: profile,
+          path:'/profile',
+          name:profile,
+          component: profile,
+      },
+      {
+          path:'/faq',
+          name:faq,
+          component:faq,
       },
       {
         path:'/im',
@@ -138,6 +146,11 @@ export default new Router({
           path:'/opsdetail',
           name:'opsdetail',
           component: opsdetail,
+      },
+      {
+          path:'/csr',
+          name:'csr',
+          component: csr,
       },
   ]
 })

@@ -115,7 +115,7 @@
                   <td>麻醉法：{{item.anesthesia}}</td>
                 </tr>
                 <tr>
-                  <td colspan="2" class="bt">更新时间：{{item.updateTime}}</td>
+                  <td colspan="2" class="bt" width="78%">更新时间：{{item.updateTime}}</td>
                   <td class="bt"><router-link :to="{path: 'opsdetail', query:{id: item.xh}}">查看详情</router-link></td>
                 </tr>
               </table>
@@ -145,9 +145,6 @@
       },
       mounted(){
           this.initData();
-      },
-      computed: {
-
       },
       methods: {
           async initData () {
