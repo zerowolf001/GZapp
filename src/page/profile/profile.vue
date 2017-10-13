@@ -1,9 +1,11 @@
 <template>
   <div id="profile">
+    <head-top go-back='true'></head-top>
     <section>
       <div class="profile">
-        <span class="profile_img" v-if="userData">
-          <img :src="userData.photo" alt="">
+        <span class="profile_img">
+          <img v-if="userData.photo" :src="userData.photo">
+          <img v-else src="../../assets/icon/woman.png">
         </span>
         <div class="profile_txt">
           <p class="nurse_name">{{userData.Name}}</p>
@@ -113,8 +115,8 @@
     data() {
       return {
           dnName:'001035',
-          profileData:null,
-          userData:null,
+          profileData:'',
+          userData:'',
       }
     },
     components:{
@@ -138,6 +140,7 @@
     background-color: #47a7f0;
     padding: 1rem 0;
     text-align: center;
+    margin-top:1rem;
   }
   .profile .profile_img img {
     width: 2.4rem;

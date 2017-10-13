@@ -70,3 +70,4 @@ export const me = (dnName) => fetch('xihealthcare/personal/personalStatistic?dnN
 export const user = (dnName) => fetch('xihealthcare/personal/personalInfo?dnName='+dnName,{});
 
 export const faq = () => fetch('xihealthcare/problem/getProblemList',{});
+export const suggest = (dnName) => fetch('xihealthcare/satisfaction/getFeedBack?dnName='+dnName,{});

@@ -20,55 +20,68 @@
                         <dl>
                             <dd>5星：</dd>
                             <dd class="BarChatInside"></dd>
-                            <dd class="BarChatOutside" :style="'width:' + 30/100*60+ '%'"></dd>
-                            <dd>30%</dd>
+                            <dd class="BarChatOutside" :style="'width:' + 80/100*60+ '%'"></dd>
+                            <dd>80%</dd>
                         </dl>
                     </li>
                     <li>
                         <dl>
                             <dd>4星：</dd>
                             <dd class="BarChatInside"></dd>
-                            <dd class="BarChatOutside" :style="'width:' + 30/100*60+ '%'"></dd>
-                            <dd>30%</dd>
+                            <dd class="BarChatOutside" :style="'width:' + 20/100*60+ '%'"></dd>
+                            <dd>20%</dd>
                         </dl>
                     </li>
                     <li>
                         <dl>
                             <dd>3星：</dd>
                             <dd class="BarChatInside"></dd>
-                            <dd class="BarChatOutside" :style="'width:' + 60/100*60+ '%'"></dd>
-                            <dd>60%</dd>
+                            <dd class="BarChatOutside" :style="'width:' + 30/100*60+ '%'"></dd>
+                            <dd>30%</dd>
                         </dl>
                     </li>
                     <li>
                         <dl>
                             <dd>2星：</dd>
                             <dd class="BarChatInside"></dd>
-                            <dd class="BarChatOutside" :style="'width:' + 18/100*60+ '%'"></dd>
-                            <dd>18%</dd>
+                            <dd class="BarChatOutside" :style="'width:' + 40/100*60+ '%'"></dd>
+                            <dd>40%</dd>
                         </dl>
                     </li>
                     <li>
                         <dl>
                             <dd>1星：</dd>
                             <dd class="BarChatInside"></dd>
-                            <dd class="BarChatOutside" :style="'width:' + 10/100*60+ '%'"></dd>
-                            <dd>10%</dd>
+                            <dd class="BarChatOutside" :style="'width:' + 50/100*60+ '%'"></dd>
+                            <dd>50%</dd>
                         </dl>
                     </li>
                 </ul>
             </div>
+        </div>
+        <div class="suggest">
+            <header><h3>反馈建议</h3><p>总共{{suggestData.length}}条</p></header>
+            <dl v-for="item in suggestData">
+                <dt>
+                    <span>{{item.name}}:</span>
+                    <rating-star :rating='item.starCount'></rating-star>
+                    <em>{{item.time}}</em>
+                </dt>
+                <dd>{{item.view}}</dd>
+            </dl>
         </div>
     </div>
 </template>
 <script>
     import headTop from '../../components/head'
     import ratingStar from '../../components/ratingStar'
+    import {suggest} from '../../service/getData'
 
     export default {
         data() {
             return {
-                faqData:null,
+                dnName:'001035',
+                suggestData:[],
             }
         },
         components:{
@@ -76,9 +89,12 @@
             ratingStar,
         },
         mounted(){
+            this.initData();
         },
         methods: {
-
+            async initData () {
+                this.suggestData = await suggest(this.dnName);
+            }
         },
     }
 </script>
@@ -146,7 +162,7 @@
     }
     .mark_star ul li dl dd.BarChatInside {
         position: absolute;
-        background:#000;
+        background:#f6f6f6;
         height:.8rem;
         margin:.2rem 0;
         width: 60%;
@@ -166,5 +182,98 @@
     }
     @keyframes positive {
         0% { width:0%; }
+    }
+    .suggest {
+        margin-top:1rem;
+        background:#fff;
+    }
+    .suggest header {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-flex: auto;
+        -webkit-flex: auto;
+        flex: auto;
+        line-height:2.2rem;
+        height:2rem;
+    }
+    .suggest header h3 {
+        font-size:1.2em;
+        color:#47a7f0;
+        text-indent: 1em;
+        -webkit-box-flex: auto;
+        -webkit-flex: auto;
+        flex: auto;
+    }
+    .suggest header p {
+        color:#47a7f0;
+        -webkit-box-flex: none;
+        -webkit-flex: none;
+        flex: none;
+        padding-right:1em;
+    }
+    .suggest dl dt {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        box-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        -webkit-box-orient: horizontal;
+        box-orient: horizontal;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+        height:2rem;
+        border-top:1px solid #eaeaea;
+        border-bottom:1px solid #eaeaea;
+        padding:0 .5rem;
+        font-size:.6rem;
+    }
+    .suggest dl dt span{
+        -webkit-flex-shrink: 0;
+        flex-shrink: 0;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+    }
+    .suggest dl dt .rating_container{
+        display: -webkit-box;
+        display: -moz-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        box-orient: horizontal;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+        -webkit-box-align: center;
+        box-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        overflow: hidden;
+        -webkit-box-flex: 1;
+        box-flex: 1;
+        -webkit-flex-grow: 1;
+        flex-grow: 1;
+        -webkit-flex-shrink: 1;
+        flex-shrink: 1;
+        top:0;
+        margin-left:.2rem;
+    }
+    .suggest dl dt em {
+        font-style: normal;
+    }
+    .suggest dl dd {
+        padding:.2rem .5rem .8rem .5rem;
+        font-size:.55rem;
+        line-height:.8rem;
+        color:#666;
     }
 </style>

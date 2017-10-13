@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="app">
     <transition name="router-fade" mode="out-in">
       <keep-alive>
         <router-view v-if="$route.meta.keepAlive"></router-view>
@@ -12,13 +12,8 @@
 </template>
 
 <script>
-    import svgIcon from './components/svg';
-
     export default {
-        components:{
-            svgIcon
-        },
-
+        name: 'app',
     }
 </script>
 
