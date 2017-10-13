@@ -1,100 +1,100 @@
 <template>
   <div id="im">
     <head-top head-title="需求通知" go-back='true'></head-top>
-    <div class="message">
-      <ul>
-        <router-link :to="{path: 'im_list', query:{id: item.xh}}" v-for="item in IMlistArr" tag='li' :key="item.id">
-          <div class="avatar">
-            <span>{{item.Name}}床</span>
-          </div>
-          <div class="om">
-            <div class="om_name">
-              <span class="name">{{item.BedNum}}</span>
-              <span class="time">{{item.insertTime}}</span>
-            </div>
-            <div class="om_msg">
-              <span class="msg_con">{{item.Description}}</span>
-              <span class="msg_del">
-                <svg x="0px" y="0px" viewBox="0 0 12 10" focusable="false">
-                  <polygon class="a-s-fa-Ha-pa" points="10,1.01 8.99,0 5,3.99 1.01,0 0,1.01 3.99,5 0,8.99 1.01,10 5,6.01 8.99,10 10,8.99 6.01,5 "></polygon>
-                </svg>
-              </span>
-            </div>
-          </div>
-        </router-link>
-        <!--<li>
-          <div class="avatar">
-            <span>06床</span>
-          </div>
-          <div class="om">
-            <div class="om_name">
-              <span class="name">颜瑛</span>
-              <span class="time">58分钟前</span>
-            </div>
-            <div class="om_msg">
-              <span class="msg_con">更换药水</span>
-              <span class="msg_del">
-                <svg viewBox="0 0 950 950" focusable="false">
-                  <path d="M913.984 131.072 367.808 677.248 110.016 419.52 0 529.536 363.392 892.928 373.888 882.496 373.952 882.432 1024 241.088Z" p-id="1874"></path>
-                </svg>
-                  已处理
-              </span>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="avatar">
-            <span>06床</span>
-          </div>
-          <div class="om">
-            <div class="om_name">
-              <span class="name">颜瑛</span>
-              <span class="time">57分钟前</span>
-            </div>
-            <div class="om_msg">
-              <span class="msg_con">更换药水</span>
-              <span class="msg_del">
-                <svg viewBox="0 0 19 19" focusable="false">
-                  <path d="M10,1c-5,0-9,4-9,9H-2l3.9,3.9c0,0,0,0.1,0.1,0.1l4-4H3c0-3.9,3.1-7,7-7c3.9,0,7,3.1,7,7s-3.1,7-7,7c-1.9,0-3.7-0.8-4.9-2.1l-1.4,1.4C5.3,18,7.5,19,10,19c5,0,9-4,9-9S15,1,10,1zM9,6v5l4.3,2.5l0.7-1.2l-3.5-2.1V6H9z"></path>
-                </svg>
-                  处理中
-              </span>
-            </div>
-          </div>
-        </li>-->
-      </ul>
-    </div>
-    <audio id="bgMusic">
-      <source src="http://223.84.197.222:8888/app/images/5012.wav">
-    </audio>
+    <!--<div class="message">-->
+      <!--<ul>-->
+        <!--<router-link :to="{path: 'im_list', query:{id: item.xh}}" v-for="item in IMlistArr" tag='li' :key="item.id">-->
+          <!--<div class="avatar">-->
+            <!--<span>{{item.Name}}床</span>-->
+          <!--</div>-->
+          <!--<div class="om">-->
+            <!--<div class="om_name">-->
+              <!--<span class="name">{{item.BedNum}}</span>-->
+              <!--<span class="time">{{item.insertTime}}</span>-->
+            <!--</div>-->
+            <!--<div class="om_msg">-->
+              <!--<span class="msg_con">{{item.Description}}</span>-->
+              <!--<span class="msg_del">-->
+                <!--<svg x="0px" y="0px" viewBox="0 0 12 10" focusable="false">-->
+                  <!--<polygon class="a-s-fa-Ha-pa" points="10,1.01 8.99,0 5,3.99 1.01,0 0,1.01 3.99,5 0,8.99 1.01,10 5,6.01 8.99,10 10,8.99 6.01,5 "></polygon>-->
+                <!--</svg>-->
+              <!--</span>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</router-link>-->
+        <!--&lt;!&ndash;<li>-->
+          <!--<div class="avatar">-->
+            <!--<span>06床</span>-->
+          <!--</div>-->
+          <!--<div class="om">-->
+            <!--<div class="om_name">-->
+              <!--<span class="name">颜瑛</span>-->
+              <!--<span class="time">58分钟前</span>-->
+            <!--</div>-->
+            <!--<div class="om_msg">-->
+              <!--<span class="msg_con">更换药水</span>-->
+              <!--<span class="msg_del">-->
+                <!--<svg viewBox="0 0 950 950" focusable="false">-->
+                  <!--<path d="M913.984 131.072 367.808 677.248 110.016 419.52 0 529.536 363.392 892.928 373.888 882.496 373.952 882.432 1024 241.088Z" p-id="1874"></path>-->
+                <!--</svg>-->
+                  <!--已处理-->
+              <!--</span>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</li>-->
+        <!--<li>-->
+          <!--<div class="avatar">-->
+            <!--<span>06床</span>-->
+          <!--</div>-->
+          <!--<div class="om">-->
+            <!--<div class="om_name">-->
+              <!--<span class="name">颜瑛</span>-->
+              <!--<span class="time">57分钟前</span>-->
+            <!--</div>-->
+            <!--<div class="om_msg">-->
+              <!--<span class="msg_con">更换药水</span>-->
+              <!--<span class="msg_del">-->
+                <!--<svg viewBox="0 0 19 19" focusable="false">-->
+                  <!--<path d="M10,1c-5,0-9,4-9,9H-2l3.9,3.9c0,0,0,0.1,0.1,0.1l4-4H3c0-3.9,3.1-7,7-7c3.9,0,7,3.1,7,7s-3.1,7-7,7c-1.9,0-3.7-0.8-4.9-2.1l-1.4,1.4C5.3,18,7.5,19,10,19c5,0,9-4,9-9S15,1,10,1zM9,6v5l4.3,2.5l0.7-1.2l-3.5-2.1V6H9z"></path>-->
+                <!--</svg>-->
+                  <!--处理中-->
+              <!--</span>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</li>&ndash;&gt;-->
+      <!--</ul>-->
+    <!--</div>-->
+    <!--<audio id="bgMusic">-->
+      <!--<source src="http://223.84.197.222:8888/app/images/5012.wav">-->
+    <!--</audio>-->
     <foot-guide></foot-guide>
   </div>
 </template>
 <script>
   import headTop from '../components/head'
   import footGuide from '../components/footGuide'
-  import {im} from '../service/getData'
-  import $ from 'webpack-zepto'
+//  import {im} from '../service/getData'
+//  import $ from 'webpack-zepto'
 
   export default {
     data() {
       return {
-        IMlistArr:[], //需求列表数据
+//        IMlistArr:[], //需求列表数据
       }
     },
     mounted(){
-      this.initData();
+     /* this.initData();
       setInterval(()=>{
         this.initData();
         //console.log('刷新！');
-      },5000);
+      },5000);*/
     },
     components:{
       headTop,
       footGuide,
     },
     methods:{
-      async initData() {
+      /*async initData() {
         //获取数据
         let res = await im(this.StationID);
         this.IMlistArr = [...res];
@@ -109,7 +109,7 @@
       },
       reload(){
         window.location.reload();
-      },
+      },*/
     }
   }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div>
     <transition name="router-fade" mode="out-in">
       <keep-alive>
         <router-view v-if="$route.meta.keepAlive"></router-view>
@@ -18,7 +18,7 @@
         components:{
             svgIcon
         },
-        name: 'app',
+
     }
 </script>
 

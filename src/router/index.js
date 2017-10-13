@@ -28,7 +28,6 @@ const medication = r => require.ensure([], () => r(require('../page/medication')
 const csr = r => require.ensure([], () => r(require('../page/profile/CSR')), 'csr');
 const faq = r => require.ensure([], () => r(require('../page/profile/faq')), 'faq');
 
-
 export default new Router({
   routes: [
       {

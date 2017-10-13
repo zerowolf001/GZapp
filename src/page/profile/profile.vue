@@ -1,8 +1,8 @@
 <template>
   <div id="profile">
     <section>
-      <div class="profile" v-if="userData">
-        <span class="profile_img">
+      <div class="profile">
+        <span class="profile_img" v-if="userData">
           <img :src="userData.photo" alt="">
         </span>
         <div class="profile_txt">
