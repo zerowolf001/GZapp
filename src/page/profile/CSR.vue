@@ -6,11 +6,11 @@
             <div class="mark_detail">
                 <table width="40%" border="0" align="center" cellpadding="0" cellspacing="0">
                     <tr>
-                        <td rowspan="2" class="grade">8.3分</td>
-                        <td><rating-star :rating='8.3'></rating-star></td>
+                        <td rowspan="2" class="grade">{{markData.satisfieCount}}</td>
+                        <td><rating-star :rating='markData.satisfieCount'></rating-star></td>
                     </tr>
                     <tr>
-                        <td>200人评价</td>
+                        <td>{{markData.pNum}}人评价</td>
                     </tr>
                 </table>
             </div>
@@ -20,40 +20,40 @@
                         <dl>
                             <dd>5星：</dd>
                             <dd class="BarChatInside"></dd>
-                            <dd class="BarChatOutside" :style="'width:' + 80/100*60+ '%'"></dd>
-                            <dd>80%</dd>
+                            <dd class="BarChatOutside" :style="'width:' + markData.fiveStar/100*60+ '%'"></dd>
+                            <dd>{{markData.fiveStar}}%</dd>
                         </dl>
                     </li>
                     <li>
                         <dl>
                             <dd>4星：</dd>
                             <dd class="BarChatInside"></dd>
-                            <dd class="BarChatOutside" :style="'width:' + 20/100*60+ '%'"></dd>
-                            <dd>20%</dd>
+                            <dd class="BarChatOutside" :style="'width:' + markData.fourStar/100*60+ '%'"></dd>
+                            <dd>{{markData.fourStar}}%</dd>
                         </dl>
                     </li>
                     <li>
                         <dl>
                             <dd>3星：</dd>
                             <dd class="BarChatInside"></dd>
-                            <dd class="BarChatOutside" :style="'width:' + 30/100*60+ '%'"></dd>
-                            <dd>30%</dd>
+                            <dd class="BarChatOutside" :style="'width:' + markData.threeStar/100*60+ '%'"></dd>
+                            <dd>{{markData.threeStar}}%</dd>
                         </dl>
                     </li>
                     <li>
                         <dl>
                             <dd>2星：</dd>
                             <dd class="BarChatInside"></dd>
-                            <dd class="BarChatOutside" :style="'width:' + 40/100*60+ '%'"></dd>
-                            <dd>40%</dd>
+                            <dd class="BarChatOutside" :style="'width:' + markData.twoStar/100*60+ '%'"></dd>
+                            <dd>{{markData.twoStar}}%</dd>
                         </dl>
                     </li>
                     <li>
                         <dl>
                             <dd>1星：</dd>
                             <dd class="BarChatInside"></dd>
-                            <dd class="BarChatOutside" :style="'width:' + 50/100*60+ '%'"></dd>
-                            <dd>50%</dd>
+                            <dd class="BarChatOutside" :style="'width:' + markData.oneStar/100*60+ '%'"></dd>
+                            <dd>{{markData.oneStar}}%</dd>
                         </dl>
                     </li>
                 </ul>
@@ -75,13 +75,14 @@
 <script>
     import headTop from '../../components/head'
     import ratingStar from '../../components/ratingStar'
-    import {suggest} from '../../service/getData'
+    import {suggest,mark} from '../../service/getData'
 
     export default {
         data() {
             return {
                 dnName:'001035',
                 suggestData:[],
+                markData:'',
             }
         },
         components:{
@@ -94,6 +95,7 @@
         methods: {
             async initData () {
                 this.suggestData = await suggest(this.dnName);
+                this.markData = await mark(this.dnName);
             }
         },
     }
