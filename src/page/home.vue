@@ -82,7 +82,7 @@
         <router-link :to="{path: 'newspage', query:{id: item.xh}}"  tag="li" v-for="item in newsData" :key="item.xh">
           <h4>{{ item.title }}</h4>
           <p>{{item.synopsis}}</p>
-          <span>{{item.publish}} {{item.time}}</span>
+          <span>{{item.publish}} {{item.time | framDate}}</span>
         </router-link>
       </ul>
     </div>
@@ -126,6 +126,9 @@
       footGuide
     },
     mixins:[loadMore],
+    filters:{
+      framDate:v =>v.substring(5,10)
+    },
     methods:{
       async initData() {
         //获取数据

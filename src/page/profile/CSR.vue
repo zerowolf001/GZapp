@@ -61,7 +61,7 @@
         </div>
         <div class="suggest">
             <header><h3>反馈建议</h3><p>总共{{suggestData.length}}条</p></header>
-            <dl v-for="item in suggestData">
+            <dl v-for="item in suggestData" :key="item.id">
                 <dt>
                     <span>{{item.name}}:</span>
                     <rating-star :rating='item.starCount'></rating-star>
