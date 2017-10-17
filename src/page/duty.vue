@@ -5,7 +5,7 @@
       <dl>
         <dt class="arrow" @click="weekPre(currentYear,currentMonth)">上一周</dt>
         <dt class="year-month" @click="pickYear(currentYear,currentMonth)">
-          <span>{{ currentYear }}年{{ currentMonth }}月</span>
+          <span>{{currentDay}}</span>
         </dt>
         <dt class="arrow" @click="weekNext(currentYear,currentMonth)">下一周</dt>
       </dl>
@@ -24,7 +24,7 @@
           <!--本月-->
           <span v-if="day.getMonth()+1 != currentMonth" class="other-month">{{ day.getDate() }}</span>
           <!--今天-->
-          <span v-else-if="day.getFullYear() == new Date().getFullYear() && day.getMonth() == new Date().getMonth() && day.getDate() == new Date().getDate()" class="active">{{ day.getDate() }}</span>
+          <span v-else-if="day.getFullYear() == new Date().getFullYear() && day.getMonth() == new Date().getMonth() && day.getDate() == new Date().getDate()" class='active'>{{ day.getDate() }}</span>
           <span v-else>{{ day.getDate() }}</span>
         </li>
       </ul>
@@ -35,45 +35,21 @@
       </header>
       <div class="agenda_container">
         <ul>
-          <li>
-            <section class="doc_img">
+          <li v-for="item in dutyDataYS">
+            <!--<section class="doc_img">
               <img src="../assets/icon/icon1.jpg" alt="">
-            </section>
+            </section>-->
             <div class="doc_right">
               <header>
-                <h4 class="doc_name tit_head">刘俊</h4>
+                <h4 v-if="item.Title === '主任'" class="doc_name tit_head">{{item.name}}</h4>
+                <h4 v-else-if="item.Title === '副主任'" class="doc_name tit_f_head">{{item.name}}</h4>
+                <h4 v-else="item.Title === '医生'" class="doc_name tit_none">{{item.name}}</h4>
               </header>
               <section class="departments">
-                <span>科室：外科</span>
-                <a href="tel:10086">电话：15777778870</a>
-              </section>
-            </div>
-          </li>
-          <li>
-            <section class="doc_img">
-              <img src="../assets/icon/icon1.jpg" alt="">
-            </section>
-            <div class="doc_right">
-              <header>
-                <h4 class="doc_name tit_f_head">刘俊一</h4>
-              </header>
-              <section class="departments">
-                <span>科室：外科</span>
-                <a href="tel:10086">电话：15777778870</a>
-              </section>
-            </div>
-          </li>
-          <li>
-            <section class="doc_img">
-              <img src="../assets/icon/icon1.jpg" alt="">
-            </section>
-            <div class="doc_right">
-              <header>
-                <h4 class="doc_name tit_none">刘俊二</h4>
-              </header>
-              <section class="departments">
-                <span>科室：外科</span>
-                <a href="tel:10086">电话：15777778870</a>
+                <span>科室：{{item.DivisionName}}</span>
+                <span>排班：{{item.code}}</span>
+                <span>分管床位：{{item.beds}}</span>
+                <a :href='"tel:"+item.mobil'>电话：{{item.mobil}}</a>
               </section>
             </div>
           </li>
@@ -82,60 +58,33 @@
       <header class="agenda_header">
         <h3>值班护士</h3>
       </header>
-      <div class="agenda_container mb-22">
+      <div class="agenda_container">
         <ul>
-          <li>
-            <section class="doc_img">
+          <li v-for="item in dutyDataHS">
+            <!--<section class="doc_img">
               <img src="../assets/icon/icon2.jpg" alt="">
-            </section>
+            </section>-->
             <div class="doc_right">
               <header>
-                <h4 class="doc_name tit_nurse_head">杨颖</h4>
+                <h4 v-if="item.Title === '护士长'" class="doc_name tit_nurse_head">{{item.name}}</h4>
+                <h4 v-else="item.Title === '护士'" class="doc_name tit_nurse">{{item.name}}</h4>
               </header>
               <section class="departments">
-                <span>科室：外科</span>
-                <a href="tel:10086">电话：15777778870</a>
-              </section>
-            </div>
-          </li>
-          <li>
-            <section class="doc_img">
-              <img src="../assets/icon/icon2.jpg" alt="">
-            </section>
-            <div class="doc_right">
-              <header>
-                <h4 class="doc_name tit_nurse">王俊凯</h4>
-              </header>
-              <section class="departments">
-                <span>科室：外科</span>
-                <a href="tel:10086">电话：15777778870</a>
-              </section>
-            </div>
-          </li>
-          <li>
-            <section class="doc_img">
-              <img src="../assets/icon/icon2.jpg" alt="">
-            </section>
-            <div class="doc_right">
-              <header>
-                <h4 class="doc_name tit_nurse">王源</h4>
-              </header>
-              <section class="departments">
-                <span>科室：外科</span>
-                <a href="tel:10086">电话：15777778870</a>
+                <span>科室：{{item.DivisionName}}</span>
+                <span>排班：{{item.code}}</span>
+                <span>分管床位：{{item.beds}}</span>
+                <a :href='"tel:"+item.mobil'>电话：{{item.mobil}}</a>
               </section>
             </div>
           </li>
         </ul>
       </div>
     </div>
-    <foot-guide></foot-guide>
   </div>
 </template>
 <script>
   import headTop from '../components/head'
-  import footGuide from '../components/footGuide'
-  import {dutyList} from '../service/getData'
+  import {dutyListYS,dutyListHS} from '../service/getData'
   import alertTip from '../components/alertTip'
 
   export default {
@@ -147,90 +96,91 @@
           currentWeek: 1,    // 星期
           days: [],
           stationID:'0397',
+          dutyDataHS:'',
+          dutyDataYS:'',
       }
     },
-    created () {
-      this.initData(null)
-    },
+
+      mounted(){
+          this.initData(null);
+      },
     components:{
       headTop,
-      footGuide,
     },
     methods:{
-      formatDate (year, month, day) {
-        const y = year;
-        let m = month;
-        if (m < 10) m = `0${m}`;
-        let d = day;
-        if (d < 10) d = `0${d}`;
-        return `${y}-${m}-${d}`
-      },
-
-      initData (cur) {
-        let date = '';
-        if (cur) {
-          date = new Date(cur)
-        } else {
-          date = new Date()
-        }
-        this.currentDay = date.getDate();         //今日日期 几号
-        this.currentYear = date.getFullYear();    //当前年份
-        this.currentMonth = date.getMonth() + 1;  //当前月份
-        this.currentWeek = date.getDay(); // 1...6,0   // 星期几
-        if (this.currentWeek === 0) {
-          this.currentWeek = 7
-        }
-        const str = this.formatDate(this.currentYear, this.currentMonth, this.currentDay); // 今日日期 年-月-日
-        this.days.length = 0;
-        // 今天是周日，放在第一行第7个位置，前面6个 这里默认显示一周，如果需要显示一个月，则第二个循环为 i<= 35- this.currentWeek
-        /* eslint-disabled */
-        for (let i = this.currentWeek - 1; i >= 0; i -= 1) {
-          const d = new Date(str);
-          d.setDate(d.getDate() - i);
-          // console.log(y:" + d.getDate())
-          this.days.push(d)
-        }
-        for (let i = 1; i <= 7 - this.currentWeek; i += 1) {
-          const d = new Date(str);
-          d.setDate(d.getDate() + i);
-          this.days.push(d)
-        }
-      },
-
-      //上个星期
-      weekPre () {
-        const d = this.days[0]; // 如果当期日期是7号或者小于7号
-        d.setDate(d.getDate() - 7);
-        this.initData(d);
-      },
-
-      //  下个星期
-      weekNext () {
-        const d = this.days[6];   // 如果当期日期是7号或者小于7号
-        d.setDate(d.getDate() + 7);
-        this.initData(d)
-      },
-
-      // 上个月，传入当前年份和月份
-      pickPre (year, month) {
-        const d = new Date(this.formatDate(year, month, 1));
-        d.setDate(0);
-        this.initData(this.formatDate(d.getFullYear(), d.getMonth() + 1, 1))
-      },
-      // 下一個月   传入当前年份和月份
-      pickNext (year, month) {
-        const d = new Date(this.formatDate(year, month, 1));
-        d.setDate(35);
-        this.initData(this.formatDate(d.getFullYear(), d.getMonth() + 1, 1))
-      },
-      pickYear: function() {
-        this.initData();
-      },
-      // 当前选择日期
-      pick (date) {
-          this.formatDate(date.getFullYear(), date.getMonth() + 1, date.getDate())
-      },
-
+        formatDate (year, month, day) {
+            const y = year;
+            let m = month;
+            if (m < 10) m = `0${m}`;
+            let d = day;
+            if (d < 10) d = `0${d}`;
+            return `${y}/${m}/${d}`
+        },
+        async initData (cur) {
+            let date = '';
+            if (cur) {
+                date = new Date(cur)
+            } else {
+                date = new Date()
+            }
+            this.currentDay = date.getDate();         //今日日期 几号
+            this.currentYear = date.getFullYear();    //当前年份
+            this.currentMonth = date.getMonth() + 1;  //当前月份
+            this.currentWeek = date.getDay(); // 1...6,0   // 星期几
+            if (this.currentWeek === 0) {
+                this.currentWeek = 7
+            }
+            const str = this.formatDate(this.currentYear, this.currentMonth, this.currentDay); // 今日日期 年-月-日
+            this.days.length = 0;
+            // 今天是周日，放在第一行第7个位置，前面6个 这里默认显示一周，如果需要显示一个月，则第二个循环为 i<= 35- this.currentWeek
+            /* eslint-disabled */
+            for (let i = this.currentWeek - 1; i >= 0; i -= 1) {
+                const d = new Date(str);
+                d.setDate(d.getDate() - i);
+                // console.log(y:" + d.getDate())
+                this.days.push(d)
+            }
+            for (let i = 1; i <= 7 - this.currentWeek; i += 1) {
+                const d = new Date(str);
+                d.setDate(d.getDate() + i);
+                this.days.push(d)
+            }
+            this.pick(date);
+        },
+        //上个星期
+        weekPre () {
+            const d = this.days[0]; // 如果当期日期是7号或者小于7号
+            d.setDate(d.getDate() - 7);
+            this.initData(d);
+        },
+        //  下个星期
+        weekNext () {
+            const d = this.days[6];   // 如果当期日期是7号或者小于7号
+            d.setDate(d.getDate() + 7);
+            this.initData(d)
+        },
+        // 上个月，传入当前年份和月份
+        pickPre (year, month) {
+            const d = new Date(this.formatDate(year, month, 1));
+            d.setDate(0);
+            this.initData(this.formatDate(d.getFullYear(), d.getMonth() + 1, 1))
+        },
+        // 下一個月   传入当前年份和月份
+        pickNext (year, month) {
+            const d = new Date(this.formatDate(year, month, 1));
+            d.setDate(35);
+            this.initData(this.formatDate(d.getFullYear(), d.getMonth() + 1, 1))
+        },
+        pickYear: function() {
+            this.initData();
+        },
+        // 当前选择日期
+        async pick (date) {
+            let str = this.formatDate(date.getFullYear(), date.getMonth() + 1, date.getDate());
+            this.currentDay = str;
+            this.dutyDataYS = await dutyListYS(str,this.stationID);
+            this.dutyDataHS = await dutyListHS(str,this.stationID);
+        },
     }
   }
 </script>
@@ -241,7 +191,7 @@
   }*/
 
   .calendar {
-    margin-top:2.2rem;
+    margin-top:1.95rem;
     /*background: linear-gradient(#f65b55,#E01F34);*/
     /*background: linear-gradient(#36db84 , #0eb27b);*/
     /*border-radius: .106667rem;*/
@@ -515,9 +465,8 @@
     -ms-flex-pack: justify;
     justify-content: space-between;
     font-size: .55rem;
-  }
-  .mb-22 {
-    margin-bottom:2.2rem;
+    width: 50%;
+    float: left;
   }
 </style>
 

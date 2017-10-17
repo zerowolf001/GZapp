@@ -63,7 +63,8 @@ export const im_list = (xh) => fetch('xihealthcare/demandInfo/demandStatusPDA?St
 export const docadvData = (StationID,nameOrNum,chartNo,startTime,endTime) => fetch('xihealthcare/doctorAdvice/getAdvice?StationID='+StationID+'&nameOrNum='+nameOrNum+'&chartNo='+chartNo+'&startTime='+startTime+'&endTime='+endTime,{});
 
 /** 排班 */
-export const dutyList = (date,stationID) => fetch('xihealthcare/scheduling/getNurseSchedule',{});
+export const dutyListYS = (str,stationID) => fetch('xihealthcare/scheduling/getDoctorSchedule?date='+str+'&StationID='+stationID,{});
+export const dutyListHS = (str,stationID) => fetch('xihealthcare/scheduling/getNurseSchedule?date='+str+'&StationID='+stationID,{});
 
 /** 个人中心 */
 export const me = (dnName) => fetch('xihealthcare/personal/personalStatistic?dnName='+dnName,{});

@@ -3,9 +3,9 @@
         <head-top head-title="病床" go-back='true'></head-top>
         <div class="bedlist">
             <div class="search">
-                <form class="search_form">
+                <div class="search_form">
                     <input type="text" v-model="nameOrNo" placeholder="筛选姓名/床号" class="search-input">
-                </form>
+                </div>
                 <button @click="searchButton">确 定</button>
             </div>
             <ul>
@@ -14,7 +14,7 @@
                         <span class="c_red">{{item.BedNum}}号床</span>
                         <span>病历号：{{item.ChartNo}}</span>
                     </div>
-                    <div class="bed_details">
+                    <router-link :to="{path: 'bed', query:{id: item.FeeNo}}" class="bed_details">
                         <section class="bed_img">
                             <img v-if="item.Gender == 0" src="../assets/icon/woman.png" >
                             <img v-else src="../assets/icon/man.png" >
@@ -42,7 +42,7 @@
                                 <li v-if="item.critically == 2">重</li>
                             </ul>
                         </div>
-                    </div>
+                    </router-link>
                     <div class="bed_btm">
                         <span>入院时间：{{item.ChkInAt}}</span>
                         <span class="a_r">
