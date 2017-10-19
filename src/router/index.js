@@ -12,7 +12,8 @@ const duty = r => require.ensure([], () => r(require('../page/duty')), 'duty');
 const stat = r => require.ensure([], () => r(require('../page/statistical')), 'stat');
 const news = r => require.ensure([], () => r(require('../page/news')), 'news');
 const newspage = r => require.ensure([], () => r(require('../page/newspage')), 'newspage');
-const examine = r => require.ensure([], () => r(require('../page/examine')), 'examine')
+const examine = r => require.ensure([], () => r(require('../page/examine')), 'examine');
+const exdetail = r => require.ensure([], () => r(require('../page/examinedetail')), 'exdetail')
 const ops = r => require.ensure([], () => r(require('../page/ops')), 'ops');
 const opsdetail = r => require.ensure([], () => r(require('../page/opsdetail')), 'opsdetail');
 const profile = r => require.ensure([], () => r(require('../page/profile/profile')), 'profile');
@@ -150,6 +151,11 @@ export default new Router({
           path:'/csr',
           name:'csr',
           component: csr,
+      },
+      {
+          path:'/exdetail',
+          name:'exdetail',
+          component: exdetail,
       },
   ]
 })
