@@ -28,6 +28,7 @@ const bedAdv = r => require.ensure([], () => r(require('../page/bedadv')), 'bedA
 const medication = r => require.ensure([], () => r(require('../page/medication')), 'medication');
 const csr = r => require.ensure([], () => r(require('../page/profile/CSR')), 'csr');
 const faq = r => require.ensure([], () => r(require('../page/profile/faq')), 'faq');
+const mydate = r => require.ensure([], () => r(require('../page/profile/mydate')), 'mydate');
 
 export default new Router({
   routes: [
@@ -156,6 +157,11 @@ export default new Router({
           path:'/exdetail',
           name:'exdetail',
           component: exdetail,
+      },
+      {
+          path:'/mydate',
+          name:'mydate',
+          component: mydate,
       },
   ]
 })

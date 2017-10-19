@@ -269,7 +269,7 @@
     font-size: .6rem;
   }
   .calendar ul.weekdays li {
-    padding: .4rem 0; /*12px*/
+    padding: .4rem 0;
     display: inline-block;
     width: 13.6%;
     text-align: center;
@@ -313,6 +313,9 @@
   }
   .calendar ul.days li span.other-month {
     color: #999;
+  }
+  .days li:hover {
+    background: #e1e1e1;
   }
   .agenda {
     margin-top: 7.8rem;
