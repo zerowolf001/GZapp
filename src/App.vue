@@ -7,8 +7,27 @@
 </template>
 
 <script>
-    export default {
-        name: 'app'
+  import nprogress from 'nprogress'
+  import 'nprogress/nprogress.css'
+  export default {
+      name: 'app',
+      created() {
+          nprogress.configure({ easing: 'ease', speed: 500, showSpinner: false })
+          this.$router.beforeEach((to, from, next) => {
+              nprogress.start()
+              next()
+          });
+          this.$router.afterEach(() => {
+              nprogress.done()
+          });
+          /*Vue.http.interceptors.push((request, next) => {
+              NProgress.start();
+
+              next((response)=>{
+                  NProgress.done();
+              });
+          });*/
+        }
     }
 </script>
 
