@@ -6,10 +6,10 @@
         <img src="http://www.gzsrmyy.com/skin/images/dj_banner.jpg" alt="">
       </div>
       <ul>
-        <router-link :to="{path: 'newspage', query:{id: item.xh}}"  v-for="item in EXData" :key="item.xh" tag="li">
+        <li v-for="item in EXData">
           <h4>[{{item.type}}]{{item.title}}</h4>
           <p>{{item.title}}</p>
-        </router-link>
+        </li>
       </ul>
     </div>
     <foot-guide></foot-guide>
@@ -23,8 +23,8 @@
   export default {
     data(){
       return {
-        EXData:[],
-        StationID:'0397',
+          EXData:'',
+          StationID:'0397',
       }
     },
     mounted(){

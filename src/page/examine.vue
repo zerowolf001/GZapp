@@ -3,7 +3,7 @@
     <head-top head-title="检查安排" go-back='true'></head-top>
     <div class="examine">
       <ul class="list_wrapper">
-        <li v-for="item in EXData" :key="">
+        <router-link v-for="item in EXData" :to="{path:'exdetail',query:{id:item.xh}}" :key="id" tag="li">
           <dl>
             <dd>
               <span class="bedNum">{{item.bedNum}}床</span>
@@ -14,7 +14,7 @@
             <dd>检查地点：{{item.Position}}</dd>
             <dd><span>检查时间：{{item.time}}</span><span class="fr">状态：<em>{{item.status}}</em></span></dd>
           </dl>
-        </li>
+        </router-link>
       </ul>
     </div>
   </div>

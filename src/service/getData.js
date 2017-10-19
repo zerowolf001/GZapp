@@ -40,6 +40,9 @@ export const newspage = (id) => fetch('xihealthcare/notice/getNoticeDetail?xh='+
 /** 获取检查安排 */
 export const  examineData = (StationID) => fetch('xihealthcare/inspect/getInspect?StationID='+StationID, {});
 
+/** 获取检查详情*/
+export const examineDetail = (id) => fetch('xihealthcare/inspect/getInspectDetails?xh='+id,{});
+
 /** 获取出入院 */
 export const InOut = (StationID) => fetch('xihealthcare/entryExitHospital/getEntryExit?StationID='+StationID,{});
 
@@ -51,7 +54,6 @@ export const opsData = (StationID) => fetch('xihealthcare/operationList/getOpera
 
 /** 获取手术详情 */
 export const opsDetail = (id) => fetch('xihealthcare/operationList/getOperationDetail?xh='+id,{});
-
 
 /** 获取需求信息 */
 export const im = () => fetch('xihealthcare/demandInfo/demanded?StationID=0397', {});

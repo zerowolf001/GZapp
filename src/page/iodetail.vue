@@ -67,15 +67,15 @@
         margin-top:2.2rem;
     }
     .iod_title {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        background-color: #fff;
-        height: 1.5rem;
-        line-height: 1.5rem;
-        padding:0 1rem;
-        font-size: .6rem;
-    }
+         display: -webkit-box;
+         display: -ms-flexbox;
+         display: flex;
+         background-color: #fff;
+         height: 1.5rem;
+         line-height: 1.5rem;
+         padding:0 1rem;
+         font-size: .6rem;
+     }
     .iod_detail {
         padding:.5rem;
         background:#fff;

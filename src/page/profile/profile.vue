@@ -51,7 +51,7 @@
           </svg>
         </span>
       </li>
-      <li>
+      <router-link to="/mydate" tag="li">
         <aside>
           <img src="../../assets/icon/me_3.png" alt="">
         </aside>
@@ -61,7 +61,7 @@
             <path d="M716.298 417.341l-.01.01L307.702 7.23l-94.295 94.649 408.591 410.117-408.591 410.137 94.295 94.639 502.891-504.76z"></path>
           </svg>
         </span>
-      </li>
+      </router-link>
       <router-link to="/csr" tag="li">
         <aside>
           <svg fill="#16bf66" viewBox="0 0 40 40" id="service" width="100%" height="100%">
