@@ -1,12 +1,12 @@
 <template>
     <div class="doc_search">
-        <head-top head-title="医嘱筛选" go-back='true'></head-top>
+        <head-top head-title="医嘱清单" go-back='true'></head-top>
         <section class="searchDerive">
             <dl>
-                <dd v-if="nameOrNum !==''">姓名/病床号 <span>{{nameOrNum}}</span> 的筛选结果</dd>
-                <dd v-else="chartNo !==''">病历号 <span>{{chartNo}}</span> 筛选结果</dd>
-                <dd v-else="startTime !==''">日期 <span>{{startTime}}至{{endTime}}</span> 筛选结果</dd>
-                <dd v-else>筛选结果</dd>
+                <dd><span v-if="nameOrNum !=''">姓名/病床号:{{nameOrNum}}</span>
+                    <span v-if="chartNo !=''">病历号:{{chartNo}}</span>
+                    <span v-if="startTime !=''">{{startTime}}至{{endTime}}</span>
+                    <span v-else>全部</span>的筛选结果</dd>
             </dl>
             <div class="s_derive" v-if="docList.length!=''">
                 <table border="0" cellspacing="0" cellpadding="0">
@@ -24,8 +24,8 @@
                                 <tr>
                                     <td class="cr6">{{item.pName}}</td>
                                     <td class="cr6 fs5">{{item.name}}</td>
-                                    <td rowspan="2" class="cr6 fs5">{{item.startTime}}</td>
-                                    <td rowspan="2" class="cr6 fs5">{{item.status}}</td>
+                                    <td rowspan="2" class="cr6 fs5">{{item.time | formDate}}</td>
+                                    <td rowspan="2" class="fs5" :class="item.color">{{item.status}}</td>
                                 </tr>
                                 <tr>
                                     <td class="fs5">{{item.bedNum}}</td>
@@ -66,8 +66,8 @@
         components:{
             headTop,
         },
-        computed: {
-
+        filters:{
+            formDate:v =>v.substring(5)
         },
         methods: {
             //初始化时获取基本数据
@@ -78,6 +78,7 @@
                     this.startTime,
                     this.endTime);
                 this.docList = [...res];
+                console.log(this.endTime)
             },
         }
     }
@@ -92,11 +93,13 @@
         text-align: center;
         padding:.3rem 0;
     }
-    .searchDerive dl dd{
+    .searchDerive dl dd {
         color:#ccc;
+        font-size:.5rem;
     }
     .searchDerive dl dd span{
-        color:#ff1721;
+        color:#ccc;
+        font-size:.5rem;
     }
     .s_derive {
         margin-top:.35rem;
@@ -125,7 +128,8 @@
         font-size:.6rem;
         width:25%;
         text-align: center;
-        border-bottom: 1px solid #eee;
+        border-bottom: 1px solid #f5f5f5;
+        height:2.5rem;
     }
     .s_derive_l table tr td:first-child,.searchDerive table thead td:first-child {
         width:22%;
@@ -141,6 +145,12 @@
     }
     .fs5 {
         font-size:.5rem;
+    }
+    .red {
+        color:red;
+    }
+    .green {
+        color:green;
     }
     .fs4 {
         font-size:.4rem;

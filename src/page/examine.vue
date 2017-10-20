@@ -3,7 +3,7 @@
     <head-top head-title="检查安排" go-back='true'></head-top>
     <div class="examine">
       <ul class="list_wrapper">
-        <router-link v-for="item in EXData" :to="{path:'exdetail',query:{id:item.xh}}" :key="id" tag="li">
+        <router-link v-for="item in EXData" :to="{path:'exdetail',query:{id:item.xh}}" :key="item.xh" tag="li">
           <dl>
             <dd>
               <span class="bedNum">{{item.bedNum}}床</span>

@@ -1,16 +1,31 @@
 <template>
   <div id="news">
     <head-top head-title="信息公告" go-back='true'></head-top>
-    <div class="m-news-item mt-195">
-      <div class="banner">
-        <img src="http://www.gzsrmyy.com/skin/images/dj_banner.jpg" alt="">
-      </div>
-      <ul>
-        <li v-for="item in EXData">
-          <h4>[{{item.type}}]{{item.title}}</h4>
-          <p>{{item.title}}</p>
-        </li>
-      </ul>
+    <div class="newsList mt-195">
+      <section class="tab_title">
+        <span :class="{choosed: categoryType === 1}" @click="categoryType = 1">医院公告</span>
+        <span :class="{choosed: categoryType === 2}" @click="categoryType = 2">医院新闻</span>
+      </section>
+      <section v-if="categoryType === 1">
+        <ul>
+          <li v-for="item in EXData" v-if="item.type=='公告'">
+            <dl>
+              <dd><span>公告</span>{{item.title}}</dd>
+              <dd>{{item.synopsis}}</dd>
+            </dl>
+          </li>
+        </ul>
+      </section>
+      <section v-if="categoryType === 2">
+        <ul>
+          <li v-for="item in EXData" v-if="item.type=='新闻'">
+            <dl>
+              <dd><span>新闻</span>{{item.title}}</dd>
+              <dd>{{item.synopsis}}</dd>
+            </dl>
+          </li>
+        </ul>
+      </section>
     </div>
     <foot-guide></foot-guide>
   </div>
@@ -23,6 +38,7 @@
   export default {
     data(){
       return {
+          categoryType: 1,
           EXData:'',
           StationID:'0397',
       }
@@ -43,11 +59,64 @@
   }
 </script>
 <style>
-  .mt-195 {
-    margin-top: 1.95rem;
+  .tab_title {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background-color: #fff;
+    height: 1.5rem;
+    margin: .5rem 0;
   }
-  .banner img {
-    display: block;
-    width: 100%;
+  .tab_title span {
+    height: 1.5rem;
+    width: 33.333%;
+    text-align: center;
+    line-height: 1.5rem;
+    font-size: .5rem;
+    color:#ccc;
+  }
+  .tab_title span.choosed {
+    border-bottom:1px solid #47a8f0;
+    color: #47a8f0;
+  }
+  .newsList {
+    margin-top:2.15rem;
+    margin-bottom:2.5rem;
+  }
+  .newsList ul li {
+    margin:.5rem 0;
+    background:#fff;
+    padding:.4rem;
+  }
+  .newsList ul li dl dd:first-child {
+    font-size:.6rem;
+    line-height:1.2rem;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+  }
+  .newsList ul li dl dd:last-child {
+    font-size:.58rem;
+    line-height:.75rem;
+    overflow: hidden;
+    margin-top:.1rem;
+    color:#ddd;
+    text-overflow:ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+  .newsList ul li dl dd span {
+    font-size:.6rem;
+    background:#de5467;
+    color:#fff;
+    border-radius: .2rem;
+    padding:0 .5rem;
+    margin-right:.5rem;
   }
 </style>
