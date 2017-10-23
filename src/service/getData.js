@@ -20,6 +20,10 @@ export const bedAdvDetail = (id) => fetch('xihealthcare/bedList/getAdviceDetail?
  * 获取病床用药详情
  * */
 export const medication = (id) => fetch('xihealthcare/bedList/getMedication?feeNo='+id,{});
+/**
+ * 获取病床检查项目
+ */
+export const bedExmd = (id) => fetch('xihealthcare/bedList/getChecks?feeNo='+id,{});
 
 /**
  * 检测帐号是否存在
@@ -71,7 +75,6 @@ export const dutyListHS = (str,stationID) => fetch('xihealthcare/scheduling/getN
 /** 个人中心 */
 export const me = (dnName) => fetch('xihealthcare/personal/personalStatistic?dnName='+dnName,{});
 export const user = (dnName) => fetch('xihealthcare/personal/personalInfo?dnName='+dnName,{});
-
 export const faq = () => fetch('xihealthcare/problem/getProblemList',{});
 export const suggest = (dnName) => fetch('xihealthcare/satisfaction/getFeedBack?dnName='+dnName,{});
 export const mark = (dnName) => fetch('xihealthcare/satisfaction/getPercent?dnName='+dnName,{});

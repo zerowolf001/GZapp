@@ -122,7 +122,18 @@
       <transition name="router-fade">
         <section v-if="categoryType === 3">
           <section class="bedClinic_container">
-            {{bedDetailData.bedcontainer}}
+            <dl>
+              <dt>检验科</dt>
+              <dd v-for="(item,index) in bedExmd" :key="item.feeNo" @click="show(index)" :class="[isShow==index ? 'active':'']">
+                <dt>{{item.name}}</dt>
+                <ul v-show="isShow == index">
+                  <li v-for="Dlist in item.ck" :key="Dlist.xh">
+                    <em>检查时间：{{Dlist.checkDate}}</em>
+                    <span>{{Dlist.status}}</span>
+                  </li>                  
+                </ul>
+              </dd>
+            </dl>
           </section>
         </section>
       </transition>
@@ -131,7 +142,7 @@
 </template>
 
 <script>
-  import {bedDetails} from '../service/getData'
+  import {bedDetails,bedExmd} from '../service/getData'
   import headTop from '../components/head'
   import ToggleButton from '../components/switch.vue'
 
@@ -142,6 +153,8 @@
         id: null,
         bedDetailData: [],
         toggled: false,
+        bedExmd:[],
+        isShow:false,
       }
     },
     created(){
@@ -157,7 +170,11 @@
     methods: {
       async initData() {
         this.bedDetailData = await bedDetails(this.id)
+        this.bedExmd = await bedExmd(this.id)
       },
+      show:function(cur){
+        this.isShow = cur;
+      }
     },
   }
 </script>
@@ -283,14 +300,80 @@
     border-right:none;
   }
   .bedClinic_container {
-    margin:1rem 0;
-    padding:.5rem;
+    margin:-.5rem .3rem 0 .3rem;
     background-color:#fff;
     line-height:25px;
+    padding:.5rem 0;
     font-size:14px;
-    min-height:18rem;
-    border-top:1px solid #eee;
-    border-bottom:1px solid #eee;
+    border-radius: .4rem;
+  }
+  .bedClinic_container dl dt {
+    font-size: .7rem;
+    padding:0 .5rem;
+    height: 1rem;
+    line-height: .7rem;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  .bedClinic_container dl dd dt {
+    font-size:.6rem;
+    padding:.2rem .8rem;
+    height:1.35rem;
+    line-height: 1rem;
+    border:none;
+    display: flex;
+    position: relative;
+  }
+  .bedClinic_container dl dd.active dt:before{
+    content: " ";
+    border: .4rem solid #fff;
+    border-left-width: .25rem;
+    border-right-width: .25rem;
+    border-color: #47a7f0 transparent transparent transparent;
+    top: .525rem;
+    left: .2rem;
+    position: absolute;
+  }
+  .bedClinic_container dl dd dt:before{
+    content: " ";
+    border: .4rem solid #fff;
+    border-top-width: .25rem;
+    border-bottom-width: .25rem;
+    border-color: transparent transparent transparent #47a7f0;
+    top: .525rem;
+    left: .2rem;
+    position: absolute;
+  }
+  .bedClinic_container dl dd ul li {
+    margin:0 .2rem;
+    height:1.6rem;
+    line-height: 1.5rem;
+    background-color: #fafafa;
+    padding:0 .4rem;
+    border-bottom:1px solid #e5e5e5;
+    position: relative;
+  }
+  .bedClinic_container dl dd ul li:after {
+    content: ' ';
+    display: block;
+    position: absolute;
+    right: .3rem;
+    top: .4rem;
+    width: .5rem;
+    height: .5rem;
+    border-top: 1px solid #e5e5e5;
+    border-right: 1px solid #e5e5e5;
+    -webkit-transform: rotateZ(45deg);
+    transform: rotateZ(45deg);
+    -moz-transform: rotateZ(45deg);
+    -ms-transform: rotateZ(45deg);
+  }
+  .bedClinic_container dl dd ul li em {
+    font-style: normal;
+    float: left;
+  }
+  .bedClinic_container dl dd ul li span {
+    float: right;
+    margin-right: .5rem;
   }
   dl.bedBest_container,dl.bedTag_container {
     margin-bottom:.1rem;
