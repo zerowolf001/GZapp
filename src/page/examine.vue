@@ -45,7 +45,7 @@
     }
   }
 </script>
-<style>
+<style lang="scss" scoped>
   em, i {
     font-style: normal;
   }

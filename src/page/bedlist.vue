@@ -92,7 +92,7 @@
         }
     }
 </script>
-<style>
+<style lang="scss" scoped>
     .bedlist {
         margin-top:1.88rem;
         margin-bottom:2.5rem;

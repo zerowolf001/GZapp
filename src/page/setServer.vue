@@ -28,7 +28,6 @@
   </div>
 </template>
 <script>
-//  import headTop from '../components/head'
   import alertTip from '../components/alertTip'
 
   export default {
@@ -36,12 +35,11 @@
       return {}
     },
     components: {
-//      headTop,
       alertTip,
     }
   }
 </script>
-<style>
+<style lang="scss" scoped>
   .setServer {
     position: relative;
   }

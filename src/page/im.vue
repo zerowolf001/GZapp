@@ -50,7 +50,7 @@
     },
   }
 </script>
-<style>
+<style lang="scss" scoped>
   .message {
     margin-top:2.5rem;
     width: 100%;

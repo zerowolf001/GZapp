@@ -38,7 +38,7 @@
       },
   }
 </script>
-<style>
+<style lang="scss" scoped>
   .newsDetail {
     margin-top:2rem;
     background-color:#fff;

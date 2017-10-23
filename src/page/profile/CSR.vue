@@ -100,7 +100,7 @@
         },
     }
 </script>
-<style>
+<style lang="scss" scoped>
     .rating_page{
         position: absolute;
         top: 0;

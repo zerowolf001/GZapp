@@ -244,7 +244,7 @@
         },
     }
 </script>
-<style>
+<style lang="scss" scoped>
     .io {
         margin-top:2.2rem;
     }

@@ -67,7 +67,7 @@
         },
     }
 </script>
-<style>
+<style lang="scss" scoped>
     .ex_detail {
         margin-top:1.95rem;
     }

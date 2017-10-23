@@ -183,7 +183,7 @@
       }
   }
 </script>
-<style>
+<style lang="scss" scoped>
   /*.date_container {
     background-image: linear-gradient(180deg,#f65b55,#e0434e);
     padding: .333333rem;

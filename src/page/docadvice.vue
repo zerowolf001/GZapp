@@ -60,7 +60,7 @@
         }
     }
 </script>
-<style>
+<style lang="scss" scoped>
     #search {
         margin-top:2.1rem;
     }

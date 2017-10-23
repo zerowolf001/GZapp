@@ -58,7 +58,7 @@
     }
   }
 </script>
-<style>
+<style lang="scss" scoped>
   .tab_title {
     display: -webkit-box;
     display: -ms-flexbox;

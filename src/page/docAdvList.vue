@@ -70,7 +70,6 @@
             formDate:v =>v.substring(5)
         },
         methods: {
-            //初始化时获取基本数据
             async initData() {
                 let res = await docadvData(this.StationID,
                     this.nameOrNum,
@@ -83,7 +82,7 @@
         }
     }
 </script>
-<style>
+<style lang="scss" scoped>
     .searchDerive {
         margin-top:1.95rem;
     }

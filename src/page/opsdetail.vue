@@ -49,7 +49,7 @@
         },
     }
 </script>
-<style>
+<style lang="scss" scoped>
     .iodetail {
         margin-top:2.2rem;
     }

@@ -153,7 +153,7 @@
       },
   }
 </script>
-<style>
+<style lang="scss" scoped>
   .ops {
     margin-top:2.2rem;
   }

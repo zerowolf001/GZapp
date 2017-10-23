@@ -178,7 +178,7 @@
     },
   }
 </script>
-<style>
+<style lang="scss" scoped>
   .bed_name {
     background:#fff;
     padding-top: 1.95rem;

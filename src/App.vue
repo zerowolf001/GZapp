@@ -22,7 +22,6 @@
           });
           /*Vue.http.interceptors.push((request, next) => {
               NProgress.start();
-
               next((response)=>{
                   NProgress.done();
               });
@@ -31,8 +30,8 @@
     }
 </script>
 
-<style>
-  @import './style/style.css';
+<style lang="scss">
+  @import './style/style';
   #app {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

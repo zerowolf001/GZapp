@@ -39,7 +39,7 @@
     }
   }
 </script>
-<style>
+<style lang="scss" scoped>
   #im_list h4{
     margin-top:3rem;
     padding:2rem;

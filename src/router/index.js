@@ -19,7 +19,6 @@ const opsdetail = r => require.ensure([], () => r(require('../page/opsdetail')),
 const profile = r => require.ensure([], () => r(require('../page/profile/profile')), 'profile');
 const im = r => require.ensure([], () => r(require('../page/im')), 'im');
 const imyz = r => require.ensure([], () => r(require('../page/im_yz')), 'imyz');
-const yzdetail = r => require.ensure([], () => r(require('../page/yzdetail')), 'yzdetail');
 const im_list = r => require.ensure([], () => r(require('../page/im_list')), 'im_list');
 const docadv = r => require.ensure([], () => r(require('../page/docadvice')), 'docadv');
 const advList = r => require.ensure([], () => r(require('../page/docAdvList')), 'advList');
@@ -170,10 +169,5 @@ export default new Router({
           name:'imyz',
           component: imyz,
       },
-      {
-          path:'/yzdetail',
-          name:'yzdetail',
-          component:yzdetail,
-      }
   ]
 })

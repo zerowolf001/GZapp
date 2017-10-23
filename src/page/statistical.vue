@@ -174,7 +174,7 @@
     },
   }
 </script>
-<style>
+<style lang="scss" scoped>
   .statistical {
     margin-bottom:2.5rem;
   }

@@ -86,7 +86,7 @@
         }
     }
 </script>
-<style>
+<style lang="scss" scoped>
     .searchBed {
         margin-top:1.95rem;
         margin-bottom:2.5rem;

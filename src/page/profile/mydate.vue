@@ -118,7 +118,7 @@
         },
     }
 </script>
-<style>
+<style lang="scss" scoped>
     .date{
         margin-top:1.95rem;
     }

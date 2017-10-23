@@ -177,7 +177,7 @@
     }
   }
 </script>
-<style>
+<style lang="scss" scoped>
   .index_msg {
     display: -webkit-box;
     display: -webkit-flex;

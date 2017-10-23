@@ -134,7 +134,7 @@
       },
   }
 </script>
-<style>
+<style lang="scss" scoped>
   .profile {
     /*background: linear-gradient(to right, #36db84 , #0eb27b);*/
     background-color: #47a7f0;
