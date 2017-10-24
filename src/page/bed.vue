@@ -33,24 +33,24 @@
       <transition name="router-fade">
         <section v-if="categoryType === 1">
           <dl class="bedBest_container">
-              <dd class="bedBest_list">
-                <dl>
-                  <dd>主治医生：<em>{{bedDetailData.Doctor}}</em></dd>
-                  <dd>责任护士：<em>{{bedDetailData.ResNurse}}</em></dd>
-                  <dd>住院天数： <em>{{bedDetailData.DOH}}</em></dd>
-                  <dd>缴费方式：<em>{{bedDetailData.Insurance}}</em></dd>
-                </dl>
-              </dd>
-              <dd class="bedBest_list">
-                <dl>
-                  <dd>护理级别：<em>{{bedDetailData.NursingLevel}}</em></dd>
-                  <dd>紧急联系人：<em>{{bedDetailData.Contact}}</em></dd>
-                  <dd>联络人电话：<em>{{bedDetailData.ContactNo}}</em></dd>
-                  <dd>今办明出：<em v-if="bedDetailData.WBD ==1">是</em><em v-else>否</em></dd>
-                  <dd>设备需求：<em v-if="bedDetailData.Equipment == 0">无</em><em v-else>用氧</em></dd>
-                  <dd>费用：<em>{{bedDetailData.Fee}}</em></dd>
-                </dl>
-              </dd>
+            <dd class="bedBest_list">
+              <dl>
+                <dd>主治医生：<em>{{bedDetailData.Doctor}}</em></dd>
+                <dd>责任护士：<em>{{bedDetailData.ResNurse}}</em></dd>
+                <dd>住院天数： <em>{{bedDetailData.DOH}}</em></dd>
+                <dd>缴费方式：<em>{{bedDetailData.Insurance}}</em></dd>
+              </dl>
+            </dd>
+            <dd class="bedBest_list">
+              <dl>
+                <dd>护理级别：<em>{{bedDetailData.NursingLevel}}</em></dd>
+                <dd>紧急联系人：<em>{{bedDetailData.Contact}}</em></dd>
+                <dd>联络人电话：<em>{{bedDetailData.ContactNo}}</em></dd>
+                <dd>今办明出：<em v-if="bedDetailData.WBD ==1">是</em><em v-else>否</em></dd>
+                <dd>设备需求：<em v-if="bedDetailData.Equipment == 0">无</em><em v-else>用氧</em></dd>
+                <dd>费用：<em>{{bedDetailData.Fee}}</em></dd>
+              </dl>
+            </dd>
             <dd class="bedBest_list">
               <dl>
                 <dd>危急值：<em>{{bedDetailData.Critical}}</em></dd>
@@ -94,7 +94,7 @@
                     <span class="v-switch-core" style="background-color: rgb(191, 203, 217)"></span>
                     <div><span class="v-switch-label v-right">否</span></div>
                   </label>
-                  </em></dd>
+                </em></dd>
                 <dd>绝对卧床休息/床上活动 <em>
                   <label v-if="bedDetailData.BedRest == 1" class="v-switch toggled">
                     <span class="v-switch-core" style="background-color: rgb(117, 199, 145);"></span>
@@ -131,7 +131,7 @@
                   </em>
                 </dd>
                 <!--<dd>特殊饮食 <em><toggle-button v-if="bedDetailData.SpecialDiets == 1" :labels="true" :value="true" />-->
-                  <!--<toggle-button v-else :labels="true"/></em></dd>-->
+                <!--<toggle-button v-else :labels="true"/></em></dd>-->
                 <dd>特殊饮食
                   <em>
                     <label v-if="bedDetailData.SpecialDiets == 1" class="v-switch toggled">
@@ -171,7 +171,7 @@
                     <span class="v-switch-core" style="background-color: rgb(191, 203, 217)"></span>
                     <div><span class="v-switch-label v-right">否</span></div>
                   </label>
-                  </em></dd>
+                </em></dd>
               </dl>
             </dd>
             <dd class="bed_Switch">
@@ -240,13 +240,13 @@
             <dl>
               <dt>检验科</dt>
               <dd v-for="(item,index) in bedExmd" :key="item.feeNo" @click="show(index)" :class="[isShow==index ? 'active':'']">
-                <dt>{{item.name}}</dt>
-                <ul v-show="isShow == index">
-                  <li v-for="Dlist in item.ck" :key="Dlist.xh">
-                    <em>检查时间：{{Dlist.checkDate}}</em>
-                    <span>{{Dlist.status}}</span>
-                  </li>                  
-                </ul>
+              <dt>{{item.name}}</dt>
+              <ul v-show="isShow == index">
+                <li v-for="Dlist in item.ck" :key="Dlist.xh">
+                  <em>检查时间：{{Dlist.checkDate}}</em>
+                  <span>{{Dlist.status}}</span>
+                </li>
+              </ul>
               </dd>
             </dl>
           </section>
@@ -293,7 +293,7 @@
     },
   }
 </script>
-<style lang="scss" scoped>
+<style>
   .bed_name {
     background:#fff;
     padding-top: 1.95rem;
@@ -528,5 +528,86 @@
     padding:.1rem .3rem;
     margin-left:.35rem;
     border-radius:.25rem;
+  }
+  .v-switch {
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    user-select: none;
+    font-size: 12px;
+    cursor: pointer;
+  }
+  .v-switch .v-switch-label, .v-switch {
+    line-height: 22px;
+    height: 22px;
+  }
+  .v-switch .v-switch-input {
+    display: none;
+  }
+  .v-switch .v-switch-label {
+    position: absolute;
+    top: 0;
+    font-weight: 600;
+    color: white;
+  }
+  .v-switch .v-switch-core {
+    margin: 0;
+    display: inline-block;
+    position: relative;
+    outline: 0;
+    box-sizing: border-box;
+    transition: border-color .3s, background-color .3s;
+    user-select: none;
+  }
+
+  .v-switch .v-switch-core:before {
+    display: block;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    transform: translate(3px, 3px);
+    transition: transform .3s;
+    border-radius: 100%;
+    background-color: #fff;
+    content: '';
+    width: 16px;
+    height: 16px;
+  }
+  .v-switch .v-switch-core:before {
+    width: calc(22px - 6px);
+    height: calc(22px - 6px);
+  }
+  .v-switch .v-switch-label.v-right {
+    right: 15px;
+  }
+  .v-switch .v-switch-label.v-left {
+    left: 15px;
+  }
+  .v-switch.toggled .v-switch-core:before {
+    transform: translate(30px,3px);
+  }
+  .v-switch .v-switch-core.toggled:before {
+    transform: translate(30px, 3px);
+  }
+  .v-switch .v-switch-core.disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+  .v-switch .v-switch-label {
+    line-height: 22px;
+    height: 22px;
+  }
+
+  .v-switch .v-switch-core {
+    border-radius: 999px;
+    width: 50px;
+    height: 22px;
+  }
+  .v-switch.v-switch-core:before {
+    width: calc(22px - 6px);
+    height: calc(22px - 6px);
   }
 </style>
