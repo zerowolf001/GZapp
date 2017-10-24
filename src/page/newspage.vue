@@ -1,12 +1,13 @@
 <template>
-  <div>
-      <head-top head-title="信息公告" go-back='true'></head-top>
-      <section class="newsDetail" v-if="NoticeDetail">
+  <div v-if="NoticeDetail">
+      <head-top :head-title="'医院'+ NoticeDetail.type" go-back='true'></head-top>
+      <section class="newsDetail">
         <h3>{{NoticeDetail.title}}</h3>
         <span>{{NoticeDetail.time}}</span>
         <div v-html="NoticeDetail.detail"></div>
       </section>
   </div>
+  <div v-else>网络连接错误！</div>
 </template>
 <script>
     import {newspage} from '../service/getData'

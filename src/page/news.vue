@@ -8,22 +8,22 @@
       </section>
       <section v-if="categoryType === 1">
         <ul>
-          <li v-for="item in EXData" v-if="item.type=='公告'">
+          <router-link v-for="item in EXData" v-if="item.type=='公告'" :to="{path: 'newspage', query:{id: item.xh}}" tag="li" :key="item.xh">
             <dl>
               <dd><span>公告</span>{{item.title}}</dd>
               <dd>{{item.synopsis}}</dd>
             </dl>
-          </li>
+          </router-link>
         </ul>
       </section>
       <section v-if="categoryType === 2">
         <ul>
-          <li v-for="item in EXData" v-if="item.type=='新闻'">
+          <router-link v-for="item in EXData" v-if="item.type=='新闻'" :to="{path: 'newspage', query:{id: item.xh}}" tag="li" :key="item.xh">
             <dl>
               <dd><span>新闻</span>{{item.title}}</dd>
               <dd>{{item.synopsis}}</dd>
             </dl>
-          </li>
+          </router-link>
         </ul>
       </section>
     </div>

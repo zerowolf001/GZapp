@@ -10,7 +10,7 @@
     </section>
     <section @click = "goTo({path: '/im'})" :class="$route.path.indexOf('im') !== -1? 'guideActive' : 'guide_item'">
       <i class="icon icon_msg"></i>
-      <span>需求</span>
+      <span>任务</span>
     </section>
     <section @click = "goTo({path: '/profile'})" :class="$route.path.indexOf('profile') !== -1? 'guideActive' : 'guide_item'">
       <i class="icon icon_user"></i>

@@ -2,6 +2,12 @@
   <div id="examine">
     <head-top head-title="检查安排" go-back='true'></head-top>
     <div class="examine">
+      <div class="search">
+        <div class="search_form">
+          <input type="text" v-model="nameOrNo" placeholder="筛选姓名/床号" class="search-input">
+        </div>
+        <button @click="searchButton">确 定</button>
+      </div>
       <ul class="list_wrapper">
         <router-link v-for="item in EXData" :to="{path:'exdetail',query:{id:item.xh}}" :key="item.xh" tag="li">
           <dl>
@@ -28,6 +34,7 @@
     data() {
         return {
             StationID:'0397',
+            nameOrNo:'',
             EXData:null,
         }
     },
@@ -38,10 +45,16 @@
       headTop,
     },
     methods:{
-      async initData() {
-        let data = await examineData(this.StationID);
-        this.EXData = [...data]
-      }
+        async initData() {
+          let data = await examineData(this.StationID);
+          this.EXData = [...data]
+        },
+        async searchButton(){
+            this.$router.push({path:'/bedSearch', query:{
+                StationID:this.StationID,
+                nameOrNo:this.nameOrNo,}
+            });
+        },
     }
   }
 </script>
@@ -53,13 +66,43 @@
     background: #f5f5f5;
   }
   .examine {
-    margin-top:2.25rem;
-    margin-bottom:2rem;
+    margin-top:1.9rem;
   }
-  .list_wrapper li {
-    background: #fff;
-    margin-bottom: .5rem;
-    padding-bottom:.2rem;
+  .search {
+    display: block;
+    padding:.25rem 1rem;
+    background-color: #e8e8e8;
+    height: 1.5rem;
+    button {
+      border:none;
+      background:transparent;
+      color:#47a7f0;
+      margin-left:.5rem;
+      font-size:.55rem;
+    }
+  }
+  .search-input {
+    width: 85%;
+    margin: 0;
+    min-height: .75rem;
+    padding: .1rem .4rem;
+    font-size: .5rem;
+    text-align: center;
+    line-height: 20px;
+    color: #24292e;
+    vertical-align: middle;
+    background-color: #fff;
+    border: none;
+    border-radius: .35rem;
+    float: left;
+  }
+  .list_wrapper {
+    margin-top:.5rem;
+    li {
+      background: #fff;
+      margin-bottom: .8rem;
+      padding-bottom:.2rem;
+    }
   }
   .list_wrapper li dl {
     padding:0 .5rem;
@@ -92,8 +135,8 @@
   }
   .fr {
     float: right;
-  }
-  .fr em {
-    color:red;
+    em {
+      color:red;
+    }
   }
 </style>

@@ -74,46 +74,161 @@
           <dl class="bedTag_container">
             <dd class="bed_Switch">
               <dl>
-                <dd>病重 <em><toggle-button v-if="bedDetailData.Critically == 1" :labels="true" :value="true" />
-                  <toggle-button v-else :labels="true"/>
+                <dd>病重 <em>
+                  <label v-if="bedDetailData.Critically == 1" class="v-switch toggled">
+                    <span class="v-switch-core" style="background-color: rgb(117, 199, 145);"></span>
+                    <div><span class="v-switch-label v-left">是</span></div>
+                  </label>
+                  <label v-else class="v-switch">
+                    <span class="v-switch-core" style="background-color: rgb(191, 203, 217)"></span>
+                    <div><span class="v-switch-label v-right">否</span></div>
+                  </label>
                 </em>
                 </dd>
-                <dd>病危 <em><toggle-button v-if="bedDetailData.Critically == 2" :labels="true" :value="true" />
-                  <toggle-button v-else :labels="true"/></em></dd>
-                <dd>绝对卧床休息/床上活动 <em><toggle-button v-if="bedDetailData.BedRest == 1" :labels="true" :value="true" />
-                  <toggle-button v-else :labels="true"/></em></dd>
-                <dd>特殊疾病 <em><toggle-button v-if="bedDetailData.SDC == 1" :labels="true" :value="true" />
-                  <toggle-button v-else :labels="true"/></em></dd>
+                <dd>病危 <em>
+                  <label v-if="bedDetailData.Critically == 2" class="v-switch toggled">
+                    <span class="v-switch-core" style="background-color: rgb(117, 199, 145);"></span>
+                    <div><span class="v-switch-label v-left">是</span></div>
+                  </label>
+                  <label v-else class="v-switch">
+                    <span class="v-switch-core" style="background-color: rgb(191, 203, 217)"></span>
+                    <div><span class="v-switch-label v-right">否</span></div>
+                  </label>
+                  </em></dd>
+                <dd>绝对卧床休息/床上活动 <em>
+                  <label v-if="bedDetailData.BedRest == 1" class="v-switch toggled">
+                    <span class="v-switch-core" style="background-color: rgb(117, 199, 145);"></span>
+                    <div><span class="v-switch-label v-left">是</span></div>
+                  </label>
+                  <label v-else class="v-switch">
+                    <span class="v-switch-core" style="background-color: rgb(191, 203, 217)"></span>
+                    <div><span class="v-switch-label v-right">否</span></div>
+                  </label>
+                </em></dd>
+                <dd>特殊疾病 <em>
+                  <label v-if="bedDetailData.SDC == 1" class="v-switch toggled">
+                    <span class="v-switch-core" style="background-color: rgb(117, 199, 145);"></span>
+                    <div><span class="v-switch-label v-left">是</span></div>
+                  </label>
+                  <label v-else class="v-switch">
+                    <span class="v-switch-core" style="background-color: rgb(191, 203, 217)"></span>
+                    <div><span class="v-switch-label v-right">否</span></div>
+                  </label></em></dd>
               </dl>
             </dd>
             <dd class="bed_Switch">
               <dl>
-                <dd>DVT高风险 <em><toggle-button v-if="bedDetailData.DVTRisk == 1" :labels="true" :value="true" />
-                  <toggle-button v-else :labels="true"/></em></dd>
-                <dd>特殊饮食 <em><toggle-button v-if="bedDetailData.SpecialDiets == 1" :labels="true" :value="true" />
-                  <toggle-button v-else :labels="true"/></em></dd>
-                <dd>禁食 <em><toggle-button v-if="bedDetailData.Fasting == 1" :labels="true" :value="true" />
-                  <toggle-button v-else :labels="true"/></em></dd>
-                <dd>保护性约束 <em><toggle-button v-if="bedDetailData.Constraint == 1" :labels="true" :value="true" />
-                  <toggle-button v-else :labels="true"/></em></dd>
-                <dd>输血 <em><toggle-button v-if="bedDetailData.Transfuse == 1" :labels="true" :value="true" />
-                  <toggle-button v-else :labels="true"/></em></dd>
+                <dd>DVT高风险
+                  <em>
+                    <label v-if="bedDetailData.DVTRisk == 1" class="v-switch toggled">
+                      <span class="v-switch-core" style="background-color: rgb(117, 199, 145);"></span>
+                      <div><span class="v-switch-label v-left">是</span></div>
+                    </label>
+                    <label v-else class="v-switch">
+                      <span class="v-switch-core" style="background-color: rgb(191, 203, 217)"></span>
+                      <div><span class="v-switch-label v-right">否</span></div>
+                    </label>
+                  </em>
+                </dd>
+                <!--<dd>特殊饮食 <em><toggle-button v-if="bedDetailData.SpecialDiets == 1" :labels="true" :value="true" />-->
+                  <!--<toggle-button v-else :labels="true"/></em></dd>-->
+                <dd>特殊饮食
+                  <em>
+                    <label v-if="bedDetailData.SpecialDiets == 1" class="v-switch toggled">
+                      <span class="v-switch-core" style="background-color: rgb(117, 199, 145);"></span>
+                      <div><span class="v-switch-label v-left">是</span></div>
+                    </label>
+                    <label v-else class="v-switch">
+                      <span class="v-switch-core" style="background-color: rgb(191, 203, 217)"></span>
+                      <div><span class="v-switch-label v-right">否</span></div>
+                    </label>
+                  </em>
+                </dd>
+                <dd>禁食 <em>
+                  <label v-if="bedDetailData.Fasting == 1" class="v-switch toggled">
+                    <span class="v-switch-core" style="background-color: rgb(117, 199, 145);"></span>
+                    <div><span class="v-switch-label v-left">是</span></div>
+                  </label>
+                  <label v-else class="v-switch">
+                    <span class="v-switch-core" style="background-color: rgb(191, 203, 217)"></span>
+                    <div><span class="v-switch-label v-right">否</span></div>
+                  </label></em></dd>
+                <dd>保护性约束 <em>
+                  <label v-if="bedDetailData.Constraint == 1" class="v-switch toggled">
+                    <span class="v-switch-core" style="background-color: rgb(117, 199, 145);"></span>
+                    <div><span class="v-switch-label v-left">是</span></div>
+                  </label>
+                  <label v-else class="v-switch">
+                    <span class="v-switch-core" style="background-color: rgb(191, 203, 217)"></span>
+                    <div><span class="v-switch-label v-right">否</span></div>
+                  </label></em></dd>
+                <dd>输血 <em>
+                  <label v-if="bedDetailData.Transfuse == 1" class="v-switch toggled">
+                    <span class="v-switch-core" style="background-color: rgb(117, 199, 145);"></span>
+                    <div><span class="v-switch-label v-left">是</span></div>
+                  </label>
+                  <label v-else class="v-switch">
+                    <span class="v-switch-core" style="background-color: rgb(191, 203, 217)"></span>
+                    <div><span class="v-switch-label v-right">否</span></div>
+                  </label>
+                  </em></dd>
               </dl>
             </dd>
             <dd class="bed_Switch">
               <dl>
-                <dd>跌倒/坠床高风险 <em><toggle-button v-if="bedDetailData.hrf == 1" :labels="true" :value="true" />
-                  <toggle-button v-else :labels="true"/></em></dd>
-                <dd>防导管滑脱 <em><toggle-button v-if="bedDetailData.CatheterOff == 1" :labels="true" :value="true" />
-                  <toggle-button v-else :labels="true"/></em></dd>
-                <dd>压疮高风险 <em><toggle-button v-if="bedDetailData.SoreRisk == 1" :labels="true" :value="true" />
-                  <toggle-button v-else :labels="true"/></em></dd>
-                <dd>院内感染 <em><toggle-button v-if="bedDetailData.InfecInside == 1" :labels="true" :value="true" />
-                  <toggle-button v-else :labels="true"/></em></dd>
-                <dd>过敏 <em><toggle-button v-if="bedDetailData.Allergy == 1" :labels="true" :value="true" />
-                  <toggle-button v-else :labels="true"/></em></dd>
-                <dd>隔离 <em><toggle-button v-if="bedDetailData.Isolation == 1" :labels="true" :value="true" />
-                  <toggle-button v-else :labels="true"/></em></dd>
+                <dd>跌倒/坠床高风险 <em>
+                  <label v-if="bedDetailData.hrf == 1" class="v-switch toggled">
+                    <span class="v-switch-core" style="background-color: rgb(117, 199, 145);"></span>
+                    <div><span class="v-switch-label v-left">是</span></div>
+                  </label>
+                  <label v-else class="v-switch">
+                    <span class="v-switch-core" style="background-color: rgb(191, 203, 217)"></span>
+                    <div><span class="v-switch-label v-right">否</span></div>
+                  </label></em></dd>
+                <dd>防导管滑脱 <em><label v-if="bedDetailData.CatheterOff == 1" class="v-switch toggled">
+                  <span class="v-switch-core" style="background-color: rgb(117, 199, 145);"></span>
+                  <div><span class="v-switch-label v-left">是</span></div>
+                </label>
+                  <label v-else class="v-switch">
+                    <span class="v-switch-core" style="background-color: rgb(191, 203, 217)"></span>
+                    <div><span class="v-switch-label v-right">否</span></div>
+                  </label></em></dd>
+                <dd>压疮高风险 <em>
+                  <label v-if="bedDetailData.SoreRisk == 1" class="v-switch toggled">
+                    <span class="v-switch-core" style="background-color: rgb(117, 199, 145);"></span>
+                    <div><span class="v-switch-label v-left">是</span></div>
+                  </label>
+                  <label v-else class="v-switch">
+                    <span class="v-switch-core" style="background-color: rgb(191, 203, 217)"></span>
+                    <div><span class="v-switch-label v-right">否</span></div>
+                  </label></em></dd>
+                <dd>院内感染 <em>
+                  <label v-if="bedDetailData.InfecInside == 1" class="v-switch toggled">
+                    <span class="v-switch-core" style="background-color: rgb(117, 199, 145);"></span>
+                    <div><span class="v-switch-label v-left">是</span></div>
+                  </label>
+                  <label v-else class="v-switch">
+                    <span class="v-switch-core" style="background-color: rgb(191, 203, 217)"></span>
+                    <div><span class="v-switch-label v-right">否</span></div>
+                  </label></em></dd>
+                <dd>过敏 <em>
+                  <label v-if="bedDetailData.Allergy == 1" class="v-switch toggled">
+                    <span class="v-switch-core" style="background-color: rgb(117, 199, 145);"></span>
+                    <div><span class="v-switch-label v-left">是</span></div>
+                  </label>
+                  <label v-else class="v-switch">
+                    <span class="v-switch-core" style="background-color: rgb(191, 203, 217)"></span>
+                    <div><span class="v-switch-label v-right">否</span></div>
+                  </label></em></dd>
+                <dd>隔离 <em>
+                  <label v-if="bedDetailData.Isolation == 1" class="v-switch toggled">
+                    <span class="v-switch-core" style="background-color: rgb(117, 199, 145);"></span>
+                    <div><span class="v-switch-label v-left">是</span></div>
+                  </label>
+                  <label v-else class="v-switch">
+                    <span class="v-switch-core" style="background-color: rgb(191, 203, 217)"></span>
+                    <div><span class="v-switch-label v-right">否</span></div>
+                  </label></em></dd>
               </dl>
             </dd>
           </dl>
