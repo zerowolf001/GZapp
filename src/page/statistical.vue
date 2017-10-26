@@ -156,7 +156,6 @@
 
       </dl>
     </section>
-    <foot-guide></foot-guide>
   </div>
 </template>
 <script>
@@ -170,13 +169,12 @@
     },
     components:{
       headTop,
-      footGuide,
     },
   }
 </script>
 <style lang="scss" scoped>
   .statistical {
-    margin-bottom:2.5rem;
+    margin-bottom:.5rem;
   }
   .index_nav_link {
     margin-top:2.5rem;

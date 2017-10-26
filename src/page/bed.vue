@@ -28,7 +28,7 @@
       <section class="tab_title">
         <span :class="{choosed: categoryType === 1}" @click="categoryType = 1">基本信息</span>
         <span :class="{choosed: categoryType === 2}" @click="categoryType = 2">特殊标记</span>
-        <span :class="{choosed: categoryType === 3}" @click="categoryType = 3">检查结果</span>
+        <span :class="{choosed: categoryType === 3}" @click="categoryType = 3">检查项目</span>
       </section>
       <transition name="router-fade">
         <section v-if="categoryType === 1">
@@ -242,10 +242,10 @@
               <dd v-for="(item,index) in bedExmd" :key="item.feeNo" @click="show(index)" :class="[isShow==index ? 'active':'']">
               <dt>{{item.name}}</dt>
               <ul v-show="isShow == index">
-                <li v-for="Dlist in item.ck" :key="Dlist.xh">
+                <router-link v-for="Dlist in item.ck" :to="{path: 'bedExamine', query:{feeNo: item.feeNo,Code:Dlist.checkCode,Date:Dlist.checkDate}}" :key="Dlist.xh" tag="li">
                   <em>检查时间：{{Dlist.checkDate}}</em>
                   <span>{{Dlist.status}}</span>
-                </li>
+                </router-link>
               </ul>
               </dd>
             </dl>
@@ -374,12 +374,10 @@
   }
   .bed_name .user-info .bed_distance p:first-child {
     margin-top:0;
-    float:left;
-    width:60%;
+    width:70%;
   }
   .bed_name .user-info .bed_distance p:last-child {
     margin-top:0;
-    float:left;
     color:#f0665a;
     line-height: 1.2rem;
     font-size:.65rem;

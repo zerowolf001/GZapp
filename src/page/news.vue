@@ -27,7 +27,6 @@
         </ul>
       </section>
     </div>
-    <foot-guide></foot-guide>
   </div>
 </template>
 <script>
@@ -48,7 +47,6 @@
     },
     components:{
       headTop,
-      footGuide,
     },
     methods:{
       async initData() {
@@ -71,52 +69,52 @@
     background-color: #fff;
     height: 1.5rem;
     margin: .5rem 0;
-  }
-  .tab_title span {
-    height: 1.5rem;
-    width: 33.333%;
-    text-align: center;
-    line-height: 1.5rem;
-    font-size: .5rem;
-    color:#ccc;
-  }
-  .tab_title span.choosed {
-    border-bottom:1px solid #47a8f0;
-    color: #47a8f0;
+    span {
+      height: 1.5rem;
+      width: 33.333%;
+      text-align: center;
+      line-height: 1.5rem;
+      font-size: .5rem;
+      color:#ccc;
+      &.choosed {
+        border-bottom:1px solid #47a8f0;
+        color: #47a8f0;
+      }
+    }
   }
   .newsList {
     margin-top:2.15rem;
     margin-bottom:2.5rem;
-  }
-  .newsList ul li {
-    margin:.5rem 0;
-    background:#fff;
-    padding:.4rem;
-  }
-  .newsList ul li dl dd:first-child {
-    font-size:.6rem;
-    line-height:1.2rem;
-    overflow: hidden;
-    text-overflow:ellipsis;
-    white-space: nowrap;
-  }
-  .newsList ul li dl dd:last-child {
-    font-size:.58rem;
-    line-height:.75rem;
-    overflow: hidden;
-    margin-top:.1rem;
-    color:#ddd;
-    text-overflow:ellipsis;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-  }
-  .newsList ul li dl dd span {
-    font-size:.6rem;
-    background:#de5467;
-    color:#fff;
-    border-radius: .2rem;
-    padding:0 .5rem;
-    margin-right:.5rem;
+    ul li {
+      margin:.5rem 0;
+      background:#fff;
+      padding:.4rem;
+      dl dd:first-child {
+        font-size:.6rem;
+        line-height:1.2rem;
+        overflow: hidden;
+        text-overflow:ellipsis;
+        white-space: nowrap;
+      }
+      dl dd:last-child {
+        font-size:.58rem;
+        line-height:.75rem;
+        overflow: hidden;
+        margin-top:.1rem;
+        color:#ddd;
+        text-overflow:ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+      }
+      dl dd span {
+        font-size:.6rem;
+        background:#de5467;
+        color:#fff;
+        border-radius: .2rem;
+        padding:0 .5rem;
+        margin-right:.5rem;
+      }
+    }
   }
 </style>

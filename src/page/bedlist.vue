@@ -1,6 +1,6 @@
 <template>
     <div>
-        <head-top head-title="病床" go-back='true'></head-top>
+        <head-top head-title="病床"></head-top>
         <div class="bedlist">
             <div class="search">
                 <div class="search_form">

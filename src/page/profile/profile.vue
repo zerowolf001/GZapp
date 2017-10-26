@@ -1,6 +1,5 @@
 <template>
   <div id="profile">
-    <head-top go-back='true'></head-top>
     <section>
       <div class="profile">
         <span class="profile_img">
@@ -140,7 +139,6 @@
     background-color: #47a7f0;
     padding: 1rem 0;
     text-align: center;
-    margin-top:1rem;
   }
   .profile .profile_img img {
     width: 2.4rem;

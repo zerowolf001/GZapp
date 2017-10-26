@@ -8,6 +8,7 @@ const home = r => require.ensure([], () => r(require('../page/home')), 'home');
 const setServer = r => require.ensure([], () =>r(require('../page/setServer')), 'setServer');
 const bedlist = r => require.ensure([], () => r(require('../page/bedlist')), 'bedlist');
 const bed = r => require.ensure([], () => r(require('../page/bed')), 'bed');
+const bedExamine = r => require.ensure([], () => r(require('../page/bedExamine')), 'bedExamine');
 const duty = r => require.ensure([], () => r(require('../page/duty')), 'duty');
 const stat = r => require.ensure([], () => r(require('../page/statistical')), 'stat');
 const news = r => require.ensure([], () => r(require('../page/news')), 'news');
@@ -168,6 +169,11 @@ export default new Router({
           path:'/imyz',
           name:'imyz',
           component: imyz,
+      },
+      {
+        path:'/bedExamine',
+        name:'bedExamine',
+        component: bedExamine,
       },
   ]
 })

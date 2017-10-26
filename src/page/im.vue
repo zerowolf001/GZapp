@@ -1,19 +1,19 @@
 <template>
   <div id="im">
-    <head-top head-title="需求" go-back='true'></head-top>
+    <head-top head-title="任务"></head-top>
     <div class="message">
       <ul>
-        <router-link to="imyz" tag="li">
+        <router-link :to="{path:'imyz'}" tag="li" v-if="TaskData.da">
           <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
               <td rowspan="2" class="ico">
                   <img src="../assets/icon/xqdb.png" alt="">
               </td>
-              <td class="db_title">待办医嘱</td>
-              <td class="db_time">2017-10-23 16:16:53</td>
+              <td class="db_title">{{TaskData.da.type}}</td>
+              <td class="db_time">{{TaskData.da.time}}</td>
             </tr>
             <tr>
-              <td class="db_detail" colspan="2">20号床 20:00 输液</td>
+              <td class="db_detail" colspan="2">{{TaskData.da.bedNum}}  {{TaskData.da.createTime}} [这里没有名称]</td>
             </tr>
           </table>
         </router-link>
@@ -23,14 +23,15 @@
               <td rowspan="2" class="ico">
                 <img src="../assets/icon/xqyj.png" alt="">
               </td>
-              <td class="db_title">系统危机值预警</td>
-              <td class="db_time">2017-10-23 16:16:53</td>
+              <td class="db_title">{{TaskData.pn.itemName}}</td>
+              <td class="db_time">2017-10-23 16:16</td>
             </tr>
             <tr>
-              <td class="db_detail" colspan="2">20号床 20:00 输液</td>
+              <td class="db_detail" colspan="2">{{TaskData.pn.bedNum}} 20:00 {{TaskData.pn.resultFlag}}</td>
             </tr>
           </table>
         </router-link>
+        <div>返回如下：{{TaskData}}</div>
       </ul>
     </div>
     <foot-guide></foot-guide>
@@ -39,15 +40,28 @@
 <script>
   import headTop from '../components/head'
   import footGuide from '../components/footGuide'
+  import {mission} from '../service/getData'
 
   export default {
     data() {
-      return {}
-    },   
+      return {
+        StationID:'0397',
+        TaskData:'',
+      }
+    },
+    mounted(){
+      this.initData();
+      alert('数据怎么铺？？');
+    },
     components:{
       headTop,
       footGuide,
     },
+    methods:{
+      async initData() {
+        this.TaskData = await mission(this.StationID);
+      }
+    }
   }
 </script>
 <style lang="scss" scoped>

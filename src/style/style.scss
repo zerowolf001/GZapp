@@ -576,20 +576,18 @@ polyline{
     font-size: .7rem;
     height: 1.1rem;
     line-height: 1.1rem;
-    padding:0 .3rem;
     display: inline-block;
     overflow: hidden;
     /*text-overflow: ellipsis;*/
     /*white-space: nowrap;*/
-    color: #fff;
-    background-color:$blue;
+    color: #666;
     font-weight: normal;
   }
   p {
     font-size: .6rem;
     height: 2rem;
     line-height: 1rem;
-    color: #666;
+    color: #999;
     overflow: hidden;
     text-overflow: ellipsis;
     /*white-space: nowrap;*/

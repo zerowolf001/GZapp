@@ -101,6 +101,7 @@
     }
 </script>
 <style lang="scss" scoped>
+  $ae:#aeaeae;
     .rating_page{
         position: absolute;
         top: 0;
@@ -112,25 +113,26 @@
         padding-top: 1.95rem;
     }
     .mark {
-        background:#fff;
-    }
-    .mark h3 {
-        height:1.95rem;
-        line-height:1.95rem;
-        border-bottom:1px solid #eee;
+      background: #fff;
+      h3 {
+        height: 1.95rem;
+        line-height: 1.95rem;
+        border-bottom: 1px solid $ae;
         text-align: center;
-        color:#dd3e3e;
-        font-size:1.2em;
-    }
-    .mark_detail table tr td {
-        font-size:.4rem;
+        color: #dd3e3e;
+        font-size: 1.2em;
+        font-weight: bold;
+      }
     }
     .mark_detail {
         padding:.5rem 0;
+        table tr td {
+          font-size:.4rem;
+          &.grade {
+            font-size:1.2rem;
+            color:#dd3e3e;
+        }
     }
-    .mark_detail table tr td.grade {
-        font-size:1.2rem;
-        color:#dd3e3e;
     }
     .mark_star {
         width:10rem;
@@ -231,8 +233,8 @@
         -webkit-flex-direction: row;
         flex-direction: row;
         height:2rem;
-        border-top:1px solid #eaeaea;
-        border-bottom:1px solid #eaeaea;
+        border-top:1px solid $ae;
+        border-bottom:1px solid $ae;
         padding:0 .5rem;
         font-size:.6rem;
     }

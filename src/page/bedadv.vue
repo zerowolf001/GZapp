@@ -46,7 +46,7 @@
                             <tr>
                                 <td rowspan="2" class="cr6">{{item.type}}</td>
                                 <td class="cr6">{{item.name}}</td>
-                                <td rowspan="2" class="cr6">{{item.startTime}}</td>
+                                <td rowspan="2" class="cr6">{{item.startTime | framDate}}</td>
                                 <td rowspan="2" class="cr6">{{item.status}}</td>
                             </tr>
                             <tr>
@@ -79,6 +79,9 @@
         },
         components:{
             headTop,
+        },
+        filters:{
+          framDate:v =>v.substring(5,16)
         },
         methods: {
             async initData() {
@@ -345,25 +348,26 @@
         color:#999;
         font-size:.6rem;
         width:25%;
+        height: 2rem;
         text-align: center;
         border-bottom: 1px solid #eee;
     }
     table tr td.s_derive_l {
-        font-size:.5rem;
+        font-size:.55rem;
     }
     table tr td:first-child,table thead td:first-child {
         width:20%;
     }
     table tr td:nth-of-type(2),table thead td:nth-of-type(2) {
-        width:42%;
+        width:45%;
     }
     table tr td:nth-of-type(3) {
-        width:22%;
+        width:20%;
     }
     .cr6 {
         color:#666;
     }
     .fs4 {
-        font-size:.4rem;
+        font-size:.5rem;
     }
 </style>

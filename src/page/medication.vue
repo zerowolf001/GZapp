@@ -1,6 +1,6 @@
 <template>
     <div class="bedlist">
-        <head-top head-title="医嘱清单" go-back='true'></head-top>
+        <head-top head-title="用药详情" go-back='true'></head-top>
         <div class="medication" v-if="medication">
             <span>{{medication.BedNum}}号床 {{medication.Name}}</span>
             <span class="xq">用药详情</span>
@@ -15,8 +15,8 @@
                                 <td>{{item.UdStatus}}</td>
                             </tr>
                             <tr>
-                                <td class="cr6 fs4">药嘱剂量：{{item.UdDose}}{{item.UdUnit}}</td>
-                                <td class="cr6 fs4">{{item.BeginDay}} {{item.BeginTime}}</td>
+                                <td class="cr_c">用药详情：{{item.UdDose}}{{item.UdUnit}}</td>
+                                <td class="cr_c">{{item.BeginDay}} {{item.BeginTime}}</td>
                             </tr>
                         </table>
                     </td>
@@ -55,24 +55,23 @@
 </script>
 <style lang="scss" scoped>
     .bedlist {
-        margin-top:1.95rem ;
-        margin-bottom:2.5rem;
+        margin-top:2.1rem ;
     }
     .medication {
         display: flex;
         background:#fff;
-        padding:.2rem .3rem;
+        padding:.4rem .3rem;
     }
     .medication span:first-child {
-        padding:.2rem .3rem;
+        padding:.1rem .3rem;
         background-color:#28b567;
         color:#fff;
         margin-right:.5rem;
-        font-size:.5rem;
+        font-size:.6rem;
     }
     .medication span.xq {
         padding:.2rem .3rem;
-        font-size:.55rem;
+        font-size:.65rem;
         line-height: .7rem;
     }
     .bed_list .bed_num span,.bed_list .bed_btm span{
@@ -118,12 +117,12 @@
         border-bottom: 1px solid #eee;
     }
     table tr td {
-        font-size:.55rem;
+        font-size:.6rem;
     }
     .cr6 {
         color:#666;
     }
-    .fs4 {
-        font-size:.4rem;
+    .cr_c{
+      color:#ccc;
     }
 </style>

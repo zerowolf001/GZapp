@@ -25,6 +25,8 @@ export const medication = (id) => fetch('xihealthcare/bedList/getMedication?feeN
  */
 export const bedExmd = (id) => fetch('xihealthcare/bedList/getChecks?feeNo='+id,{});
 
+export const bedExamine = (feeNo,checkCode,checkDate) => fetch('xihealthcare/bedList/checkDetail?feeNo='+feeNo+'&checkCode='+checkCode+'&checkDate='+checkDate,{});
+
 /**
  * 检测帐号是否存在
  */
@@ -59,8 +61,8 @@ export const opsData = (StationID) => fetch('xihealthcare/operationList/getOpera
 /** 获取手术详情 */
 export const opsDetail = (id) => fetch('xihealthcare/operationList/getOperationDetail?xh='+id,{});
 
-/** 获取需求信息 */
-export const im = () => fetch('xihealthcare/demandInfo/demanded?StationID=0397', {});
+/** 获取需求(任务)信息 */
+export const mission = (StationID) => fetch('xihealthcare/stayHandle/getNewAdvice?StationID='+StationID, {});
 
 /** 处理需求信息 */
 export const im_list = (xh) => fetch('xihealthcare/demandInfo/demandStatusPDA?StationID=0397&xh=' + xh,{},'POST');
