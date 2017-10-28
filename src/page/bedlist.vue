@@ -1,6 +1,5 @@
 <template>
     <div>
-        <head-top head-title="病床"></head-top>
         <div class="bedlist">
             <div class="search">
                 <div class="search_form">
@@ -46,8 +45,8 @@
                     <div class="bed_btm">
                         <span>入院时间：{{item.ChkInAt}}</span>
                         <span class="a_r">
-                            <router-link :to="{path: 'bedAdv', query:{id: item.FeeNo}}">查看医嘱</router-link>
                             <router-link :to="{path: 'medication', query:{id:item.FeeNo}}">用药详情</router-link>
+                            <router-link :to="{path: 'bedAdv', query:{id: item.FeeNo}}">查看医嘱</router-link>
                         </span>
                     </div>
                 </li>
@@ -94,23 +93,30 @@
 </script>
 <style lang="scss" scoped>
     .bedlist {
-        margin-top:1.88rem;
         margin-bottom:2.5rem;
     }
     .search {
         display: block;
         padding:.25rem 1rem;
         background-color: #e8e8e8;
-        height: 1.5rem;
+        height: 1.9rem;
+        button {
+            border:none;
+            background:transparent;
+            color:#47a7f0;
+            margin-left:.5rem;
+            font-size:.55rem;
+            line-height: 1.5rem;
+        }
     }
     .search-input {
-        width: 85%;
+        width: 87%;
         margin: 0;
         min-height: .75rem;
         padding: .1rem .4rem;
-        font-size: .5rem;
+        font-size: .55rem;
         text-align: center;
-        line-height: 20px;
+        line-height: 25px;
         color: #24292e;
         vertical-align: middle;
         background-color: #fff;
@@ -118,25 +124,22 @@
         border-radius: .35rem;
         float: left;
     }
-    .search button {
-        border:none;
-        background:transparent;
-        color:#47a7f0;
-        margin-left:.5rem;
-        font-size:.55rem;
-    }
     .bed_list {
         border-bottom: 1px solid #f1f1f1;
-        margin-bottom: 1rem;
+        margin-bottom: .5rem;
     }
     .bed_list .bed_num,.bed_list .bed_btm {
         width: 100%;
         display: block;
-        min-height: 1.35rem;
-        line-height: 1.2rem;
+        min-height: 1.4rem;
+        line-height: 1.4rem;
         background-color: #fff;
-        border-bottom:.1rem solid #f3f3f3;
+        border-bottom:1px solid #f1f1f1;
         padding:0 .5rem;
+    }
+    .bed_list .bed_btm{
+        height:1.7rem;
+        line-height: 1.6rem;
     }
     .bed_list .bed_num span,.bed_list .bed_btm span{
         width:50%;
@@ -343,17 +346,17 @@
         text-align: left;
     }
     .bed_list .bed_btm span.a_r {
-        margin-top:.15rem;
+        margin-top:.25rem;
     }
     .bed_list .bed_btm span.a_r a {
         float: right;
         display: inline-block;
         background-color: #47a7f0;
         color:#fff;
-        font-size:.5rem;
-        line-height: .7rem;
-        padding:.1rem .3rem;
+        font-size:.55rem;
+        line-height: .8rem;
+        padding:.15rem .3rem;
         margin-left:.35rem;
-        border-radius:.25rem;
+        border-radius:.3rem;
     }
 </style>

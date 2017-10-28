@@ -9,9 +9,9 @@
           <div class="user-info">
             <header>
               <h4 class="bed_title ellipsis" :class="'lv_'+ bedDetailData.NursingLevel">{{bedDetailData.Name}}</h4>
-              <ul>
-                <li>病例号:{{bedDetailData.ChartNo}}</li>
-              </ul>
+              <p v-if="bedDetailData.Gender==0" class="age">女/{{bedDetailData.age}}岁</p>
+              <p class="age" v-else>男/{{bedDetailData.age}}岁</p>
+              <p class="bli">病例号:{{bedDetailData.ChartNo}}</p>
             </header>
             <h5 class="bed_distance">
               <p>{{bedDetailData.UID}}</p>
@@ -293,7 +293,7 @@
     },
   }
 </script>
-<style>
+<style lang="scss" scoped>
   .bed_name {
     background:#fff;
     padding-top: 1.95rem;
@@ -328,39 +328,148 @@
     flex: auto;
   }
   .bed_name .profileImage .user-info header {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
+    .lv_1:before{
+      font-size: .5rem;
+      line-height: .65rem;
+      color: #fff;
+      font-weight: normal;
+      background-color: #ff3fdb;
+      padding: 0 .1rem;
+      border-radius: .1rem;
+      margin-right: .2rem;
+      content: '\4E00\7EA7';
+      text-align: center;
+      white-space: nowrap;
+    }
+    .lv_2:before {
+      font-size: .5rem;
+      line-height: .65rem;
+      color: #fff;
+      font-weight: normal;
+      background-color: #2d77ff;
+      padding: 0 .1rem;
+      border-radius: .1rem;
+      margin-right: .2rem;
+      content: '\4E8C\7EA7';
+      text-align: center;
+      white-space: nowrap;
+    }
+    .lv_3:before {
+      font-size: .5rem;
+      line-height: .65rem;
+      color: #333;
+      font-weight: normal;
+      border:1px solid #eee;
+      padding: 0 .1rem;
+      border-radius: .1rem;
+      margin-right: .2rem;
+      content: '\4E09\7EA7';
+      text-align: center;
+      white-space: nowrap;
+    }
+    .lv_4:before {
+      font-size: .5rem;
+      line-height: .65rem;
+      color: #fff;
+      font-weight: normal;
+      background-color:#000;
+      padding: 0 .1rem;
+      border-radius: .1rem;
+      margin-right: .2rem;
+      content: '\7279\7EA7';
+      text-align: center;
+      white-space: nowrap;
+    }
+    .lv_5:before {
+      font-size: .5rem;
+      line-height: .65rem;
+      color: #fff;
+      font-weight: normal;
+      background-color:#666;
+      padding: 0 .1rem;
+      border-radius: .1rem;
+      margin-right: .2rem;
+      content: '\7279\75BE';
+      text-align: center;
+      white-space: nowrap;
+    }
+    .lv_6:before {
+      font-size: .5rem;
+      line-height: .65rem;
+      color: #fff;
+      background-color: #FFBA31;
+      font-weight: normal;
+      padding: 0 .1rem;
+      border-radius: .1rem;
+      margin-right: .2rem;
+      content: '\91CD\75C7';
+      text-align: center;
+      white-space: nowrap;
+    }
+    .lv_7:before {
+      font-size: .5rem;
+      line-height: .65rem;
+      color: #fff;
+      font-weight: normal;
+      background-color:orangered;
+      padding: 0 .1rem;
+      border-radius: .1rem;
+      margin-right: .2rem;
+      content: '\75C5\513F';
+      text-align: center;
+      white-space: nowrap;
+    }
+    .lv_8:before {
+      font-size: .5rem;
+      line-height: .65rem;
+      color: #fff;
+      font-weight: normal;
+      background-color: orangered;
+      padding: 0 .1rem;
+      border-radius: .1rem;
+      margin-right: .2rem;
+      content: '\65B0\751F';
+      text-align: center;
+      white-space: nowrap;
+    }
+    .lv_9:before {
+      font-size: .5rem;
+      line-height: .65rem;
+      color: #fff;
+      font-weight: normal;
+      background-color: orangered;
+      padding: 0 .1rem;
+      border-radius: .1rem;
+      margin-right: .2rem;
+      content: '\65B0\7279';
+      text-align: center;
+      white-space: nowrap;
+    }
   }
   .bed_name .profileImage .user-info .bed_title {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center;
+    display: block;
     margin: 0;
-    width: 4.5rem;
+    width: 3.5rem;
     color: #333;
     padding-top: .01rem;
     font-size: .65rem;
     line-height: 1rem;
     font-weight: 700;
   }
-  .bed_name .profileImage .user-info header ul {
-    display: flex;
-  }
-  .bed_name .profileImage .user-info header ul li {
-    padding: 0 .2rem;
-    font-size: .55rem;
+  .bed_name .profileImage .user-info header p{
+    margin-top: 0;
+    display: block;
+    &.age {
+      float:left;
+      margin-bottom:-.1rem;
+    }
+    &.bli {
+      font-size: .55rem;
+      position: absolute;
+      right:.7rem;
+    }
   }
   .bed_name .user-info .bed_distance {
     display: flex;
@@ -464,6 +573,7 @@
     padding:0 .4rem;
     border-bottom:1px solid #e5e5e5;
     position: relative;
+    font-size:.5rem;
   }
   .bedClinic_container dl dd ul li:after {
     content: ' ';

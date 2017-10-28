@@ -34,7 +34,7 @@
                     <li><span>检查地点：{{exaData.Position}}</span></li>
                     <li><span>检查项目：{{exaData.checkName}}</span></li>
                     <li><span>检查时间：{{exaData.edate}}</span></li>
-                    <li><span>接送工具：</span></li>
+                    <li><span>接送工具：{{exaData.Shuttle}}</span></li>
                 </ul>
             </section>
         </div>

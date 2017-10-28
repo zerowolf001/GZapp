@@ -4,7 +4,7 @@
     <div class="examine">
       <div class="search">
         <div class="search_form">
-          <input type="text" v-model="nameOrNo" placeholder="筛选姓名/床号" class="search-input">
+          <input type="text" v-model="bedNum" placeholder="筛选姓名/床号" class="search-input">
         </div>
         <button @click="searchButton">确 定</button>
       </div>
@@ -14,7 +14,7 @@
             <dd>
               <span class="bedNum">{{item.bedNum}}床</span>
               <span class="exName">{{item.name}}</span>
-              <span class="exTime">手术时间：{{item.date}}</span>
+              <span class="exTime">检查时间：{{item.date}}</span>
             </dd>
             <dd>检查项目：{{item.checkName}}</dd>
             <dd>检查地点：{{item.Position}}</dd>
@@ -34,7 +34,7 @@
     data() {
         return {
             StationID:'0397',
-            nameOrNo:'',
+            bedNum:'',
             EXData:null,
         }
     },
@@ -46,13 +46,13 @@
     },
     methods:{
         async initData() {
-          let data = await examineData(this.StationID);
+          let data = await examineData(this.StationID,this.bedNum);
           this.EXData = [...data]
         },
         async searchButton(){
-            this.$router.push({path:'/bedSearch', query:{
+            this.$router.push({path:'/examinSearch', query:{
                 StationID:this.StationID,
-                nameOrNo:this.nameOrNo,}
+                bedNum:this.bedNum,}
             });
         },
     }
@@ -78,15 +78,16 @@
       background:transparent;
       color:#47a7f0;
       margin-left:.5rem;
-      font-size:.55rem;
+      font-size:.6rem;
+      line-height: 1rem;
     }
   }
   .search-input {
     width: 85%;
     margin: 0;
-    min-height: .75rem;
+    min-height: 1rem;
     padding: .1rem .4rem;
-    font-size: .5rem;
+    font-size: .55rem;
     text-align: center;
     line-height: 20px;
     color: #24292e;

@@ -9,29 +9,29 @@
               <td rowspan="2" class="ico">
                   <img src="../assets/icon/xqdb.png" alt="">
               </td>
-              <td class="db_title">{{TaskData.da.type}}</td>
+              <td class="db_title">医嘱任务</td>
               <td class="db_time">{{TaskData.da.time}}</td>
             </tr>
             <tr>
-              <td class="db_detail" colspan="2">{{TaskData.da.bedNum}}  {{TaskData.da.createTime}} [这里没有名称]</td>
+              <td class="db_detail" colspan="2">{{TaskData.da.bedNum}}  {{TaskData.da.type}}</td>
             </tr>
           </table>
         </router-link>
-        <router-link to="imwjz" tag="li">
+        <router-link to="imwjz" tag="li" v-if="TaskData.de">
           <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
               <td rowspan="2" class="ico">
                 <img src="../assets/icon/xqyj.png" alt="">
               </td>
-              <td class="db_title">{{TaskData.pn.itemName}}</td>
-              <td class="db_time">2017-10-23 16:16</td>
+              <td class="db_title">病患需求</td>
+              <td class="db_time">{{TaskData.de.dateTime}} {{TaskData.de.insertTime}}</td>
             </tr>
             <tr>
-              <td class="db_detail" colspan="2">{{TaskData.pn.bedNum}} 20:00 {{TaskData.pn.resultFlag}}</td>
+              <td class="db_detail" colspan="2">{{TaskData.de.bedNum}} {{TaskData.de.insertTime}} {{TaskData.de.Description}}</td>
             </tr>
           </table>
         </router-link>
-        <div>返回如下：{{TaskData}}</div>
+
       </ul>
     </div>
     <foot-guide></foot-guide>
@@ -51,7 +51,6 @@
     },
     mounted(){
       this.initData();
-      alert('数据怎么铺？？');
     },
     components:{
       headTop,

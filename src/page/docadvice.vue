@@ -8,7 +8,10 @@
                     <dl>
                         <dd><span>姓名/床号</span><em><input type="text" v-model="nameOrNum" placeholder="请输入患者姓名/床号"></em></dd>
                         <dd><span>病例号</span><em><input type="text" v-model="chartNo" placeholder="请输入病历号"></em></dd>
-                        <dd><span>医嘱类型</span><em>不限</em><i></i></dd>
+                        <dd><span>医嘱类型</span><em><select v-model="selected">
+                          <option value="" disabled>不限</option>
+                          <option v-for="item in advList">{{item.type}}</option>
+                        </select></em></dd>
                     </dl>
                 </dd>
                 <dd class="bedBest_list" style="margin-bottom:.2rem;">
@@ -18,7 +21,7 @@
                 </dd>
                 <dd class="bedBest_date">
                     <dl>
-                        <dd><span><input type="date" v-model="startTime"></span>至 <span><input type="date" v-model="endTime"></span></dd>
+                        <dd><span><input type="date" v-model="startTime"></span>至 <span><input type="date" v-model="endTime" id="trday"></span></dd>
                     </dl>
                 </dd>
                 <dd class="btn" @click="searchButton">筛选</dd>
@@ -32,6 +35,7 @@
 <script>
     import headTop from '../components/head'
     import footGuide from '../components/footGuide'
+    import {advcieType} from '../service/getData'
 
     export default {
         data() {
@@ -39,14 +43,22 @@
                 StationID:'0397',
                 nameOrNum:'',
                 chartNo:'',
-                startTime:'',
+                startTime:'2017-10-27',
                 endTime:'',
+                selected: '',
+                advList:'',
             }
         },
         components:{
             headTop,footGuide,
         },
+        mounted(){
+            this.initData();
+        },
         methods:{
+            async initData() {
+              this.advList = await advcieType();
+            },
             async searchButton(){
 //                this.docAdvList = await docadvData(this.StationID,this.nameOrNum,this.startTime,this.endTime);
                 this.$router.push({path:'/advList', query:{
@@ -82,7 +94,8 @@
         text-align: center;
     }
     dl.doc_container .bedBest_date dd {
-       color:#333;
+        color:#333;
+        display:flex;
     }
     dl.doc_container .bedBest_list dd {
         position:relative;
@@ -145,5 +158,10 @@
     }
     input::-webkit-input-placeholder{
         color: #cdcdcd;
+    }
+    select{
+        height:1.2rem;
+        width:4rem;
+        font-size:.65rem;
     }
 </style>

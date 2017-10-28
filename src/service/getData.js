@@ -44,7 +44,7 @@ export const news = (StationID) => {
 export const newspage = (id) => fetch('xihealthcare/notice/getNoticeDetail?xh='+id,{});
 
 /** 获取检查安排 */
-export const  examineData = (StationID) => fetch('xihealthcare/inspect/getInspect?StationID='+StationID, {});
+export const  examineData = (StationID,bedNum) => fetch('xihealthcare/inspect/getInspect?StationID='+StationID+'&bedNum='+bedNum, {});
 
 /** 获取检查详情*/
 export const examineDetail = (id) => fetch('xihealthcare/inspect/getInspectDetails?xh='+id,{});
@@ -68,6 +68,7 @@ export const mission = (StationID) => fetch('xihealthcare/stayHandle/getNewAdvic
 export const im_list = (xh) => fetch('xihealthcare/demandInfo/demandStatusPDA?StationID=0397&xh=' + xh,{},'POST');
 
 /** 医嘱 */
+export const advcieType = () => fetch('xihealthcare/doctorAdvice/getAdviceType',{});
 export const docadvData = (StationID,nameOrNum,chartNo,startTime,endTime) => fetch('xihealthcare/doctorAdvice/getAdvice?StationID='+StationID+'&nameOrNum='+nameOrNum+'&chartNo='+chartNo+'&startTime='+startTime+'&endTime='+endTime,{});
 
 /** 排班 */
