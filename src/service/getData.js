@@ -64,6 +64,9 @@ export const opsDetail = (id) => fetch('xihealthcare/operationList/getOperationD
 /** 获取需求(任务)信息 */
 export const mission = (StationID) => fetch('xihealthcare/stayHandle/getNewAdvice?StationID='+StationID, {});
 
+/** 获取医嘱任务列表*/
+export const imYZData = (StationID,dnName) => fetch('xihealthcare/stayHandle/getAdvice?StationID='+StationID+'&dnName='+dnName,{});
+
 /** 处理需求信息 */
 export const im_list = (xh) => fetch('xihealthcare/demandInfo/demandStatusPDA?StationID=0397&xh=' + xh,{},'POST');
 

@@ -1,56 +1,47 @@
 <template>
     <div id="im_yz">
-      <head-top head-title="待办医嘱" go-back='true'></head-top>
+      <head-top head-title="医嘱任务" go-back='true'></head-top>
       <div class="im_yz">
         <section class="tab_title">
           <span :class="{choosed: categoryType === 1}" @click="categoryType = 1">待执行</span>
           <span :class="{choosed: categoryType === 2}" @click="categoryType = 2">已执行</span>
         </section>
         <section v-if="categoryType === 1">
-          <div class="dbyz">
+          <div class="dbyz" v-if="YZDataArr.dealFlag = '0'">
             <ul>
-              <li>
+              <router-link v-for="item in YZDataArr" :to="{path:'/',query:{id:item.xh}}" :key="item.xh" tag="li">
                 <div class="hr_detail">
                   <div class="hr_title">
-                    <p>C1-006今日医嘱</p>
-                    <span>10-26 12:00:23</span>
+                    <p>{{item.bedNum}}{{item.type}}</p>
+                    <span>{{item.time | framDate}}</span>
                   </div>
                   <div class="yz_hr_detail">
-                    注意伤口渗血，复合氨基酸2瓶，口服避孕药。量体温，量血压。注意伤口渗血，复合氨基酸2瓶，口服避孕药。量体温，量血压。
+                    {{item.name}}{{item.total}}{{item.priceunit}} {{item.status}}
                   </div>
-                  <div class="yz_click"><router-link to="yzdetail">查看详情></router-link></div>
+                  <div class="yz_click">
+                      <span>执行人:{{item.doctorName}}/{{item.time | framDate}}</span>
+                      <router-link to="yzdetail">查看详情></router-link>
+                  </div>
                 </div>
-              </li>
+              </router-link>
             </ul>
           </div>
         </section>
         <section v-if="categoryType === 2">
-          <div class="dbyz">
+          <div class="dbyz" v-if="YZDataArr.dealFlag === 1">
             <ul>
-              <li>
-                <div class="hr_detail">
-                  <div class="hr_title">
-                    <p>C2-9999今日医嘱</p>
-                    <span>10-26 12:00:23</span>
-                  </div>
-                  <div class="yz_hr_detail">
-                    注意伤口渗血，复合氨基酸2瓶，口服避孕药。量体温，量血压。注意伤口渗血，复合氨基酸2瓶，口服避孕药。量体温，量血压。
-                  </div>
-                  <div class="yz_click"><router-link to="yzdetail">查看详情></router-link></div>
-                </div>
-              </li>
-              <li>
-                <div class="hr_detail">
-                  <div class="hr_title">
-                    <p>C2-9999今日医嘱</p>
-                    <span>10-26 12:00:23</span>
-                  </div>
-                  <div class="yz_hr_detail">
-                    注意伤口渗血，复合氨基酸2瓶，口服避孕药。量体温，量血压。注意伤口渗血，复合氨基酸2瓶，口服避孕药。量体温，量血压。
-                  </div>
-                  <div class="yz_click"><router-link to="yzdetail">查看详情></router-link></div>
-                </div>
-              </li>
+                <router-link v-for="item in YZDataArr" :to="{path:'/',query:{id:item.xh}}" :key="item.xh" tag="li">
+                    <div class="hr_detail">
+                        <div class="hr_title">
+                            <p>{{item.bedNum}}{{item.type}}</p>
+                            <span>{{item.time | framDate}}</span>
+                        </div>
+                        <div class="yz_hr_detail">
+                            {{item.name}} {{item.total}}{{item.priceunit}} {{item.status}}
+                        </div>
+                        <div class="yz_click"><router-link to="yzdetail">查看详情></router-link></div>
+                    </div>
+                </router-link>
             </ul>
           </div>
         </section>
@@ -60,17 +51,31 @@
 </template>
 <script>
     import headTop from '../components/head'
+    import {imYZData} from '../service/getData'
 
     export default {
-      data() {
-        return{
-          categoryType: 1,
+        data() {
+            return {
+                categoryType: 1,
+                stationID: '0397',
+                dnName: '001035',
+                YZDataArr: {},
+            }
+        },
+        mounted(){
+            this.initData();
+        },
+        components:{
+            headTop,
+        },
+        filters:{
+            framDate:v =>v.substring(5,16)
+        },
+        methods:{
+            async initData() {
+                this.YZDataArr = await imYZData(this.StationID,this.dnName);
+            }
         }
-      },
-      components:{
-        headTop,
-      },
-
     }
 </script>
 <style lang="scss" scoped>
@@ -79,7 +84,6 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -ms-flex-pack: distribute;
     justify-content: space-around;
     -webkit-box-align: center;
     -ms-flex-align: center;
@@ -124,7 +128,7 @@
         p {
           font-size: .55rem;
           float: left;
-          width: 75%;
+          width: 79%;
           padding-left:.5rem;
         }
         span {
@@ -141,6 +145,9 @@
         background-color: #fff;
         padding:0 .5rem;
         height:1.2rem;
+          span {
+              color:#aeaeae;
+          }
         a {
           color:#fff;
           background-color: $blue;
