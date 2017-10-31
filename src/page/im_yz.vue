@@ -7,9 +7,9 @@
           <span :class="{choosed: categoryType === 2}" @click="categoryType = 2">已执行</span>
         </section>
         <section v-if="categoryType === 1">
-          <div class="dbyz" v-if="YZDataArr.dealFlag = '0'">
+          <div class="dbyz">
             <ul>
-              <router-link v-for="item in YZDataArr" :to="{path:'/',query:{id:item.xh}}" :key="item.xh" tag="li">
+              <li v-for="item in YZDataArr" v-if="item.dealFlag == 0" :key="item.xh">
                 <div class="hr_detail">
                   <div class="hr_title">
                     <p>{{item.bedNum}}{{item.type}}</p>
@@ -20,17 +20,17 @@
                   </div>
                   <div class="yz_click">
                       <span>执行人:{{item.doctorName}}/{{item.time | framDate}}</span>
-                      <router-link to="yzdetail">查看详情></router-link>
+                      <router-link :to="{path:'yzdetail',query:{id:item.xh}}">查看详情></router-link>
                   </div>
                 </div>
-              </router-link>
+              </li>
             </ul>
           </div>
         </section>
         <section v-if="categoryType === 2">
-          <div class="dbyz" v-if="YZDataArr.dealFlag === 1">
+          <div class="dbyz">
             <ul>
-                <router-link v-for="item in YZDataArr" :to="{path:'/',query:{id:item.xh}}" :key="item.xh" tag="li">
+                <li v-for="item in YZDataArr" v-if="item.dealFlag == 1" :key="item.xh" >
                     <div class="hr_detail">
                         <div class="hr_title">
                             <p>{{item.bedNum}}{{item.type}}</p>
@@ -39,9 +39,8 @@
                         <div class="yz_hr_detail">
                             {{item.name}} {{item.total}}{{item.priceunit}} {{item.status}}
                         </div>
-                        <div class="yz_click"><router-link to="yzdetail">查看详情></router-link></div>
                     </div>
-                </router-link>
+                </li>
             </ul>
           </div>
         </section>

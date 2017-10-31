@@ -39,12 +39,26 @@
 
     export default {
         data() {
-            return{
+          function GetDateStr(AddDayCount) {
+            let dd = new Date();
+            dd.setDate(dd.getDate()+AddDayCount);
+            const y = dd.getFullYear();
+            let m = dd.getMonth()+1;
+            let d = dd.getDate();
+            if (d < 10) {
+              d = '0' + d;
+            }
+            if (m < 10) {
+              m = '0' + m;
+            }
+            return y+"-"+m+"-"+d;
+          }
+          return{
                 StationID:'0397',
                 nameOrNum:'',
                 chartNo:'',
-                startTime:'2017-10-27',
-                endTime:'',
+                startTime:GetDateStr(0),
+                endTime:GetDateStr(3),
                 selected: '',
                 advList:'',
             }

@@ -20,7 +20,7 @@
                         </section>
                         <div class="bed_right">
                             <header>
-                                <h4 class="bed_title ellipsis" :class="'lv_'+ item.NursingLevel">{{item.Name}}</h4>
+                                <h4 class="bed_title ellipsis" :class="'lv_'+ item.NursingLevel">{{item.Name | toString}}</h4>
                                 <p v-if="item.Gender==0">女/{{item.age}}岁</p>
                                 <p v-else>男/{{item.age}}岁</p>
                             </header>
@@ -75,6 +75,9 @@
             headTop,
             footGuide,
         },
+        filters:{
+            toString:v =>v.substring(0,1)+"*"+v.substring(2)
+        },
         methods:{
             async initData() {
                 let res = await bedList(this.StationID,this.nameOrNo);
@@ -116,7 +119,7 @@
         padding: .1rem .4rem;
         font-size: .55rem;
         text-align: center;
-        line-height: 25px;
+        height: 1.25rem;
         color: #24292e;
         vertical-align: middle;
         background-color: #fff;
