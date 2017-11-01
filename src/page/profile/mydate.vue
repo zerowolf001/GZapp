@@ -6,8 +6,7 @@
             <ul>
                 <li class="arrow" @click="pickPre(currentYear,currentMonth)">❮</li>
                 <li class="year-month" @click="pickYear(currentYear,currentMonth)">
-                    <span class="choose-year">{{ currentYear }}</span>
-                    <span class="choose-month">{{ currentMonth }}月</span>
+                    <span>{{ currentYear }}年{{ currentMonth }}月</span>
                 </li>
                 <li class="arrow" @click="pickNext(currentYear,currentMonth)">❯</li>
             </ul>
@@ -24,7 +23,7 @@
         </ul>
         <!-- 日期 -->
         <ul class="days">
-            <li @click="pick(day)" v-for="day in days">
+            <li v-for="day in days">
                 <!--本月-->
                 <span v-if="day.getMonth()+1 != currentMonth" class="other-month">{{ day.getDate() }}</span>
                 <span v-else>
@@ -38,19 +37,19 @@
 </template>
 <script>
     import headTop from '../../components/head'
+    import {myMonthdate} from '../../service/getData'
 
     export default {
         data () {
             return {
+                employeeID: '000789',
                 currentDay: 1,
                 currentMonth: 1,
                 currentYear: 1970,
                 currentWeek: 1,
                 days: [],
+                myDateArr:[],
             }
-        },
-        mounted () {
-
         },
         created () {
             this.initData(null);
@@ -58,8 +57,11 @@
         components:{
             headTop,
         },
+        filters:{
+          framDate:v =>v.substring(8)
+        },
         methods: {
-            initData (cur) {
+            async initData (cur) {
                 let date;
                 if (cur) {
                     date = new Date(cur)
@@ -74,6 +76,7 @@
                     this.currentWeek = 7
                 }
                 const str = this.formatDate(this.currentYear, this.currentMonth, this.currentDay); // 今日日期 年-月-日
+                console.log(str);
                 this.days.length = 0;
                 // 今天是周日，放在第一行第7个位置，前面6个
                 /* eslint-disabled */
@@ -87,6 +90,7 @@
                     d.setDate(d.getDate() + i);
                     this.days.push(d);
                 }
+                this.pick(date);
             },
             // 上一個月   传入当前年份和月份
             pickPre (year, month) {
@@ -101,8 +105,10 @@
                 this.initData(this.formatDate(d.getFullYear(), d.getMonth() + 1, 1))
             },
             // 当前选择日期
-            pick (date) {
-                alert(this.formatDate(date.getFullYear(), date.getMonth() + 1, date.getDate()))
+            async pick (date) {
+              let str = this.formatDate(date.getFullYear(), date.getMonth() + 1, date.getDate());
+              this.currentDay = str;
+              this.myDateArr = await myMonthdate(str,this.employeeID);
             },
             pickYear: function() {
                 this.initData();
@@ -124,19 +130,77 @@
     }
     .month {
         width: 100%;
-        background: #47a7f0;
+        background-color: #fff;
     }
     .month ul {
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: space-between;
+      width: 100%;
+      justify-content: space-between;
+      display: -webkit-box;
+      display: -moz-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      box-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+      -webkit-box-orient: horizontal;
+      box-orient: horizontal;
+      -webkit-flex-direction: row;
+      flex-direction: row;
+      position: relative;
+      li {
+        color: #6f6f6f;
+        font-size: 20px;
+        text-transform: uppercase;
+        &.arrow {
+           padding: 5px;
+           font-size: .8rem;
+           -webkit-flex-shrink: 0;
+           flex-shrink: 0;
+           margin: 0 .5rem;
+         }
+        &.year-month {
+           display: -webkit-box;
+           display: -moz-box;
+           display: -webkit-flex;
+           display: -ms-flexbox;
+           display: flex;
+          font-size: .7rem;
+          width: 100%;
+          height: 100%;
+          -webkit-box-align: center;
+          box-align: center;
+          -webkit-align-items: center;
+          align-items: center;
+          box-pack: start;
+          -webkit-justify-content: flex-start;
+          justify-content: flex-start;
+          span {
+            display: block;
+            margin: 0 auto;
+            color: #e64e4e;
+          }
+        }
+      }
     }
-    .year-month {
+    ul{
+      &.weekdays {
+        margin: 0;
         display: flex;
-        flex-direction: column;
-        align-items: center;
+        flex-wrap: wrap;
         justify-content: space-around;
+        font-size: .6rem;
+        background-color: #fff;
+        border-bottom:1px solid #eee;
+        li {
+          padding: .4rem 0;
+          display: inline-block;
+          width: 13.6%;
+          text-align: center;
+          color: #6f6f6f;
+        }
+      }
     }
 
     .year-month:hover {
@@ -162,31 +226,12 @@
     }
 
     .month ul li {
-        color: white;
+        color: #6f6f6f;
         font-size: 20px;
         text-transform: uppercase;
-        letter-spacing: 3px;
     }
-
-    .weekdays {
-        margin: 0;
-        padding: 10px 0;
-        background-color: #47a7f0;
-        display: flex;
-        flex-wrap: wrap;
-        color: #FFFFFF;
-        justify-content: space-around;
-    }
-
-    .weekdays li {
-        display: inline-block;
-        width: 13.6%;
-        text-align: center;
-    }
-
     .days {
         padding: 0;
-        background: #FFFFFF;
         margin: 0;
         display: flex;
         flex-wrap: wrap;
@@ -194,28 +239,44 @@
     }
 
     .days li {
-        list-style-type: none;
-        display: inline-block;
-        width: 14.2%;
-        text-align: center;
-        padding-bottom: 15px;
-        padding-top: 15px;
-        font-size: 1rem;
-        color: #000;
-    }
-
-    .days li .active {
-        padding: 6px 10px;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      box-pack: start;
+      -webkit-box-pack: start;
+      -ms-flex-pack: start;
+      justify-content: flex-start;
+      display: inline-block;
+      width: 14.28571428571429%;
+      padding-top:.2rem;
+      line-height: 1.2rem;
+      height:2.5rem;
+      text-align: center;
+      margin: .2rem 0;
+      color: #6f6f6f;
+      background-color:#fff;
+      font-size: .6rem;
+      .active {
         border-radius: 50%;
         background: #00B8EC;
         color: #fff;
+      }
+      span.active {
+        display: inline-block;
+        width: 1.2rem;
+        height: 1.2rem;
+        color: #fff;
+        border-radius: 50%;
+        background-color: #fa6854;
+      }
+      .other-month {
+        color: #999;
+      }
     }
-
-    .days li .other-month {
-        padding: 5px;
-        color: gainsboro;
-    }
-
     .days li:hover {
         background: #e1e1e1;
     }

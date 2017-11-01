@@ -129,31 +129,31 @@
     }
     .bed_list {
         border-bottom: 1px solid #f1f1f1;
-        margin-bottom: .5rem;
+        margin-bottom: .3rem;
     }
     .bed_list .bed_num,.bed_list .bed_btm {
         width: 100%;
         display: block;
-        min-height: 1.4rem;
-        line-height: 1.4rem;
+        height: 1.5rem;
+        line-height: 1.5rem;
         background-color: #fff;
         border-bottom:1px solid #f1f1f1;
         padding:0 .5rem;
     }
     .bed_list .bed_btm{
         height:1.7rem;
-        line-height: 1.6rem;
+        line-height: 1.7rem;
     }
     .bed_list .bed_num span,.bed_list .bed_btm span{
         width:50%;
-        font-size:.55rem;
+        font-size:.6rem;
         display: block;
         float: left;
         text-align: right;
     }
     .bed_list .bed_num span.c_red {
         color:#f0665a;
-        font-size:.6rem;
+        font-size:.68rem;
         text-align: left;
     }
     .bed_list .bed_details {
@@ -195,6 +195,9 @@
         -webkit-box-align: center;
         -ms-flex-align: center;
         align-items: center;
+        p {
+            font-size: .6rem;
+        }
     }
     .bed_list .bed_details .bed_right header .bed_title {
         display: -webkit-box;
@@ -209,12 +212,13 @@
         width: 4rem;
         color: #333;
         padding-top: .01rem;
-        font-size: .6rem;
+        font-size: .7rem;
         line-height: .7rem;
     }
     .bed_list .bed_details .bed_right header .lv_1:before,.bed_list .bed_details .user-info header .lv_1:before {
-        font-size: .5rem;
-        line-height: .65rem;
+        font-size: .65rem;
+        line-height: .8rem;
+        height:.8rem;
         color: #fff;
         font-weight: normal;
         background-color: #ff3fdb;
@@ -226,8 +230,9 @@
         white-space: nowrap;
     }
     .bed_list .bed_details .bed_right header .lv_2:before,.bed_list .bed_details .user-info header .lv_2:before {
-        font-size: .5rem;
-        line-height: .65rem;
+        font-size: .65rem;
+        line-height: .8rem;
+        height:.8rem;
         color: #fff;
         font-weight: normal;
         background-color: #2d77ff;
@@ -239,8 +244,9 @@
         white-space: nowrap;
     }
     .bed_list .bed_details .bed_right header .lv_3:before,.bed_list .bed_details .user-info header .lv_3:before {
-        font-size: .5rem;
-        line-height: .65rem;
+        font-size: .65rem;
+        line-height: .8rem;
+        height:.8rem;
         color: #333;
         font-weight: normal;
         border:1px solid #eee;
@@ -252,8 +258,9 @@
         white-space: nowrap;
     }
     .bed_list .bed_details .bed_right header .lv_4:before,.bed_list .bed_details .user-info header .lv_4:before {
-        font-size: .5rem;
-        line-height: .65rem;
+        font-size: .65rem;
+        line-height: .8rem;
+        height:.8rem;
         color: #fff;
         font-weight: normal;
         background-color:#000;
@@ -265,8 +272,9 @@
         white-space: nowrap;
     }
     .bed_list .bed_details .bed_right header .lv_5:before,.bed_list .bed_details .user-info header .lv_5:before {
-        font-size: .5rem;
-        line-height: .65rem;
+        font-size: .65rem;
+        line-height: .8rem;
+        height:.8rem;
         color: #fff;
         font-weight: normal;
         background-color:#666;
@@ -278,8 +286,9 @@
         white-space: nowrap;
     }
     .bed_list .bed_details .bed_right header .lv_6:before,.bed_list .bed_details .user-info header .lv_6:before {
-        font-size: .5rem;
-        line-height: .65rem;
+        font-size: .65rem;
+        line-height: .8rem;
+        height:.8rem;
         color: #fff;
         background-color: #FFBA31;
         font-weight: normal;
@@ -291,8 +300,9 @@
         white-space: nowrap;
     }
     .bed_list .bed_details .bed_right header .lv_7:before,.bed_list .bed_details .user-info header .lv_7:before {
-        font-size: .5rem;
-        line-height: .65rem;
+        font-size: .65rem;
+        line-height: .8rem;
+        height:.8rem;
         color: #fff;
         font-weight: normal;
         background-color:orangered;
@@ -304,8 +314,9 @@
         white-space: nowrap;
     }
     .bed_list .bed_details .bed_right header .lv_8:before,.bed_list .bed_details .user-info header .lv_8:before {
-        font-size: .5rem;
-        line-height: .65rem;
+        font-size: .65rem;
+        line-height: .8rem;
+        height:.8rem;
         color: #fff;
         font-weight: normal;
         background-color: orangered;
@@ -317,8 +328,9 @@
         white-space: nowrap;
     }
     .bed_list .bed_details .bed_right header .lv_9:before,.bed_list .bed_details .user-info header .lv_9:before {
-        font-size: .5rem;
-        line-height: .65rem;
+        font-size: .65rem;
+        line-height: .8rem;
+        height:.8rem;
         color: #fff;
         font-weight: normal;
         background-color: orangered;
@@ -331,12 +343,14 @@
     }
     .bed_list .bed_details .bed_detail_ul,.bed_list .bed_details h5.rating_num {
         display: flex;
-        margin:.15rem 0;
+        font-size: .6rem;
+        line-height:1rem;
+        height:1rem
     }
     .bed_list .bed_details .bed_detail_ul li {
-        font-size: .45rem;
-        color: #999;
-        background-color: #f1f1f1;
+        font-size: .55rem;
+        color: #666;
+        background-color: #eee;
         padding:0 .15rem;
         border-radius: .2rem;
         margin-left: .08rem;
@@ -356,7 +370,7 @@
         display: inline-block;
         background-color: #47a7f0;
         color:#fff;
-        font-size:.55rem;
+        font-size:.65rem;
         line-height: .8rem;
         padding:.15rem .3rem;
         margin-left:.35rem;

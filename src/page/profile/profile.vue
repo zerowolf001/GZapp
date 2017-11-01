@@ -28,7 +28,7 @@
       </div>
     </section>
     <ul class="profile_list">
-      <li>
+      <router-link to="/dbyz" tag="li">
         <aside>
           <img src="../../assets/icon/me_1.png" alt="">
         </aside>
@@ -38,8 +38,8 @@
             <path d="M716.298 417.341l-.01.01L307.702 7.23l-94.295 94.649 408.591 410.117-408.591 410.137 94.295 94.639 502.891-504.76z"></path>
           </svg>
         </span>
-      </li>
-      <li>
+      </router-link>
+      <router-link to="/myxq" tag="li">
         <aside>
           <img src="../../assets/icon/me_2.png" alt="">
         </aside>
@@ -49,7 +49,7 @@
             <path d="M716.298 417.341l-.01.01L307.702 7.23l-94.295 94.649 408.591 410.117-408.591 410.137 94.295 94.639 502.891-504.76z"></path>
           </svg>
         </span>
-      </li>
+      </router-link>
       <router-link to="/mydate" tag="li">
         <aside>
           <img src="../../assets/icon/me_3.png" alt="">
@@ -89,7 +89,7 @@
           </svg>
         </span>
       </router-link>
-      <li>
+      <router-link to="/setting" tag="li">
         <aside>
           <img src="../../assets/icon/me_6.png" alt="">
         </aside>
@@ -99,7 +99,7 @@
             <path d="M716.298 417.341l-.01.01L307.702 7.23l-94.295 94.649 408.591 410.117-408.591 410.137 94.295 94.639 502.891-504.76z"></path>
           </svg>
         </span>
-      </li>
+      </router-link>
 
     </ul>
     <foot-guide></foot-guide>

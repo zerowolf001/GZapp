@@ -41,6 +41,7 @@
 <script>
   import alertTip from '../components/alertTip'
   import {mapState, mapMutations} from 'vuex'
+  import $ from 'webpack-zepto'
   import {accountLogin} from '../service/getData'
 
 
@@ -73,6 +74,7 @@
                 }, 2000);
             }
             else {
+              this.$router.push({path:'/home'});
                 this.userInfo = await accountLogin(this.dnName, this.passWord);
                 if (!this.userInfo.Name) {
                     this.showAlert = true;
@@ -82,9 +84,9 @@
                     }, 2000);
                 } else {
                     this.$router.push({path:'/home'});
+                    window.android.savaUserinfo(JSON.stringify(this.userInfo));
                 }
             }
-
         }
     }
   }

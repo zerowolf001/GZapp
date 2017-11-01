@@ -24,8 +24,11 @@ export const medication = (id) => fetch('xihealthcare/bedList/getMedication?feeN
  * 获取病床检查项目
  */
 export const bedExmd = (id) => fetch('xihealthcare/bedList/getChecks?feeNo='+id,{});
-export const bedExamine = (feeNo,checkCode,checkDate) => fetch('xihealthcare/bedList/checkDetail?feeNo='+feeNo+'&checkCode='+checkCode+'&checkDate='+checkDate,{});
-
+export const bedExamine = (feeNo,checkCode,checkDate) => fetch('xihealthcare/bedList/getCheckItem?feeNo='+feeNo+'&checkCode='+checkCode+'&checkDate='+checkDate,{});
+export const getBList = (id) => fetch('xihealthcare/bedList/getBList?feeNo='+id,{});
+export const getCtList = (id) => fetch('xihealthcare/bedList/getCtList?feeNo='+id,{});
+export const getBListDetail = (id) => fetch('xihealthcare/bedList/getBListDetail?xh='+id,{});
+export const getCtListDetail = (id) => fetch('xihealthcare/bedList/getCtListDetail?xh='+id,{});
 /**
  * 检测帐号是否存在
  */
@@ -62,6 +65,9 @@ export const opsDetail = (id) => fetch('xihealthcare/operationList/getOperationD
 
 /** 获取需求(任务)信息 */
 export const mission = (StationID) => fetch('xihealthcare/stayHandle/getNewAdvice?StationID='+StationID, {});
+export const getDemand = (StationID) => fetch('xihealthcare/needInfo/getDemandAndPanic?StationID='+StationID, {});
+export const getMessage = (id) => fetch('xihealthcare/needInfo/getMessageDetail?Xh='+id, {});
+
 
 /** 获取医嘱任务列表*/
 export const imYZData = (StationID,dnName) => fetch('xihealthcare/stayHandle/getAdvice?StationID='+StationID+'&dnName='+dnName,{});
@@ -69,7 +75,8 @@ export const yzDetail = (id) => fetch('xihealthcare/stayHandle/getAdviceDetail?x
 export const imXQData = (StationID) => fetch('xihealthcare/needInfo/demand?StationID='+StationID,{});
 
 /** 处理需求信息 */
-export const im_list = (xh) => fetch('xihealthcare/demandInfo/demandStatusPDA?StationID=0397&xh=' + xh,{},'POST');
+export const im_list = (StationID,xh) => fetch('xihealthcare/needInfo/demandStatusPDA?StationID='+StationID+'&xh='+xh,{});
+export const yzClickData = (StationID,xh,type,name) => fetch('xihealthcare/stayHandle/disposeAdvice?StationID='+StationID+'&xh='+xh+'&type='+type+'&name='+name,{});
 
 /** 医嘱 */
 export const advcieType = () => fetch('xihealthcare/doctorAdvice/getAdviceType',{});
@@ -85,3 +92,7 @@ export const user = (dnName) => fetch('xihealthcare/personal/personalInfo?dnName
 export const faq = () => fetch('xihealthcare/problem/getProblemList',{});
 export const suggest = (dnName) => fetch('xihealthcare/satisfaction/getFeedBack?dnName='+dnName,{});
 export const mark = (dnName) => fetch('xihealthcare/satisfaction/getPercent?dnName='+dnName,{});
+export const myMonthdate = (str,employeeID) => fetch('xihealthcare/scheduling/getScheduleMonth?date='+str+'&employeeID='+employeeID,{});
+export const stayAdvice = (dnName) => fetch('xihealthcare/stayHandle/stayAdvice?&dnName='+dnName,{});
+export const stayRequest = (dnName) => fetch('xihealthcare/stayHandle/stayRequest?dnName='+dnName,{});
+export const demandRequest = (xh) => fetch('xihealthcare/stayHandle/demandRequest?xh='+xh,{});

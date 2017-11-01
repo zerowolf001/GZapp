@@ -19,14 +19,14 @@
 <script>
   export default {
     data(){
-      return{
-
-      }
+      return{}
     },
     mounted(){
       //获取用户信息
       //this.getUserInfo();
-
+      /*if(window.android.getUserInfo().length == 0) {
+        this.$router.push({path:'/'});
+      }*/
     },
     props: ['signinUp', 'headTitle', 'goBack'],
     computed: {
@@ -46,6 +46,6 @@
     position: fixed;
   }
   .title_head .title_text{
-    color: #fff;font-size: 1.2em;
+    color: #fff;font-size: 1.5em;font-weight: 600;
   }
 </style>

@@ -10,7 +10,7 @@
       <section v-if="categoryType === 1">
         <div class="dbxq">
           <ul>
-            <li v-for="item in XQDataArr" v-if="item.Type == 1">
+            <li v-for="item in XQDataArr" v-if="item.Type == 2">
               <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td rowspan="2" align="center" valign="middle" class="tx_img"><img src="../assets/icon/woman.png" alt=""></td>
@@ -30,7 +30,7 @@
       <section v-if="categoryType === 2">
         <div class="dbxq">
           <ul>
-            <li v-for="item in XQDataArr"  v-if="item.Type == 2">
+            <li v-for="item in XQDataArr"  v-if="item.Type == 1">
               <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td rowspan="2" align="center" valign="middle" class="tx_img"><img src="../assets/icon/woman.png" alt=""></td>
@@ -72,7 +72,7 @@
 </template>
 <script>
   import headTop from '../components/head'
-  import {imXQData} from '../service/getData'
+  import {imXQData,im_list} from '../service/getData'
 
   export default {
     data() {
@@ -115,20 +115,20 @@
     -ms-flex-align: center;
     align-items: center;
     background-color: #fff;
-    height: 1.5rem;
-    margin: .5rem 0;
-  span {
-    height: 1.5rem;
-    width: 33.333%;
-    text-align: center;
-    line-height: 1.5rem;
-    font-size: .5rem;
-    color:#ccc;
-  &.choosed {
-     border-bottom:1px solid $blue;
-     color: $blue;
-   }
-  }
+    height: 1.8rem;
+    margin:.5rem 0;
+    span {
+      height: 1.8rem;
+      width: 33.333%;
+      text-align: center;
+      line-height: 2rem;
+      font-size: .6rem;
+      color:#ccc;
+      &.choosed {
+        border-bottom:1px solid $blue;
+        color: $blue;
+      }
+    }
   }
   .im_xq {
     margin-top:1.95rem;
@@ -137,38 +137,43 @@
       background:#fff;
       margin-bottom:.5rem;
       td{
-        height:.8rem;
-        line-height: .4rem;
-        font-size:.6rem;
+        font-size:.65rem;
+        padding-top:.2rem;
+        vertical-align:bottom;
         &.tx_img{
           img {
-            width:2rem;
-            height:2rem;
+            width:2.5rem;
+            height:2.5rem;
             background:#ddd;
-            margin:.2rem;
           }
-         }
+        }
         &.datm {
-          font-size: .55rem;
+          font-size: .6rem;
           color:#999;
-         }
-        &.des {
-          font-size:.65rem;
-          color:red;
-         }
-         &.clxq{
           text-align: right;
           padding-right: .5rem;
+        }
+        &.des {
+          line-height: 1rem;
+          font-size:.7rem;
+          color:red;
+          vertical-align:top;
+        }
+        &.clxq{
+          text-align: right;
+          padding-right: .5rem;
+          vertical-align:top;
           a {
             display: inline-block;
             background-color: $blue;
-            padding:.1rem .3rem;
+            text-align: center;
             border-radius:.3rem;
             color:#fff;
-            line-height: .8rem;
-            width: 3rem;
+            line-height: 1.2rem;
+            width: 3.1rem;
+            font-size:.65rem;
           }
-          }
+        }
 
       }
     }

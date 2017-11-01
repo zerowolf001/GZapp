@@ -4,7 +4,7 @@
         <div class="mark">
             <h3>我的评分</h3>
             <div class="mark_detail">
-                <table width="40%" border="0" align="center" cellpadding="0" cellspacing="0">
+                <table width="35%" border="0" align="center" cellpadding="0" cellspacing="0">
                     <tr>
                         <td rowspan="2" class="grade">{{markData.satisfieCount}}</td>
                         <td><rating-star :rating='markData.satisfieCount'></rating-star></td>
@@ -101,7 +101,7 @@
     }
 </script>
 <style lang="scss" scoped>
-  $ae:#aeaeae;
+  $ae:#eaeaea;
     .rating_page{
         position: absolute;
         top: 0;

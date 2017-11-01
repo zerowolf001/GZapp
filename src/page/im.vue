@@ -13,7 +13,7 @@
               <td class="db_time">{{TaskData.da.time}}</td>
             </tr>
             <tr>
-              <td class="db_detail" colspan="2">{{TaskData.da.bedNum}}  {{TaskData.da.type}}</td>
+              <td class="db_detail" colspan="2">{{TaskData.da.bedNum}}  {{TaskData.da.name}}</td>
             </tr>
           </table>
         </router-link>
@@ -27,7 +27,7 @@
               <td class="db_time">{{TaskData.de.dateTime}} {{TaskData.de.insertTime}}</td>
             </tr>
             <tr>
-              <td class="db_detail" colspan="2">{{TaskData.de.bedNum}} {{TaskData.de.insertTime}} {{TaskData.de.Description}}</td>
+              <td class="db_detail" colspan="2">{{TaskData.de.BedNum}} {{TaskData.de.Description}}</td>
             </tr>
           </table>
         </router-link>
@@ -43,24 +43,24 @@
   import {mission} from '../service/getData'
 
   export default {
-    data() {
-      return {
-        StationID:'0397',
-        TaskData:'',
+      data() {
+          return {
+              StationID:'0397',
+              TaskData:'',
+        }
+      },
+      mounted(){
+          this.initData();
+      },
+      components:{
+          headTop,
+          footGuide,
+      },
+      methods:{
+          async initData() {
+              this.TaskData = await mission(this.StationID);
+          }
       }
-    },
-    mounted(){
-      this.initData();
-    },
-    components:{
-      headTop,
-      footGuide,
-    },
-    methods:{
-      async initData() {
-        this.TaskData = await mission(this.StationID);
-      }
-    }
   }
 </script>
 <style lang="scss" scoped>
@@ -74,25 +74,28 @@
     margin-bottom:.5rem;
     padding:.5rem;
     background-color:#fff;
-  }
-  .message ul li td.ico {
-    width:20%;
-  }
-  .message ul li td.db_title {
-    height:1.2rem;
-    font-size: .65rem;
-  }
-  .message ul li td.db_detail {
-    color:#a3a3a3;
-    font-size:.55rem;
-  }
-  .message ul li td.db_time {
-    color: #a3a3a3;
-    font-size:.58rem;
-    text-align: right;
-  }
-  .message ul li td.ico img {
-    width:2.25rem;
-    height:2.25rem;
+    td{
+      &.ico {
+        width:20%;
+      }
+      &.db_title {
+        height:1.2rem;
+        font-size: .7rem;
+      }
+      &.db_detail {
+        color:#a3a3a3;
+        font-size:.65rem;
+        vertical-align: top;
+      }
+      &.db_time {
+        color: #a3a3a3;
+        font-size:.6rem;
+        text-align: right;
+      }
+      &.ico img {
+        width:2.25rem;
+        height:2.25rem;
+      }
+    }
   }
 </style>

@@ -1,53 +1,48 @@
 <template>
-    <div id="yz_detail">
-      <head-top head-title="待办医嘱详情" go-back='true'></head-top>
-      <div class="yz_detail">
-        <div class="profileImage">
-          <img v-if="yzData.gender == 0" src="../assets/icon/woman.png" >
-          <img v-else src="../assets/icon/man.png" >
-          <div class="user-info">
-            <header>
-              <h4 class="bed_title ellipsis" :class="'lv_'+ yzData.nursingLevel">{{yzData.pName}}</h4>
-              <p v-if="yzData.gender==0" class="age">女/{{yzData.age}}岁</p>
-              <p class="age" v-else>男/{{yzData.age}}岁</p>
-              <p class="bli">病例号:{{yzData.chartNo}}</p>
-            </header>
-            <h5 class="bed_distance">
-              <p>{{yzData.contactNo}}</p>
-              <p>{{yzData.bedNum}}号床</p>
-            </h5>
-            <p>{{yzData.chkInAt}} 入院</p>
-          </div>
+  <div id="yz_detail">
+    <head-top head-title="已执行医嘱" go-back='true'></head-top>
+    <div class="yz_detail">
+      <div class="profileImage">
+        <img v-if="yzData.gender == 0" src="../assets/icon/woman.png" >
+        <img v-else src="../assets/icon/man.png" >
+        <div class="user-info">
+          <header>
+            <h4 class="bed_title ellipsis" :class="'lv_'+ yzData.nursingLevel">{{yzData.pName}}</h4>
+            <p v-if="yzData.gender==0" class="age">女/{{yzData.age}}岁</p>
+            <p class="age" v-else>男/{{yzData.age}}岁</p>
+            <p class="bli">病例号:{{yzData.chartNo}}</p>
+          </header>
+          <h5 class="bed_distance">
+            <p>{{yzData.contactNo}}</p>
+            <p>{{yzData.bedNum}}号床</p>
+          </h5>
+          <p>{{yzData.chkInAt}} 入院</p>
         </div>
       </div>
-      <section class="yzxq_detail">
-        <ul>
-          <li><span>医嘱名称：{{yzData.name}}</span></li>
-          <li><span>医嘱类型：{{yzData.type}}</span></li>
-          <li><span>总量：{{yzData.total}}</span></li>
-          <li><span>每次量：{{yzData.dose}}</span></li>
-          <li><span>状态：{{yzData.status}}</span></li>
-          <li><span>开立医生：{{yzData.doctorName}}</span></li>
-          <li><span>执行时间：{{yzData.startTime}}</span></li>
-          <li><span>结束时间：{{yzData.stopTime}}</span></li>
-          <li><span>创建时间：{{yzData.createTime}}</span></li>
-        </ul>
-      </section>
-      <section class="yzxq_detail">
-        <ul>
-          <li class="bz"><span>备注：</span></li>
-        </ul>
-      </section>
-      <section class="btnn">
-        <a @click="zxButton" class="btn">立即执行</a>
-      </section>
-      <alert-tip v-if="showAlert" :showHide="showAlert" :alertText="alertText"></alert-tip>
     </div>
+    <section class="yzxq_detail">
+      <ul>
+        <li><span>医嘱名称：{{yzData.name}}</span></li>
+        <li><span>医嘱类型：{{yzData.type}}</span></li>
+        <li><span>总量：{{yzData.total}}</span></li>
+        <li><span>每次量：{{yzData.dose}}</span></li>
+        <li><span>状态：{{yzData.status}}</span></li>
+        <li><span>开立医生：{{yzData.doctorName}}</span></li>
+        <li><span>执行时间：{{yzData.startTime}}</span></li>
+        <li><span>结束时间：{{yzData.stopTime}}</span></li>
+        <li><span>创建时间：{{yzData.createTime}}</span></li>
+      </ul>
+    </section>
+    <section class="yzxq_detail">
+      <ul>
+        <li class="bz"><span>备注：</span></li>
+      </ul>
+    </section>
+  </div>
 </template>
 
 <script>
   import headTop from '../components/head'
-  import alertTip from '../components/alertTip'
   import {yzDetail,yzClickData} from '../service/getData'
 
   export default {
@@ -57,8 +52,6 @@
         yzData:'',
         StationID:'0397',
         yzClick:'',
-        showAlert: false,
-        alertText: null,
       }
     },
     created(){
@@ -70,23 +63,11 @@
     },
     components:{
       headTop,
-      alertTip,
     },
     methods: {
       async initData() {
         this.yzData = await yzDetail(this.id)
       },
-      async zxButton(){
-        this.type = this.yzData.type;
-        this.name = this.yzData.name;
-        this.yzClick = await yzClickData(this.StationID,this.xh,this.type,this.name);
-        this.showAlert = true;
-        this.alertText = this.yzClick.data;
-        setTimeout(() => {
-          this.showAlert = false;
-          this.$router.go(-1);
-        }, 2000);
-      }
     },
   }
 </script>
@@ -300,9 +281,9 @@
     padding-left:.8rem;
     height:1.2rem;
     line-height:1.2rem;
-    &.bz {
-      min-height: 2rem;
-     }
+  &.bz {
+     min-height: 2rem;
+   }
   }
   .btnn {
     text-align: center;

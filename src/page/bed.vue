@@ -237,18 +237,52 @@
       <transition name="router-fade">
         <section v-if="categoryType === 3">
           <section class="bedClinic_container">
-            <dl>
+            <dl v-if="bedExmd.length != 0">
               <dt>检验科</dt>
               <dd v-for="(item,index) in bedExmd" :key="item.feeNo" @click="show(index)" :class="[isShow==index ? 'active':'']">
               <dt>{{item.name}}</dt>
               <ul v-show="isShow == index">
-                <router-link v-for="Dlist in item.ck" :to="{path: 'bedExamine', query:{feeNo: item.feeNo,Code:Dlist.checkCode,Date:Dlist.checkDate}}" :key="Dlist.xh" tag="li">
+                <router-link v-for="Dlist in item.ck" v-if="Dlist.status == '已出报告'" :to="{path: 'bedExamine', query:{feeNo: item.feeNo,Code:Dlist.checkCode,Date:Dlist.checkDate}}" :key="Dlist.xh" tag="li">
                   <em>检查时间：{{Dlist.checkDate}}</em>
                   <span>{{Dlist.status}}</span>
                 </router-link>
+                <li v-else>
+                  <em>检查时间：{{Dlist.checkDate}}</em>
+                  <span>{{Dlist.status}}</span>
+                </li>
               </ul>
               </dd>
             </dl>
+            <dl v-if="BListData.length != 0">
+              <dt>影像科</dt>
+              <dd class="active">
+                <dt>B超</dt>
+                <ul>
+                  <router-link v-for="item in BListData" v-if="item.status == '已出报告'" :to="{path: 'EXBDetail', query:{id: item.xh}}" :key="item.xh" tag="li">
+                    <em>检查时间：{{item.time}}</em>
+                    <span>{{item.status}}</span>
+                  </router-link>
+                  <li v-else>
+                    <em>检查时间：{{item.time}}</em>
+                    <span>{{item.status}}</span>
+                  </li>
+                </ul>
+              </dd>
+              <dd class="active">
+              <dt>CT</dt>
+              <ul>
+                <router-link v-for="item in CtListData" v-if="item.status == '已出报告'" :to="{path: 'EXCTDetail', query:{xh: item.xh}}" :key="item.xh" tag="li">
+                  <em>检查时间：{{item.time}}</em>
+                  <span>{{item.status}}</span>
+                </router-link>
+                <li v-else>
+                  <em>检查时间：{{item.time}}</em>
+                  <span>{{item.status}}</span>
+                </li>
+              </ul>
+              </dd>
+            </dl>
+            <p v-else align="center">暂无检查项目！</p>
           </section>
         </section>
       </transition>
@@ -257,7 +291,7 @@
 </template>
 
 <script>
-  import {bedDetails,bedExmd} from '../service/getData'
+  import {bedDetails,bedExmd,getBList,getCtList} from '../service/getData'
   import headTop from '../components/head'
   import ToggleButton from '../components/switch.vue'
 
@@ -270,6 +304,9 @@
         toggled: false,
         bedExmd:[],
         isShow:false,
+        ShowIs:false,
+        BListData:[],
+        CtListData:[],
       }
     },
     created(){
@@ -284,11 +321,16 @@
     },
     methods: {
       async initData() {
-        this.bedDetailData = await bedDetails(this.id)
-        this.bedExmd = await bedExmd(this.id)
+        this.bedDetailData = await bedDetails(this.id);
+        this.bedExmd = await bedExmd(this.id);
+        this.BListData = await getBList(this.id);
+        this.CtListData = await getCtList(this.id);
       },
       show:function(cur){
         this.isShow = cur;
+      },
+      xs(cru){
+        this.ShowIs = cru;
       }
     },
   }
@@ -307,7 +349,7 @@
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    padding:.6rem .6rem 0 .6rem;
+    padding:.6rem .2rem 0 .2rem;
   }
   .bed_name .profileImage img {
     background:#eee;
@@ -331,8 +373,8 @@
     display: flex;
     align-items: center;
     .lv_1:before{
-      font-size: .5rem;
-      line-height: .65rem;
+      font-size: .6rem;
+      line-height: .6rem;
       color: #fff;
       font-weight: normal;
       background-color: #ff3fdb;
@@ -344,8 +386,8 @@
       white-space: nowrap;
     }
     .lv_2:before {
-      font-size: .5rem;
-      line-height: .65rem;
+      font-size: .6rem;
+      line-height: .6rem;
       color: #fff;
       font-weight: normal;
       background-color: #2d77ff;
@@ -357,8 +399,8 @@
       white-space: nowrap;
     }
     .lv_3:before {
-      font-size: .5rem;
-      line-height: .65rem;
+      font-size: .6rem;
+      line-height: .6rem;
       color: #333;
       font-weight: normal;
       border:1px solid #eee;
@@ -370,8 +412,8 @@
       white-space: nowrap;
     }
     .lv_4:before {
-      font-size: .5rem;
-      line-height: .65rem;
+      font-size: .6rem;
+      line-height: .6rem;
       color: #fff;
       font-weight: normal;
       background-color:#000;
@@ -383,8 +425,8 @@
       white-space: nowrap;
     }
     .lv_5:before {
-      font-size: .5rem;
-      line-height: .65rem;
+      font-size: .6rem;
+      line-height: .6rem;
       color: #fff;
       font-weight: normal;
       background-color:#666;
@@ -396,8 +438,8 @@
       white-space: nowrap;
     }
     .lv_6:before {
-      font-size: .5rem;
-      line-height: .65rem;
+      font-size: .6rem;
+      line-height: .6rem;
       color: #fff;
       background-color: #FFBA31;
       font-weight: normal;
@@ -409,8 +451,8 @@
       white-space: nowrap;
     }
     .lv_7:before {
-      font-size: .5rem;
-      line-height: .65rem;
+      font-size: .6rem;
+      line-height: .6rem;
       color: #fff;
       font-weight: normal;
       background-color:orangered;
@@ -422,8 +464,8 @@
       white-space: nowrap;
     }
     .lv_8:before {
-      font-size: .5rem;
-      line-height: .65rem;
+      font-size: .6rem;
+      line-height: .6rem;
       color: #fff;
       font-weight: normal;
       background-color: orangered;
@@ -435,8 +477,8 @@
       white-space: nowrap;
     }
     .lv_9:before {
-      font-size: .5rem;
-      line-height: .65rem;
+      font-size: .6rem;
+      line-height: .6rem;
       color: #fff;
       font-weight: normal;
       background-color: orangered;
@@ -451,10 +493,10 @@
   .bed_name .profileImage .user-info .bed_title {
     display: block;
     margin: 0;
-    width: 3.5rem;
+    width: 3.95rem;
     color: #333;
     padding-top: .01rem;
-    font-size: .65rem;
+    font-size: .75rem;
     line-height: 1rem;
     font-weight: 700;
   }
@@ -463,23 +505,24 @@
     display: block;
     &.age {
       float:left;
-      margin-bottom:-.1rem;
+      font-size: .6rem;
     }
     &.bli {
-      font-size: .55rem;
+      font-size: .6rem;
       position: absolute;
-      right:.7rem;
+      right:.2rem;
     }
   }
   .bed_name .user-info .bed_distance {
     display: flex;
     width: 100%;
-    font-size:.55rem;
+    font-size:.6rem;
     line-height:.75rem;
     margin-top:.2rem;
   }
   .bed_name .profileImage .user-info p {
     margin-top:-.4rem;
+    font-size:.6rem;
   }
   .bed_name .user-info .bed_distance p:first-child {
     margin-top:0;
@@ -489,7 +532,7 @@
     margin-top:0;
     color:#f0665a;
     line-height: 1.2rem;
-    font-size:.65rem;
+    font-size:.73rem;
   }
   .tab_title {
     display: -webkit-box;
@@ -504,7 +547,6 @@
     height: 2rem;
     border-top:1px solid #e7eaf1;
     border-bottom: 1px solid #e7eaf1;
-    margin-bottom: 1rem;
   }
   .tab_title span {
     border-right:1px solid #eee;
@@ -512,7 +554,7 @@
     width: 33.333%;
     text-align: center;
     line-height: 2rem;
-    font-size: .6rem;
+    font-size: .7rem;
   }
   .tab_title span.choosed {
     background-color:#47a8f0;
@@ -521,66 +563,69 @@
   .tab_title span:last-child {
     border-right:none;
   }
-  .bedClinic_container {
-    margin:-.5rem .3rem 0 .3rem;
-    background-color:#fff;
+  .bedClinic_container p {
+      margin-top:4rem;
+      font-size: .65rem;
+  }
+  .bedClinic_container dl {
+    margin:.5rem .3rem 0 .3rem;
     line-height:25px;
-    padding:.5rem 0;
-    font-size:14px;
-    border-radius: .4rem;
-  }
-  .bedClinic_container dl dt {
-    font-size: .7rem;
-    padding:0 .5rem;
-    height: 1rem;
-    line-height: .7rem;
-    border-bottom: 1px solid #e0e0e0;
-  }
-  .bedClinic_container dl dd dt {
     font-size:.6rem;
-    padding:.2rem .8rem;
-    height:1.35rem;
-    line-height: 1rem;
-    border:none;
-    display: flex;
-    position: relative;
-  }
-  .bedClinic_container dl dd.active dt:before{
-    content: " ";
-    border: .4rem solid #fff;
-    border-left-width: .25rem;
-    border-right-width: .25rem;
-    border-color: #47a7f0 transparent transparent transparent;
-    top: .525rem;
-    left: .2rem;
-    position: absolute;
-  }
-  .bedClinic_container dl dd dt:before{
-    content: " ";
-    border: .4rem solid #fff;
-    border-top-width: .25rem;
-    border-bottom-width: .25rem;
-    border-color: transparent transparent transparent #47a7f0;
-    top: .525rem;
-    left: .2rem;
-    position: absolute;
+    border-radius: .4rem;
+    background-color:#fff;
+    dt {
+      font-size: .8rem;
+      padding:0 .5rem;
+      height: 1.8rem;
+      line-height: 1.8rem;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    dd dt {
+      font-size:.7rem;
+      padding:0 1.2rem;
+      height:1.5rem;
+      line-height: 1.5rem;
+      border:none;
+      display: flex;
+      position: relative;
+    }
+    dd.active dt:before{
+      content: " ";
+      border: .6rem solid #fff;
+      border-left-width: .4rem;
+      border-right-width: .4rem;
+      border-color: #47a7f0 transparent transparent transparent;
+      top: .525rem;
+      left: .2rem;
+      position: absolute;
+    }
+    dd dt:before{
+      content: " ";
+      border: .6rem solid #fff;
+      border-top-width: .4rem;
+      border-bottom-width: .4rem;
+      border-color: transparent transparent transparent #47a7f0;
+      top: .525rem;
+      left: .2rem;
+      position: absolute;
+    }
   }
   .bedClinic_container dl dd ul li {
-    margin:0 .2rem;
-    height:1.6rem;
-    line-height: 1.5rem;
-    background-color: #fafafa;
+    margin:.2rem;
+    height:1.85rem;
+    line-height: 1.85rem;
+    background-color: #f6f6f6;
     padding:0 .4rem;
-    border-bottom:1px solid #e5e5e5;
     position: relative;
-    font-size:.5rem;
+    font-size:.65rem;
+    border-radius: .3rem;
   }
   .bedClinic_container dl dd ul li:after {
     content: ' ';
     display: block;
     position: absolute;
     right: .3rem;
-    top: .4rem;
+    top: .6rem;
     width: .5rem;
     height: .5rem;
     border-top: 1px solid #e5e5e5;
@@ -605,18 +650,15 @@
     margin-bottom:1rem;
     background-color: #fff;
   }
-  dl.bedBest_container .bedBest_list dl,.bedTag_container .bed_Switch dl {
-    border-top:1px solid #eee;
-  }
   dl.bedBest_container .bedBest_list dd,.bedTag_container .bed_Switch dd {
     position:relative;
     border-bottom:1px solid #eee;
-    font-size:.6rem;
+    font-size:.7rem;
     padding:.4rem 1rem .4rem .5rem;
   }
   dl.bedBest_container .bedBest_list dd em,.bedTag_container .bed_Switch dd em {
     float: right;
-    font-size: .55rem;
+    font-size: .65rem;
     color: #999;
     font-style: normal;
     font-weight: 400;
@@ -624,15 +666,16 @@
   .alink_r {
     display: flex;
     clear: both;
-    padding:0 0 .5rem 60%;
+    padding-left: 53%;
+    padding-bottom:.5rem;
   }
   .alink_r a {
     float: right;
     display: inline-block;
     background-color: #47a7f0;
     color:#fff;
-    font-size:.5rem;
-    line-height: .7rem;
+    font-size:.65rem;
+    line-height: 1rem;
     padding:.1rem .3rem;
     margin-left:.35rem;
     border-radius:.25rem;
@@ -642,12 +685,12 @@
     position: relative;
     vertical-align: middle;
     user-select: none;
-    font-size: 12px;
+    font-size: .6rem;
     cursor: pointer;
   }
   .v-switch .v-switch-label, .v-switch {
-    line-height: 22px;
-    height: 22px;
+    line-height: 1.5rem;
+    height: 1.5rem;
   }
   .v-switch .v-switch-input {
     display: none;
@@ -680,18 +723,18 @@
     border-radius: 100%;
     background-color: #fff;
     content: '';
-    width: 16px;
-    height: 16px;
+    width: 1.2rem;
+    height: 1.2rem;
   }
   .v-switch .v-switch-core:before {
-    width: calc(22px - 6px);
-    height: calc(22px - 6px);
+    width: calc(1.2rem - 6px);
+    height: calc(1.2rem - 6px);
   }
   .v-switch .v-switch-label.v-right {
-    right: 15px;
+    right: 12px;
   }
   .v-switch .v-switch-label.v-left {
-    left: 15px;
+    left: 12px;
   }
   .v-switch.toggled .v-switch-core:before {
     transform: translate(30px,3px);
@@ -705,17 +748,17 @@
     opacity: 0.6;
   }
   .v-switch .v-switch-label {
-    line-height: 22px;
-    height: 22px;
+    line-height: 1.2rem;
+    height: 1.2rem;
   }
 
   .v-switch .v-switch-core {
     border-radius: 999px;
-    width: 50px;
-    height: 22px;
+    width: 2.4rem;
+    height: 1.2rem;
   }
   .v-switch.v-switch-core:before {
-    width: calc(22px - 6px);
-    height: calc(22px - 6px);
+    width: calc(1.2rem - 6px);
+    height: calc(1.2rem - 6px);
   }
 </style>

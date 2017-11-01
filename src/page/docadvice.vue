@@ -7,7 +7,7 @@
                 <dd class="bedBest_list">
                     <dl>
                         <dd><span>姓名/床号</span><em><input type="text" v-model="nameOrNum" placeholder="请输入患者姓名/床号"></em></dd>
-                        <dd><span>病例号</span><em><input type="text" v-model="chartNo" placeholder="请输入病历号"></em></dd>
+                        <dd><span>病历号</span><em><input type="text" v-model="chartNo" placeholder="请输入病历号"></em></dd>
                         <dd><span>医嘱类型</span><em><select v-model="selected">
                           <option value="" disabled>不限</option>
                           <option v-for="item in advList">{{item.type}}</option>
@@ -28,7 +28,6 @@
             </dl>
             </form>
         </section>
-        <foot-guide></foot-guide>
     </div>
 </template>
 

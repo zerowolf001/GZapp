@@ -77,7 +77,6 @@
                     this.startTime,
                     this.endTime);
                 this.docList = [...res];
-                console.log(this.endTime)
             },
         }
     }

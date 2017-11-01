@@ -36,7 +36,7 @@
             async initData() {
                 this.NoticeDetail = await newspage(this.id)
             },
-      },
+        },
   }
 </script>
 <style lang="scss" scoped>
