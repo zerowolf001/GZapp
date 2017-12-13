@@ -28,9 +28,3 @@ W3C2016标准CORS Access-Control-Allow-Headers 不支持通配符"*"，必须指
 参考 https://github.com/euvl/vue-js-toggle-button/blob/master/src/Button.vue<br/>
     http://element.eleme.io/#/zh-CN/component/switch<br/>
 编写 switch 组件<br/>
-
-### 2017年08月22日
-修改登陆界面获取登陆接口API
-
-### 2017年08月24日
-新增排班页面
